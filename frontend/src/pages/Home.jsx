@@ -1,36 +1,36 @@
-import Counter from "../components/Counter";
-import logo from "../assets/logo.svg";
+import axios from "axios";
+import "../App.css";
+import { useEffect, useState } from "react";
+import { SearchBar } from "@components/search-bar/SearchBar";
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 export default function Home() {
-  return (
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>Hello Vite + React !</p>
+  const [movies, setMovies] = useState(null);
+  const [query, setQuery] = useState("");
+  console.log(movies);
 
-      <Counter />
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=fr&query=${query}&page=1&include_adult=false`
+      )
+      .then(({ data }) => {
+        setMovies(data.results);
+      });
+  }, [query]);
 
-      <p>
-        Edit <code>App.jsx</code> and save to test HMR updates.
-      </p>
-      <p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        {" | "}
-        <a
-          className="App-link"
-          href="https://vitejs.dev/guide/features.html"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Vite Docs
-        </a>
-      </p>
-    </header>
-  );
+  if (!movies) return null;
+  else
+    return (
+      <div>
+        <header>
+          <img
+            src="./src/assets/Keskonregarde.gif"
+            alt="logo"
+            className="logo-pic"
+          />
+        </header>
+        <SearchBar setQuery={setQuery} />
+      </div>
+    );
 }
