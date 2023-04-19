@@ -1,0 +1,56 @@
+.searchBarBox {
+  height: 2rem;
+  width: 80vw;
+  background-color: #f6f6f6;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  box-shadow: 0px 2px 8px gray;
+  margin: 1rem auto;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.searchBar {
+  width: 80vw;
+  background-color: #f6f6f6;
+  border-style: none;
+  padding-left: 1rem;
+  font-weight: bold;
+  font-style: italic;
+  color: #c20114;
+}
+
+.searchBar::placeholder {
+  opacity: 0.4;
+}
+
+.searchButton {
+  background-color: #dadada;
+  color: #f6f6f6;
+  border-style: none;
+  padding: 0 1rem;
+  font-size: 0.7rem;
+  font-weight: 900;
+}
+
+.searchButton:active {
+  color: #c20114;
+}
+
+@media screen and (min-width: 1024px) {
+  .searchBarBox {
+    height: 3rem;
+    width: 60vw;
+    border-radius: 0.8rem;
+  }
+
+  .searchButton {
+    font-size: 0.9rem;
+  }
+
+  .searchButton:hover {
+    color: #c20114;
+    cursor: pointer;
+  }
+}
