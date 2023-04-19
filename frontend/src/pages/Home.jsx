@@ -1,13 +1,13 @@
 import axios from "axios";
 import "../App.css";
 import { useEffect, useState } from "react";
-import { SearchBar } from "@components/search-bar/SearchBar";
+import SearchBar from "../components/search-bar/SearchBar";
+
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 export default function Home() {
   const [movies, setMovies] = useState(null);
   const [query, setQuery] = useState("");
-  console.log(movies);
 
   useEffect(() => {
     axios
@@ -20,17 +20,16 @@ export default function Home() {
   }, [query]);
 
   if (!movies) return null;
-  else
-    return (
-      <div>
-        <header>
-          <img
-            src="./src/assets/Keskonregarde.gif"
-            alt="logo"
-            className="logo-pic"
-          />
-        </header>
-        <SearchBar setQuery={setQuery} />
-      </div>
-    );
+  return (
+    <div>
+      <header>
+        <img
+          src="./src/assets/Keskonregarde.gif"
+          alt="logo"
+          className="logo-pic"
+        />
+      </header>
+      <SearchBar setQuery={setQuery} />
+    </div>
+  );
 }

@@ -9,8 +9,8 @@ body {
   scroll-behavior: smooth;
 }
 
-.body::-webkit-scrollbar { 
-  display: none;  /* Safari and Chrome */
+.body::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
 }
 
 .logo-pic {

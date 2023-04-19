@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import styles from "./SearchBar.module.css";
 
-export const SearchBar = ({ setQuery }) => {
+export default function SearchBar({ setQuery }) {
   const [searchInput, setSearchInput] = useState("");
 
   const handleSumbit = (e) => {
@@ -21,4 +22,8 @@ export const SearchBar = ({ setQuery }) => {
       <input type="submit" value="RECHERCHER" className={styles.searchButton} />
     </form>
   );
+}
+
+SearchBar.propTypes = {
+  setQuery: PropTypes.func.isRequired,
 };
