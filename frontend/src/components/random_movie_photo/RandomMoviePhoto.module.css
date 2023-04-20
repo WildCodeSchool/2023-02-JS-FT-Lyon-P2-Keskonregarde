@@ -1,0 +1,29 @@
+.moviePhoto{
+margin-top: 2.5rem;    
+height: 77vh;
+}
+
+
+.titleMoviePhoto{
+color: #f6f6f6;
+position: absolute;
+bottom: 2rem;
+right: 1rem;
+
+
+}
+.dateMoviePhoto{
+    color: #f6f6f6;
+    position: absolute;
+bottom: 0.8rem;
+right: 1rem;
+
+}
+
+@media screen and (min-width: 1024px){
+    .moviePhoto{
+        overflow: hidden;
+        height: 68vh;
+
+    }
+}

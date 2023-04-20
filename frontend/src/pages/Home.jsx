@@ -2,6 +2,7 @@ import axios from "axios";
 import "../App.css";
 import { useEffect, useState } from "react";
 import SearchBar from "../components/search-bar/SearchBar";
+import RandomMoviePhoto from "../components/random_movie_photo/RandomMoviePhoto";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -12,7 +13,7 @@ export default function Home() {
   useEffect(() => {
     axios
       .get(
-        `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=fr&query=${query}&page=1&include_adult=false`
+        `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=fr&query=${query}&page=1&include_adult=false&limit=1`
       )
       .then(({ data }) => {
         setMovies(data.results);
@@ -28,8 +29,9 @@ export default function Home() {
           alt="logo"
           className="logo-pic"
         />
+        <SearchBar setQuery={setQuery} />
       </header>
-      <SearchBar setQuery={setQuery} />
+      <RandomMoviePhoto />
     </div>
   );
 }
