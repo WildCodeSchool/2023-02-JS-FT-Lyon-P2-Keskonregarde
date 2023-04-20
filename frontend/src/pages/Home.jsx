@@ -28,8 +28,8 @@ export default function Home() {
           alt="logo"
           className="logo-pic"
         />
+      <SearchBar query={query} setQuery={setQuery} />
       </header>
-      <SearchBar setQuery={setQuery} />
     </div>
   );
 }

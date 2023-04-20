@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Link} from 'react-router-dom'
 import PropTypes from "prop-types";
 import styles from "./SearchBar.module.css";
 
@@ -27,3 +28,5 @@ export default function SearchBar({ setQuery }) {
 SearchBar.propTypes = {
   setQuery: PropTypes.func.isRequired,
 };
+
+{/* <Link to={`/search?query=`}></Link> */}
