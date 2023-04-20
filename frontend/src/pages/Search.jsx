@@ -1,8 +1,8 @@
 import axios from "axios";
 import "../App.css";
 import { useEffect, useState } from "react";
-import SearchBar from "../components/search-bar/SearchBar";
 import ResultsCard from "@components/results-card/ResultsCard";
+import SearchBar from "../components/search-bar/SearchBar";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -24,14 +24,14 @@ export default function Search() {
   if (!movies) return null;
   return (
     <div>
-        <header>
-          <img
-            src="../src/assets/Keskonregarde.gif"
-            alt="logo"
-            className="logo-pic"
-          />
-          <SearchBar setQuery={setQuery} />
-        </header>
+      <header>
+        <img
+          src="../src/assets/Keskonregarde.gif"
+          alt="logo"
+          className="logo-pic"
+        />
+        <SearchBar setQuery={setQuery} />
+      </header>
       <div>
         {query && <ResultsCard movies={movies} page={page} setPage={setPage} />}
       </div>

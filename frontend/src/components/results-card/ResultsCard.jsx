@@ -33,12 +33,17 @@ export default function ResultsCard({ movies, page, setPage }) {
       </div>
       <div className={styles.buttonContainer}>
         <button
+          type="submit"
           onClick={() => setPage(page - 1)}
           className={styles.prevButton}
         >
           Previous
         </button>
-        <button onClick={() => setPage(page + 1)} className={styles.prevButton}>
+        <button
+          type="submit"
+          onClick={() => setPage(page + 1)}
+          className={styles.prevButton}
+        >
           Next
         </button>
       </div>

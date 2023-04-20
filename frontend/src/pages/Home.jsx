@@ -28,7 +28,7 @@ export default function Home() {
           alt="logo"
           className="logo-pic"
         />
-      <SearchBar query={query} setQuery={setQuery} />
+        <SearchBar query={query} setQuery={setQuery} />
       </header>
     </div>
   );
