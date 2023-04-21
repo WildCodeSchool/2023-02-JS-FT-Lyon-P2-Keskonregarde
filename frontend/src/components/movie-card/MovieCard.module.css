@@ -1,0 +1,46 @@
+.page {
+margin-top: 2.5rem;
+height: 77vh;
+}
+
+.containerDetails {
+  padding: 4rem;
+}
+
+.containerMovieCard {
+  background-color: #F6F6F6;
+  border-radius: 1rem;
+  opacity: 0.8;
+  padding: 1.5rem;
+}
+
+.title {
+  color:  #C20114;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.movieGenres {
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.movieCredits {
+  font-size: 0.8rem;
+  margin-bottom: 2rem;
+}
+
+.creditsName {
+  white-space: pre-wrap;
+}
+
+.titleSynopsis {
+  color:#C20114;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.overview {
+color: black;
+font-size: 0.9rem;
+}
