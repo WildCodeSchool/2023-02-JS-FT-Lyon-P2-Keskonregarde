@@ -1,8 +1,8 @@
 import axios from "axios";
 import "../App.css";
 import { useEffect, useState } from "react";
-import ResultsCard from "@components/results-card/ResultsCard";
 import { useSearchParams } from "react-router-dom";
+import ResultsCard from "../components/results-card/ResultsCard";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
