@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./ResultsCard.module.css";
@@ -54,8 +54,8 @@ export default function ResultsCard({ data, page, setPage }) {
   );
 }
 
-// ResultsCard.propTypes = {
-//   movies: PropTypes.shape().isRequired,
-//   page: PropTypes.number.isRequired,
-//   setPage: PropTypes.func.isRequired,
-// };
+ResultsCard.propTypes = {
+  data: PropTypes.shape().isRequired,
+  page: PropTypes.number.isRequired,
+  setPage: PropTypes.func.isRequired,
+};

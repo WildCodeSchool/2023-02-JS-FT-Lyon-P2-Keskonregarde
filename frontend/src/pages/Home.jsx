@@ -1,5 +1,5 @@
 import "../App.css";
 
 export default function Home() {
-  return <></>;
+  return <div>{/* <RandomMoviePhoto /> */}</div>;
 }

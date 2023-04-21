@@ -7,9 +7,9 @@ import { useSearchParams } from "react-router-dom";
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 export default function Search() {
-  const [results, setResults] = useSearchParams();
+  const [results] = useSearchParams();
 
-  const [data, setData] = useState(null);
+  const [requestedData, setRequestedData] = useState(null);
   const [page, setPage] = useState(1);
 
   useEffect(() => {
@@ -19,17 +19,19 @@ export default function Search() {
         `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=fr&query=${query}&page=${page}&include_adult=false`
       )
       .then(({ data }) => {
-        setData(data);
+        setRequestedData(data);
       });
   }, [results, page]);
 
-  if (!data) return null;
+  if (!requestedData) return null;
   return (
     <>
       <h5 className="results-number">
-        Résultats trouvés : {data.total_results}
+        Résultats trouvés : {requestedData.total_results}
       </h5>
-      {data && <ResultsCard data={data} page={page} setPage={setPage} />}
+      {requestedData && (
+        <ResultsCard data={requestedData} page={page} setPage={setPage} />
+      )}
     </>
   );
 }
