@@ -14,10 +14,19 @@ body {
   display: none; /* Safari and Chrome */
 }
 
+/* Header */
 .logo-pic {
   display: block;
   height: 2rem;
   margin: 2rem auto 1.5rem;
+}
+
+/* Search Page */
+.results-number {
+  text-align: center;
+  margin: 1.5rem;
+  color: #9d9d9d;
+  font-style: italic;
 }
 
 @media screen and (min-width: 1024px) {

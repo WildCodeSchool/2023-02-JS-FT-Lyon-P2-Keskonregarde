@@ -1,17 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./ResultsCard.module.css";
 
-export default function ResultsCard({ movies, page, setPage }) {
+export default function ResultsCard({ data, page, setPage }) {
   const posterUrl = "https://image.tmdb.org/t/p/w200";
 
   return (
     <div className={styles.searchResults}>
       <div className={styles.searchCard}>
-        {movies.map((movie) => (
-          <Link to="/movie/:id">
-            <div key={movie.id} className={styles.cardContainer}>
+        {data.results.map((movie) => (
+          <Link key={movie.id} to="/movie/:id">
+            <div className={styles.cardContainer}>
               <div className={styles.posterContainer}>
                 <img
                   src={`${posterUrl}${movie.poster_path}`}
@@ -54,8 +54,8 @@ export default function ResultsCard({ movies, page, setPage }) {
   );
 }
 
-ResultsCard.propTypes = {
-  movies: PropTypes.func.isRequired,
-  page: PropTypes.func.isRequired,
-  setPage: PropTypes.func.isRequired,
-};
+// ResultsCard.propTypes = {
+//   movies: PropTypes.shape().isRequired,
+//   page: PropTypes.number.isRequired,
+//   setPage: PropTypes.func.isRequired,
+// };

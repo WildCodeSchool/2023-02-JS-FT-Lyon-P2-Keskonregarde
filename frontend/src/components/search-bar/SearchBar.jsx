@@ -1,26 +1,33 @@
 import React, { useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import styles from "./SearchBar.module.css";
 
-export default function SearchBar({ setQuery }) {
-  const [searchInput, setSearchInput] = useState("");
+export default function SearchBar() {
+  const [queries] = useSearchParams();
+  const [searchParam, setSearchParam] = useState(queries.get("query") || "");
+  const navigate = useNavigate();
 
   const handleSumbit = (e) => {
-    e.preventDefault();
-    setQuery(searchInput);
+    navigate(`/search?query=${searchParam}`);
   };
 
   return (
-    <form onSubmit={handleSumbit} className={styles.searchBarBox}>
+    <div className={styles.searchBarBox}>
       <input
         type="text"
         placeholder="On regarde quoi ?"
-        value={searchInput}
-        onChange={(e) => setSearchInput(e.target.value)}
+        value={searchParam}
+        onChange={(e) => setSearchParam(e.target.value)}
         className={styles.searchBar}
       />
-      <input type="submit" value="RECHERCHER" className={styles.searchButton} />
-    </form>
+      <input
+        type="button"
+        value="RECHERCHER"
+        className={styles.searchButton}
+        onClick={handleSumbit}
+      />
+    </div>
   );
 }
 
