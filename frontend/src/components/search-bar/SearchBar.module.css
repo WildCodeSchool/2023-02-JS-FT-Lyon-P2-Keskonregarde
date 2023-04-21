@@ -39,7 +39,7 @@
   color: #c20114;
 }
 
-@media screen and  {
+@media screen and (min-width: 1024px) {
   .searchBarBox {
     height: 3rem;
     width: 60vw;
