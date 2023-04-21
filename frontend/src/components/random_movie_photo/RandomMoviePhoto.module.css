@@ -1,30 +1,25 @@
-.moviePhoto{
-margin-top: 2.5rem;    
-height: 77vh;
+.moviePhoto {
+  margin-top: 2.5rem;
+  height: 77vh;
 }
 
-
-.titleMoviePhoto{
-color: #f6f6f6;
-position: absolute;
-bottom: 3rem;
-right: 1rem;
-font-size: 25px;
-
-
+.titleMoviePhoto {
+  color: #f6f6f6;
+  position: absolute;
+  bottom: 3rem;
+  right: 1rem;
+  font-size: 25px;
 }
-.dateMoviePhoto{
-    color: #f6f6f6;
-    position: absolute;
-bottom: 1rem;
-right: 1rem;
-font-size: 18px;
-
+.dateMoviePhoto {
+  color: #f6f6f6;
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 18px;
 }
 
-@media screen and (min-width: 1024px){
-    .moviePhoto{
-        height: 68vh;
-
-    }
+@media screen and (min-width: 1024px) {
+  .moviePhoto {
+    height: 68vh;
+  }
 }
