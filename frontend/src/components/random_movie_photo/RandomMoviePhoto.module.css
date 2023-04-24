@@ -1,25 +1,27 @@
 .moviePhoto {
-  margin-top: 2.5rem;
-  height: 77vh;
+  margin-top: 1.5rem;
+  height: 78.2vh;
+  box-shadow: 0px 0px 5px gray;
 }
 
 .titleMoviePhoto {
   color: #f6f6f6;
   position: absolute;
-  bottom: 3rem;
-  right: 1rem;
-  font-size: 25px;
-}
-.dateMoviePhoto {
-  color: #f6f6f6;
-  position: absolute;
   bottom: 1rem;
   right: 1rem;
-  font-size: 18px;
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 600;
 }
 
 @media screen and (min-width: 1024px) {
   .moviePhoto {
-    height: 68vh;
+    margin-top: 2.5rem;
+    height: 72vh;
+  }
+
+  .titleMoviePhoto {
+    bottom: 1.5rem;
+    right: 1.5rem;
   }
 }
