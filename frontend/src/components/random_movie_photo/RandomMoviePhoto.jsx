@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styles from "./RandomMoviePhoto.module.css";
@@ -5,7 +6,7 @@ import styles from "./RandomMoviePhoto.module.css";
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 export default function RandomMoviePhoto() {
-  const [movies, setMovies] = useState("");
+  const [movie, setMovie] = useState("");
 
   const url = "https://image.tmdb.org/t/p/original";
   const randomMovies = [
@@ -27,7 +28,7 @@ export default function RandomMoviePhoto() {
       .all(randomMovies.map((randomPhoto) => axios.get(randomPhoto)))
       .then((data) => {
         const randomPhoto = Math.floor(Math.random() * 12);
-        setMovies(data[randomPhoto].data);
+        setMovie(data[randomPhoto].data);
       });
   }, []);
 
@@ -35,19 +36,18 @@ export default function RandomMoviePhoto() {
     <div
       className={styles.moviePhoto}
       style={{
-        backgroundImage: `url(${url}${movies.backdrop_path})`,
+        backgroundImage: `url(${url}${movie.backdrop_path})`,
         backgroundRepeat: "no-repeat",
         backgroundPosition: "top",
         backgroundSize: "cover",
       }}
     >
-      <div>
-        <div>
-          <h2 className={styles.titleMoviePhoto}>
-            {movies.title}, {movies.release_date}
-          </h2>
-        </div>
-      </div>
+      <Link key={movie.id} to={`/movie/${movie.id}`}>
+        <button type="button">Détails</button>
+      </Link>
+      <h2 className={styles.titleMoviePhoto}>
+        {movie.title}, {movie.release_date}
+      </h2>
     </div>
   );
 }
