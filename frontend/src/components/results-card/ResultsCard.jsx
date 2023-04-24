@@ -10,7 +10,7 @@ export default function ResultsCard({ data, page, setPage }) {
     <div className={styles.searchResults}>
       <div className={styles.searchCard}>
         {data.results.map((movie) => (
-          <Link key={movie.id} to="/movie/:id">
+          <Link key={movie.id} to={`/movie/${movie.id}`}>
             <div className={styles.cardContainer}>
               <div className={styles.posterContainer}>
                 <img

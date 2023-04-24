@@ -43,8 +43,9 @@ export default function RandomMoviePhoto() {
     >
       <div>
         <div>
-          <h2 className={styles.titleMoviePhoto}>{movies.title}</h2>
-          <h3 className={styles.dateMoviePhoto}>{movies.release_date}</h3>
+          <h2 className={styles.titleMoviePhoto}>
+            {movies.title}, {movies.release_date}
+          </h2>
         </div>
       </div>
     </div>
