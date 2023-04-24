@@ -42,12 +42,16 @@ export default function RandomMoviePhoto() {
         backgroundSize: "cover",
       }}
     >
-      <Link key={movie.id} to={`/movie/${movie.id}`}>
-        <button type="button">Détails</button>
-      </Link>
-      <h2 className={styles.titleMoviePhoto}>
-        {movie.title}, {movie.release_date}
-      </h2>
+      <div className={styles.titleMoviePhoto}>
+        <Link key={movie.id} to={`/movie/${movie.id}`}>
+          <button className={styles.buttonMovieCard} type="button">
+            Détails
+          </button>
+        </Link>
+        <h2>
+          {movie.title}, {movie.release_date}
+        </h2>
+      </div>
     </div>
   );
 }
