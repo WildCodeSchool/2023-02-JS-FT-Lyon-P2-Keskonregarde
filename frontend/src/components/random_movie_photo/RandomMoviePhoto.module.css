@@ -9,31 +9,30 @@
   position: absolute;
   bottom: 1rem;
   right: 1rem;
-  font-size: 1rem;
+  font-size: 10px;
   font-style: italic;
-  font-weight: 600;
+  font-weight: 700;
   display: flex;
   flex-direction: column;
+align-items: end;
 }
 
 .buttonMovieCard{
   background-color: #dadada;
-
-  padding: 0.2rem 0.5rem;
+  padding: 0.3rem 0.6rem;
   margin-bottom: 0.5rem;
   border-style: none;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   font-weight: 790;
-  height: 100%;
-  border-radius: 0.5rem;
-
-
-
+  border-radius: 0.3rem;
+  display: flex;
+  color: #c20114;
+  
 }
 @media screen and (min-width: 1024px) {
   .moviePhoto {
     margin-top: 2.5rem;
-    height: 72vh;
+    height: 71vh;
   }
 
   .titleMoviePhoto {

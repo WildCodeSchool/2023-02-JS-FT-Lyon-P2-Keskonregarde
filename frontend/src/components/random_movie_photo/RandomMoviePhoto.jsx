@@ -34,7 +34,7 @@ export default function RandomMoviePhoto() {
         setMovie(data.data);
       });
   }, []);
-
+  if (!movie) return null;
   return (
     <div
       className={styles.moviePhoto}
@@ -52,7 +52,7 @@ export default function RandomMoviePhoto() {
           </button>
         </Link>
         <h2>
-          {movie.title}, {movie.release_date}
+          {movie.title}, {movie.release_date.slice(0, 4)}
         </h2>
       </div>
     </div>
