@@ -32,6 +32,6 @@ body {
 @media screen and (min-width: 1024px) {
   .logo-pic {
     height: 3rem;
-    margin: 4rem auto 2rem auto;
+    margin: 3.5rem auto 2rem auto;
   }
 }
