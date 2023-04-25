@@ -9,26 +9,29 @@ export default function RandomMoviePhoto() {
   const [movie, setMovie] = useState("");
 
   const url = "https://image.tmdb.org/t/p/original";
-  const randomMovies = [
-    `https://api.themoviedb.org/3/movie/640146?api_key=${API_KEY}&language=fr&include_adult=false`,
-    `https://api.themoviedb.org/3/movie/438631?api_key=${API_KEY}&language=fr&include_adult=false`,
-    `https://api.themoviedb.org/3/movie/157336?api_key=${API_KEY}&language=fr&include_adult=false`,
-    `https://api.themoviedb.org/3/movie/19995?api_key=${API_KEY}&language=fr&include_adult=false`,
-    `https://api.themoviedb.org/3/movie/862?api_key=${API_KEY}&language=fr&include_adult=false`,
-    `https://api.themoviedb.org/3/movie/680?api_key=${API_KEY}&language=fr&include_adult=false`,
-    `https://api.themoviedb.org/3/movie/129?api_key=${API_KEY}&language=fr&include_adult=false`,
-    `https://api.themoviedb.org/3/movie/8587?api_key=${API_KEY}&language=fr&include_adult=false`,
-    `https://api.themoviedb.org/3/movie/700391?api_key=${API_KEY}&language=fr&include_adult=false`,
-    `https://api.themoviedb.org/3/movie/458156?api_key=${API_KEY}&language=fr&include_adult=false`,
-    `https://api.themoviedb.org/3/movie/278?api_key=${API_KEY}&language=fr&include_adult=false`,
-    `https://api.themoviedb.org/3/movie/274?api_key=${API_KEY}&language=fr&include_adult=false`,
+  const randomMoviesNumber = [
+    "640146",
+    "438631",
+    "157336",
+    "19995",
+    "862",
+    "680",
+    "129",
+    "8587",
+    "700391",
+    "458156",
+    "278",
+    "274",
   ];
   useEffect(() => {
+    const randomPhoto = Math.floor(Math.random() * 12);
+
     axios
-      .all(randomMovies.map((randomPhoto) => axios.get(randomPhoto)))
+      .get(
+        `https://api.themoviedb.org/3/movie/${randomMoviesNumber[randomPhoto]}?api_key=${API_KEY}&language=fr&include_adult=false`
+      )
       .then((data) => {
-        const randomPhoto = Math.floor(Math.random() * 12);
-        setMovie(data[randomPhoto].data);
+        setMovie(data.data);
       });
   }, []);
 
