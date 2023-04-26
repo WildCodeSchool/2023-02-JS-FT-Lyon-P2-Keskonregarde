@@ -1,10 +1,35 @@
-import { Link } from "react-router-dom";
+import axios from "axios";
+import React, { useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
-import React from "react";
 import PropTypes from "prop-types";
 import styles from "./ResultsCard.module.css";
 
-export default function ResultsCard({ movies, hasMore, fetchMoreData }) {
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+
+export default function ResultsCard({
+  movies,
+  setMovies,
+  pageNumber,
+  setPageNumber,
+}) {
+  const [results] = useSearchParams();
+  const [hasMore, setHasMore] = useState(true);
+
+  const fetchMoreData = () => {
+    setPageNumber(pageNumber + 1);
+    const query = results.get("query") || "";
+    axios
+      .get(
+        `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=fr&query=${query}&page=${pageNumber}&include_adult=false`
+      )
+      .then(({ data }) => {
+        if (data.page !== data.total_pages) {
+          setMovies(movies.concat(data.results));
+        } else setHasMore(false);
+      });
+  };
+
   const posterUrl = "https://image.tmdb.org/t/p/w200";
 
   return (
@@ -57,7 +82,8 @@ export default function ResultsCard({ movies, hasMore, fetchMoreData }) {
 }
 
 ResultsCard.propTypes = {
-  movies: PropTypes.array.isRequired,
-  hasMore: PropTypes.bool,
-  fetchMoreData: PropTypes.func,
+  movies: PropTypes.shape().isRequired,
+  setMovies: PropTypes.func.isRequired,
+  pageNumber: PropTypes.number.isRequired,
+  setPageNumber: PropTypes.func.isRequired,
 };

@@ -13,7 +13,6 @@ export default function Search() {
   const [requestedData, setRequestedData] = useState(null);
   const [movies, setMovies] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
     const query = results.get("query") || "";
@@ -27,21 +26,6 @@ export default function Search() {
       });
   }, [results, pageNumber]);
 
-  function fetchMoreData() {
-    setPageNumber(pageNumber + 1);
-    const query = results.get("query") || "";
-    axios
-      .get(
-        `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=fr&query=${query}&page=${pageNumber}&include_adult=false`
-      )
-      .then(({ data }) => {
-        if (data.page !== data.total_pages) {
-          setRequestedData(data);
-          setMovies(movies.concat(data.results));
-        } else setHasMore(false);
-      });
-  }
-
   if (!requestedData) return null;
   return (
     <>
@@ -51,8 +35,9 @@ export default function Search() {
       {movies && (
         <ResultsCard
           movies={movies}
-          hasMore={hasMore}
-          fetchMoreData={fetchMoreData}
+          setMovies={setMovies}
+          pageNumber={pageNumber}
+          setPageNumber={setPageNumber}
         />
       )}
     </>
