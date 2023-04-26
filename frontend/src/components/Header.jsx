@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "./search-bar/SearchBar";
+import SearchFilter from "./search-filter/SearchFilter";
 
 export default function Header() {
   return (
@@ -13,6 +14,7 @@ export default function Header() {
         />
       </Link>
       <SearchBar />
+      <SearchFilter />
     </header>
   );
 }

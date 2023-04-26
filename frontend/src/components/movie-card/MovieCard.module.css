@@ -1,6 +1,6 @@
 .page {
-margin-top: 2.5rem;
-height: 77vh;
+  margin-top: 2.5rem;
+  height: 77vh;
 }
 
 .containerDetails {
@@ -8,14 +8,14 @@ height: 77vh;
 }
 
 .containerMovieCard {
-  background-color: #F6F6F6;
+  background-color: #f6f6f6;
   border-radius: 1rem;
   opacity: 0.8;
   padding: 1.5rem;
 }
 
 .title {
-  color:  #C20114;
+  color: #c20114;
   font-size: 1.2rem;
   font-weight: 800;
 }
@@ -35,12 +35,12 @@ height: 77vh;
 }
 
 .titleSynopsis {
-  color:#C20114;
+  color: #c20114;
   font-size: 2rem;
   margin-bottom: 1rem;
 }
 
 .overview {
-color: black;
-font-size: 0.9rem;
+  color: black;
+  font-size: 0.9rem;
 }
