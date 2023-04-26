@@ -34,4 +34,8 @@ body {
     height: 3rem;
     margin: 3.5rem auto 2rem auto;
   }
+
+  .results-number {
+    margin: 1.8rem 1.5rem;
+  }
 }

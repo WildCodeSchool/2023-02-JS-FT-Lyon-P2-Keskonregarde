@@ -14,10 +14,10 @@
   font-weight: 700;
   display: flex;
   flex-direction: column;
-align-items: end;
+  align-items: end;
 }
 
-.buttonMovieCard{
+.buttonMovieCard {
   background-color: #dadada;
   padding: 0.3rem 0.6rem;
   margin-bottom: 0.5rem;
@@ -27,7 +27,6 @@ align-items: end;
   border-radius: 0.3rem;
   display: flex;
   color: #c20114;
-  
 }
 @media screen and (min-width: 1024px) {
   .moviePhoto {
