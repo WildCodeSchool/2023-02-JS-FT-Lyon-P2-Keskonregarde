@@ -5,6 +5,7 @@ import styles from "./MovieCard.module.css";
 
 export default function MovieCard() {
   const url = "https://image.tmdb.org/t/p/original";
+  const urlYT = "https://www.youtube.com/embed/";
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
 
@@ -13,7 +14,7 @@ export default function MovieCard() {
   useEffect(() => {
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=fr&include_adult=false&append_to_response=credits,watch/providers`
+        `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=fr&include_adult=false&append_to_response=credits,watch/providers,videos`
       )
       .then((response) => setMovie(response.data))
       .catch((err) => console.error(err));
@@ -82,31 +83,48 @@ export default function MovieCard() {
               </h3>
             </div>
             <div className={styles.reverseDesktop}>
-              <div className="platforms">
-                {movie["watch/providers"].results?.FR?.flatrate ||
-                movie["watch/providers"].results?.FR?.buy ? (
-                  <img
-                    src={
-                      movie["watch/providers"].results.FR.flatrate
-                        ? `${url}${movie["watch/providers"].results.FR.flatrate[0].logo_path}`
-                        : `${url}${movie["watch/providers"].results.FR.buy[0].logo_path}`
-                    }
-                    alt={movie.provider_name}
-                    className={styles.logoPlatform}
-                  />
-                ) : null}
-                {movie["watch/providers"].results?.FR?.flatrate ||
-                movie["watch/providers"].results?.FR?.buy ? (
-                  <img
-                    src={
-                      movie["watch/providers"].results.FR.flatrate
-                        ? `${url}${movie["watch/providers"].results.FR.flatrate[1]?.logo_path}`
-                        : `${url}${movie["watch/providers"].results.FR.buy[1].logo_path}`
-                    }
-                    alt={movie.provider_name}
-                    className={styles.logoPlatform}
-                  />
-                ) : null}
+              <div className={styles.platformTrailer}>
+                <div className="platforms">
+                  {movie["watch/providers"].results?.FR?.flatrate ||
+                  movie["watch/providers"].results?.FR?.buy ? (
+                    <img
+                      src={
+                        movie["watch/providers"].results.FR.flatrate
+                          ? `${url}${movie["watch/providers"].results.FR.flatrate[0].logo_path}`
+                          : `${url}${movie["watch/providers"].results.FR.buy[0].logo_path}`
+                      }
+                      alt={movie.provider_name}
+                      className={styles.logoPlatform}
+                    />
+                  ) : null}
+                  {movie["watch/providers"].results?.FR?.flatrate ||
+                  movie["watch/providers"].results?.FR?.buy ? (
+                    <img
+                      src={
+                        movie["watch/providers"].results.FR.flatrate
+                          ? `${url}${movie["watch/providers"].results.FR.flatrate[1]?.logo_path}`
+                          : `${url}${movie["watch/providers"].results.FR.buy[1].logo_path}`
+                      }
+                      alt={movie.provider_name}
+                      className={styles.logoPlatform}
+                    />
+                  ) : null}
+                </div>
+                <div className={styles.buttonTrailer}>
+                  {movie.videos?.results[0]?.key ? (
+                    <a
+                      type="button"
+                      target="__blank"
+                      href={
+                        movie?.videos?.results
+                          ? `${urlYT}${movie?.videos.results[0].key}`
+                          : null
+                      }
+                    >
+                      Bande-Annonce
+                    </a>
+                  ) : null}
+                </div>
               </div>
               <div className={styles.overall}>
                 <div className={styles.titleSynopsis}>

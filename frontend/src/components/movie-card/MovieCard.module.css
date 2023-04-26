@@ -4,7 +4,7 @@
 }
 
 .containerDetails {
-  padding: 3rem 2.5rem 0 2.5rem;
+  padding: 3rem 3.5rem 0 3.5rem;
 }
 
 .containerMovieCard {
@@ -48,12 +48,36 @@
   flex-direction: column;
 }
 
+.platformTrailer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .logoPlatform {
   height: 50px;
   width: 50px;
   border: 1px solid black;
   border-radius: 0.5rem;
   margin: 0.2rem;
+}
+
+a {
+  color: #F6F6F6;
+  font-size: 0.6rem;
+  font-weight: 600;
+}
+
+.buttonTrailer {
+background: black;
+border: 1px solid #DADADA;
+border-radius: 10px;
+width: 5rem;
+height: 2rem;
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 0.8rem;
 }
 
 .titleSynopsis {
@@ -102,6 +126,17 @@
   .creditsName {
     color: #656565;
     font-size: 1.1rem;
+  }
+  a {
+    color: #c20114;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  
+  .buttonTrailer {
+  background: #F6F6F6;
+  width: 10rem;
+  padding: 0.2rem;
   }
   .titleSynopsis {
     font-size: 1.2rem;
