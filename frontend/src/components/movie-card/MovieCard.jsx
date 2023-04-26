@@ -69,36 +69,53 @@ export default function MovieCard() {
               </p>
             </div>
             <div className={styles.movieCredits}>
-              <h4>
+              <h3>
                 <div className={styles.creditsName}>
                   Director : {movie.credits.crew[1].name}
                 </div>
-              </h4>
-              <h4>
+              </h3>
+              <h3>
                 <div className={styles.creditsName}>
                   Actor : {movie.credits.cast[0].name},{" "}
                   {movie.credits.cast[1].name}
                 </div>
-              </h4>
+              </h3>
             </div>
-            {movie["watch/providers"].results?.FR?.flatrate ||
-            movie["watch/providers"].results?.FR?.buy ? (
-              <img
-                src={
-                  movie["watch/providers"].results.FR.flatrate
-                    ? `${url}${movie["watch/providers"].results.FR.flatrate[0].logo_path}`
-                    : `${url}${movie["watch/providers"].results.FR.buy[0].logo_path}`
-                }
-                alt={movie.provider_name}
-                className={styles.logoPlatform}
-              />
-            ) : null}
-
-            <div className={styles.titleSynopsis}>
-              <h5>Synopsis</h5>
-            </div>
-            <div className={styles.overview}>
-              <p>{movie.overview}</p>
+            <div className={styles.reverseDesktop}>
+              <div className="platforms">
+                {movie["watch/providers"].results?.FR?.flatrate ||
+                movie["watch/providers"].results?.FR?.buy ? (
+                  <img
+                    src={
+                      movie["watch/providers"].results.FR.flatrate
+                        ? `${url}${movie["watch/providers"].results.FR.flatrate[0].logo_path}`
+                        : `${url}${movie["watch/providers"].results.FR.buy[0].logo_path}`
+                    }
+                    alt={movie.provider_name}
+                    className={styles.logoPlatform}
+                  />
+                ) : null}
+                {movie["watch/providers"].results?.FR?.flatrate ||
+                movie["watch/providers"].results?.FR?.buy ? (
+                  <img
+                    src={
+                      movie["watch/providers"].results.FR.flatrate
+                        ? `${url}${movie["watch/providers"].results.FR.flatrate[1]?.logo_path}`
+                        : `${url}${movie["watch/providers"].results.FR.buy[1].logo_path}`
+                    }
+                    alt={movie.provider_name}
+                    className={styles.logoPlatform}
+                  />
+                ) : null}
+              </div>
+              <div className={styles.overall}>
+                <div className={styles.titleSynopsis}>
+                  <h4>Synopsis</h4>
+                </div>
+                <div className={styles.overview}>
+                  <p>{movie.overview}</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

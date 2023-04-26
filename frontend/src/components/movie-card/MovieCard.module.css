@@ -24,29 +24,41 @@
 
 .movieGenres {
   font-style: italic;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   margin-bottom: 0.5rem;
 }
 
 .movieCredits {
   font-size: 0.8rem;
   margin-bottom: 2rem;
+  font-weight: bold;
 }
 
 .creditsName {
   white-space: pre-wrap;
 }
 
+.reverseDesktop {
+  display: flex;
+  flex-direction: column;
+}
+
+.platforms {
+  display: flex;
+  flex-direction: column;
+}
+
 .logoPlatform {
   height: 50px;
   width: 50px;
   border: 1px solid black;
-  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  margin: 0.2rem;
 }
 
 .titleSynopsis {
   color: #c20114;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   margin-bottom: 1rem;
 }
 
@@ -60,15 +72,28 @@
     display: none;
   }
   .moviePoster {
-    height: 25rem;
-    width: 19rem;
+    height: 30rem;
+    width: 24rem;
   }
   .containerMovieCard {
-    display: grid;
-    grid-template-columns: 1fr 2.5fr;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    padding: 0;
+    margin: 0 2rem;
+  }
+  .movieInfos {
+    margin: 2rem;
+    justify-content: space-between;
+  }
+  .title {
+    font-size: 1.2rem;
+  }
+  .reverseDesktop {
+    flex-direction: column-reverse;
   }
   .logoPlatform {
-    margin-bottom: 1rem;
+    margin-bottom: 0;
   }
   .movieGenres {
     margin-bottom: 1rem;
@@ -76,7 +101,14 @@
   }
   .creditsName {
     color: #656565;
-    font-size: 1rem;
+    font-size: 1.1rem;
+  }
+  .titleSynopsis {
+    font-size: 1.2rem;
+  }
+  .overview {
+    font-size: 0.9rem;
+    margin-bottom: 3rem;
   }
 }
 
