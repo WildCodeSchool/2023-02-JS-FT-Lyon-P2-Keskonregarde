@@ -57,7 +57,7 @@ a {
 }
 
 .movieDate {
-  margin-top:0.2rem;
+  margin-top: 0.2rem;
   color: #9d9d9d;
   font-style: italic;
 }
@@ -77,7 +77,7 @@ a {
   align-self: center;
   width: 7rem;
   margin: 2rem 1rem 0;
-  padding:1rem;
+  padding: 1rem;
   border-radius: 0.5rem;
   box-sizing: border-box;
   border-style: none;
@@ -115,7 +115,7 @@ a {
   }
 
   .infoContainer {
-    margin:2rem 1.5rem;
+    margin: 2rem 1.5rem;
   }
 
   .posterContainer {
@@ -123,17 +123,17 @@ a {
     width: 114px;
     height: 161px;
   }
-  
+
   .movieTitle {
     color: #c20114;
     font-size: medium;
   }
-  
+
   .movieDate {
     font-style: italic;
-    font-size:small;
+    font-size: small;
   }
-  
+
   .movieSynopsis {
     font-size: normal;
     overflow: hidden;

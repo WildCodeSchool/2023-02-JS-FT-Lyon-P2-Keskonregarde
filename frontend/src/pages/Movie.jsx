@@ -13,7 +13,7 @@ export default function Home() {
   useEffect(() => {
     axios
       .get(
-        `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=fr&query=${query}&page=1&include_adult=false`
+        `https://api.themoviedb.org/3/search/movie/?api_key=${API_KEY}&language=fr&query=${query}&page=1&include_adult=false`
       )
       .then(({ data }) => {
         setMovies(data.results);
