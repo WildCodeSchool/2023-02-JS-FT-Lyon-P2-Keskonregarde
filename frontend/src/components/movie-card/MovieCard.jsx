@@ -72,13 +72,21 @@ export default function MovieCard() {
             <div className={styles.movieCredits}>
               <h3>
                 <div className={styles.creditsName}>
-                  Director : {movie.credits.crew[1].name}
+                  Director :{" "}
+                  {movie.credits?.crew[0]?.name
+                    ? `${movie.credits.crew[1].name}`
+                    : null}
                 </div>
               </h3>
               <h3>
                 <div className={styles.creditsName}>
-                  Actor : {movie.credits.cast[0].name},{" "}
-                  {movie.credits.cast[1].name}
+                  Actor :
+                  {movie.credits?.cast[0]?.name
+                    ? `${movie.credits.cast[0].name}`
+                    : null}
+                  {movie.credits?.cast[1]?.name
+                    ? `, ${movie.credits.cast[1].name}`
+                    : null}
                 </div>
               </h3>
             </div>
@@ -110,8 +118,8 @@ export default function MovieCard() {
                     />
                   ) : null}
                 </div>
-                <div className={styles.buttonTrailer}>
-                  {movie.videos?.results[0]?.key ? (
+                {movie.videos?.results[0]?.key ? (
+                  <div className={styles.buttonTrailer}>
                     <a
                       type="button"
                       target="__blank"
@@ -123,8 +131,8 @@ export default function MovieCard() {
                     >
                       Bande-Annonce
                     </a>
-                  ) : null}
-                </div>
+                  </div>
+                ) : null}
               </div>
               <div className={styles.overall}>
                 <div className={styles.titleSynopsis}>
