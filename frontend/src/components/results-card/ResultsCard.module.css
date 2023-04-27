@@ -23,10 +23,10 @@
 }
 
 .cardContainer {
-  background-color: #f6f6f6;
+  background-color: var(--white);
   border-radius: 1rem;
   box-sizing: border-box;
-  box-shadow: 0px 0px 5px gray;
+  box-shadow: 0px 0px 5px var(--darkGrey);
   display: flex;
   overflow: hidden;
 }
@@ -39,7 +39,7 @@ a {
   cursor: pointer;
   transform: scale(1.04);
   border: 1px solid;
-  border-color: #c20114;
+  border-color: var(--darkRed);
 }
 
 .infoContainer {
@@ -61,20 +61,20 @@ a {
 }
 
 .movieTitle {
-  color: #c20114;
+  color: var(--darkRed);
   font-size: small;
   cursor: pointer;
 }
 
 .movieDate {
   margin-top: 0.2rem;
-  color: #9d9d9d;
+  color: var(--darkGrey);
   font-style: italic;
 }
 
 .movieSynopsis {
   font-size: small;
-  color: #9d9d9d;
+  color: var(--darkGrey);
   overflow: hidden;
 }
 
@@ -106,7 +106,7 @@ a {
     cursor: pointer;
     transform: scale(1.03);
     border: 1px solid;
-    border-color: #c20114;
+    border-color: var(--darkRed);
   }
 
   .infoContainer {
@@ -120,7 +120,6 @@ a {
   }
 
   .movieTitle {
-    color: #c20114;
     font-size: medium;
   }
 
