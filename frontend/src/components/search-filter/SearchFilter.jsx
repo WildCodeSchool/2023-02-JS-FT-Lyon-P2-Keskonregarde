@@ -1,15 +1,16 @@
-import React, { useContext, useEffect } from "react";
+// import React, { useContext, useEffect } from "react";
 import Dropdown from "react-dropdown";
-import GenreFilterContext from "../../contexts/GenreFilter";
+// import GenreFilterContext, { GenreFilter } from "../../contexts/GenreFilter";
 import styles from "./SearchFilter.module.css";
 import "react-dropdown/style.css";
 
 export default function SearchFilter() {
-  const { fetchGenres } = useContext(GenreFilterContext);
+  /* const { genres, fetchGenres } = useContext(GenreFilterContext);
 
   useEffect(() => {
     fetchGenres();
   }, []);
+*/
 
   const optionsYears = [
     "Récent",
@@ -23,6 +24,7 @@ export default function SearchFilter() {
   // if (!genre) return null;
   return (
     <div className={styles.searchFilterBar}>
+      {/* <GenreFilter.Provider> */}
       <Dropdown
         className={styles.buttonSearchFilter}
         controlClassName={styles.controlMenu}
@@ -32,9 +34,11 @@ export default function SearchFilter() {
         options={optionsYears}
         placeholder="Années"
       />{" "}
-      {fetchGenres.map((genre) => (
-        <Dropdown placeholder="Genre" options={genre} value={fetchGenres} />
-      ))}
+      {/*   {genres.map((genre) => (
+          <Dropdown placeholder="Genre" options={genre} value={fetchGenres} />
+        ))}
+      </GenreFilter.Provider>{" "}
+        */}
     </div>
   );
 }
