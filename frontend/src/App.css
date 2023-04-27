@@ -4,8 +4,18 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+:root {
+  --white: rgb(248, 248, 248);
+  --lowGrey: rgb(240, 240, 240);
+  --lightGrey: rgb(230, 230, 230);
+  --mediumGrey: rgb(190, 190, 190);
+  --darkGrey: rgb(130, 130, 130);
+  --darkRed: rgb(194, 1, 20);
+}
+
 body {
-  background-color: #f6f6f6;
+  background-color: var(--lowGrey);
+  overflow: hidden;
   scrollbar-width: none; /* Firefox */
   scroll-behavior: smooth;
 }
@@ -25,7 +35,7 @@ body {
 .results-number {
   text-align: center;
   margin: 1.5rem;
-  color: #9d9d9d;
+  color: var(--darkGrey);
   font-style: italic;
 }
 
