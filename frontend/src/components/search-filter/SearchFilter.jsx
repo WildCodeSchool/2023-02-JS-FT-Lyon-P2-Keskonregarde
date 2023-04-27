@@ -5,7 +5,7 @@ import styles from "./SearchFilter.module.css";
 import "react-dropdown/style.css";
 
 export default function SearchFilter() {
-  const { fetchGenres, genres } = useContext(GenreFilterContext);
+  const { fetchGenres } = useContext(GenreFilterContext);
 
   useEffect(() => {
     fetchGenres();
@@ -32,7 +32,7 @@ export default function SearchFilter() {
         options={optionsYears}
         placeholder="Années"
       />{" "}
-      {genres.map((genre) => (
+      {fetchGenres.map((genre) => (
         <Dropdown placeholder="Genre" options={genre} value={fetchGenres} />
       ))}
     </div>

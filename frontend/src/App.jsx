@@ -11,7 +11,7 @@ import GenreFilterContext from "./contexts/GenreFilter";
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 export default function App() {
-  const { genres, setGenres } = useState([]);
+  const [genres, setGenres] = useState([]);
   const fetchGenres = useMemo(() => {
     axios
       .get(
@@ -21,10 +21,10 @@ export default function App() {
         setGenres(data.genres.id);
       })
       .catch((err) => console.error(err));
-  }, []);
+  }, [genres]);
 
   return (
-    <GenreFilterContext.Provider value={{ genres, setGenres, fetchGenres }}>
+    <GenreFilterContext.Provider value={fetchGenres}>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
