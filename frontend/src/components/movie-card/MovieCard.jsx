@@ -1,9 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styles from "./MovieCard.module.css";
 
-const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 export default function MovieCard() {
   const url = "https://image.tmdb.org/t/p/original";
@@ -11,13 +10,19 @@ export default function MovieCard() {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
 
+  const navigate = useNavigate();
+
+  const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+
   useEffect(() => {
     axios
       .get(
         `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=fr&include_adult=false&append_to_response=credits,watch/providers,videos`
       )
       .then((response) => setMovie(response.data))
-      .catch((err) => console.error(err));
+      .catch((err) =>
+        err.response.status === 404 ? navigate("/not-found") : null
+      );
   }, []);
 
   if (!movie) return null;
@@ -55,13 +60,13 @@ export default function MovieCard() {
             </h5>
             <div className={styles.movieCredits}>
               <h3>
-                Director :{" "}
+                Réalisateur :{" "}
                 {movie.credits?.crew[0]?.name
                   ? `${movie.credits.crew[1].name}`
                   : null}
               </h3>
               <h3>
-                Actors :{" "}
+                Acteurs :{" "}
                 {movie.credits?.cast[0]?.name
                   ? `${movie.credits.cast[0].name}`
                   : null}
@@ -116,10 +121,10 @@ export default function MovieCard() {
                 </button>
               ) : null}
             </div>
-            <div className={styles.containerSynopsis}>
-              <h2 className={styles.titleSynopsis}>Synopsis</h2>
-              <p className={styles.movieSynopsis}>{movie.overview}</p>
-            </div>
+          </div>
+          <div className={styles.containerSynopsis}>
+            <h2 className={styles.titleSynopsis}>Synopsis</h2>
+            <p className={styles.movieSynopsis}>{movie.overview}</p>
           </div>
         </div>
       </section>
@@ -145,13 +150,13 @@ export default function MovieCard() {
             </h5>
             <div className={styles.movieCredits}>
               <h3>
-                Director :{" "}
+                Réalisateur :{" "}
                 {movie.credits?.crew[0]?.name
                   ? `${movie.credits.crew[1].name}`
                   : null}
               </h3>
               <h3>
-                Actors :{" "}
+                Acteurs :{" "}
                 {movie.credits?.cast[0]?.name
                   ? `${movie.credits.cast[0].name}`
                   : null}

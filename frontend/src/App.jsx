@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import Search from "./pages/Search";
 import Header from "./components/Header";
 import MovieCard from "./components/movie-card/MovieCard";
+import NotFound from "./pages/NotFound";
+import NoResults from "./pages/NoResults";
 
 export default function App() {
   return (
@@ -14,6 +16,8 @@ export default function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/movie" element={<MovieCard />} />
         <Route path="/movie/:id" element={<MovieCard />} />
+        <Route path="/not-found" element={<NotFound />} />
+        <Route path="/search/no-results" element={<NoResults />} />
       </Routes>
     </>
   );

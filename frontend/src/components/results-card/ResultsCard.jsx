@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import PropTypes from "prop-types";
 import styles from "./ResultsCard.module.css";
@@ -16,6 +16,8 @@ export default function ResultsCard({
   const [results] = useSearchParams();
   const [hasMore, setHasMore] = useState(true);
 
+  const navigate = useNavigate();
+
   const fetchMoreData = () => {
     setPageNumber(pageNumber + 1);
     const query = results.get("query") || "";
@@ -27,7 +29,10 @@ export default function ResultsCard({
         if (data.page !== data.total_pages) {
           setMovies(movies.concat(data.results));
         } else setHasMore(false);
-      });
+      })
+      .catch((err) =>
+        err.response.status === 404 ? navigate("/not-found") : null
+      );
   };
 
   const posterUrl = "https://image.tmdb.org/t/p/w200";

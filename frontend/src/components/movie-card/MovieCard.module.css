@@ -78,6 +78,7 @@
 
 .containerSynopsis {
   overflow: scroll;
+  scrollbar-width: none;
 }
 
 .titleSynopsis {
@@ -92,6 +93,7 @@
   font-size: 1rem;
   max-height: 205px;
   overflow: scroll;
+  scrollbar-width: none;
 }
 
 @media screen and (min-width: 1024px) {
