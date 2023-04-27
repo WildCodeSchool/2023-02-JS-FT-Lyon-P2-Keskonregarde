@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "./MovieCard.module.css";
 
-
 export default function MovieCard() {
   const url = "https://image.tmdb.org/t/p/original";
   const urlYt = "https://www.youtube.com/embed/";
