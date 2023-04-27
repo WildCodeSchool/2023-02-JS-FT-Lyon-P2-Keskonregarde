@@ -1,6 +1,7 @@
 import axios from "axios";
 import "../App.css";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import MovieCard from "../components/movie-card/MovieCard";
 import SearchBar from "../components/search-bar/SearchBar";
 
@@ -10,6 +11,8 @@ export default function Home() {
   const [movies, setMovies] = useState(null);
   const [query, setQuery] = useState("");
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     axios
       .get(
@@ -17,7 +20,10 @@ export default function Home() {
       )
       .then(({ data }) => {
         setMovies(data.results);
-      });
+      })
+      .catch((err) =>
+        err.response.status === 404 ? navigate("/not-found") : null
+      );
   }, [query]);
 
   if (!movies) return null;
