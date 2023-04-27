@@ -1,40 +1,40 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
+import Dropdown from "react-dropdown";
+import GenreFilterContext from "../../contexts/GenreFilter";
 import styles from "./SearchFilter.module.css";
+import "react-dropdown/style.css";
 
 export default function SearchFilter() {
-  const [genre, setGenre] = useState("");
-  const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+  const { fetchGenres, genres } = useContext(GenreFilterContext);
 
   useEffect(() => {
-    axios
-      .get(
-        `  https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=fr`
-      )
-      .then((data) => setGenre(data.genres.name))
-      .catch((err) => console.error(err));
+    fetchGenres();
   }, []);
 
-  if (!genre) return null;
+  const optionsYears = [
+    "Récent",
+    "2010-2020",
+    "2000-2010",
+    "1990-2000",
+    "1980-1990",
+    "1960-1980",
+    "Avant 1960",
+  ];
+  // if (!genre) return null;
   return (
-    <div className={styles.searchFilter}>
-      <div>
-        <button type="button" className={styles.buttonSearchFilter}>
-          Genres
-        </button>
-        <button type="button" className={styles.buttonSearchFilter}>
-          Années
-        </button>
-        <button type="button" className={styles.buttonSearchFilter}>
-          Autre
-        </button>
-        <button type="button" className={styles.buttonSearchFilter}>
-          Autre
-        </button>
-        <button type="button" className={styles.buttonSearchFilter}>
-          Autre
-        </button>
-      </div>
+    <div className={styles.searchFilterBar}>
+      <Dropdown
+        className={styles.buttonSearchFilter}
+        controlClassName={styles.controlMenu}
+        placeholderClassName={styles.placeholderMenu}
+        arrowClassName={styles.arrowMenu}
+        menuClassName={styles.buttonMenu}
+        options={optionsYears}
+        placeholder="Années"
+      />{" "}
+      {genres.map((genre) => (
+        <Dropdown placeholder="Genre" options={genre} value={fetchGenres} />
+      ))}
     </div>
   );
 }

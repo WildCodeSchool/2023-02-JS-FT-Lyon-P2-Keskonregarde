@@ -3,12 +3,12 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./MovieCard.module.css";
 
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+
 export default function MovieCard() {
   const url = "https://image.tmdb.org/t/p/original/";
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
-
-  const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
   useEffect(() => {
     axios
