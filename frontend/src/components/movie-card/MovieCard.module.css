@@ -1,46 +1,181 @@
-.page {
-  margin-top: 2.5rem;
-  height: 77vh;
+.movieCardPage {
+  margin-top: 2rem;
+  height: fit-content;
 }
 
-.containerDetails {
-  padding: 4rem;
+.mobileMovieCard {
+  height: 77vh;
+  padding: 1.8rem 1.5rem;
+}
+
+.desktopMovieCard {
+  display: none;
 }
 
 .containerMovieCard {
-  background-color: #f6f6f6;
-  border-radius: 1rem;
-  opacity: 0.8;
-  padding: 1.5rem;
+  padding: 1.5rem 1.2rem;
+  background-color: rgba(246, 246, 246, 0.85);
+  border-radius: 0.8rem;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 5px var(--darkGrey);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 460px;
 }
 
-.title {
-  color: #c20114;
+.movieTitle {
+  color: var(--darkRed);
   font-size: 1.2rem;
-  font-weight: 800;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
 }
 
 .movieGenres {
+  font-weight: 400;
   font-style: italic;
-  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+  color: var(--darkGrey);
 }
 
 .movieCredits {
   font-size: 0.8rem;
-  margin-bottom: 2rem;
+  margin: 0.25rem 0;
+  color: var(--darkGrey);
 }
 
-.creditsName {
-  white-space: pre-wrap;
+.movieCredits > h3:first-of-type {
+  margin-bottom: 0.25rem;
+}
+
+.movieFeatures {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logoPlatform {
+  height: 45px;
+  width: 45px;
+  border: 1px solid var(--mediumGrey);
+  border-radius: 0.5rem;
+  margin: 0.2rem 0.5rem 0.2rem 0;
+}
+
+.buttonTrailer {
+  background-color: var(--white);
+  border: 1px solid var(--mediumGrey);
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.buttonTrailer > a {
+  color: var(--darkRed);
+}
+
+.containerSynopsis {
+  overflow: scroll;
 }
 
 .titleSynopsis {
-  color: #c20114;
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  color: var(--darkRed);
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
 }
 
-.overview {
-  color: black;
-  font-size: 0.9rem;
+.movieSynopsis {
+  color: var(--darkGrey);
+  text-justify: inter-word;
+  font-size: 1rem;
+  max-height: 205px;
+  overflow: scroll;
+}
+
+@media screen and (min-width: 1024px) {
+  .mobileMovieCard {
+    display: none;
+  }
+
+  .desktopMovieCard {
+    height: 65vh;
+    margin: 4rem 6rem 2rem;
+    background-color: rgba(246, 246, 246, 0.85);
+    border-radius: 0.8rem;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 5px var(--darkGrey);
+    display: flex;
+    overflow: hidden;
+  }
+
+  .moviePoster {
+    height: 100%;
+    box-shadow: 0px 0px 5px var(--darkGrey);
+    z-index: 1;
+  }
+
+  .containerMovieCard {
+    padding: 4rem 3rem;
+    border-radius: none;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .movieTitle {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.1rem;
+  }
+
+  .movieGenres {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  .movieCredits {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .movieCredits > h3:first-of-type {
+    margin-bottom: 0.25rem;
+  }
+
+  .reverseCard {
+    display: flex;
+    flex-direction: column-reverse;
+    height: 100%;
+  }
+
+  .movieFeatures {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logoPlatform {
+    height: 55px;
+    width: 55px;
+    margin: 0.2rem 0.75rem 0 0;
+  }
+
+  .buttonTrailer {
+    font-size: 0.8rem;
+  }
+
+  .titleSynopsis {
+    font-size: 1.4rem;
+    margin: 0.5rem 0;
+  }
+
+  .movieSynopsis {
+    line-height: 1.3;
+    margin-bottom: 3rem;
+  }
 }

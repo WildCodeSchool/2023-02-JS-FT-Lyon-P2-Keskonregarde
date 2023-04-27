@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import "../App.css";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -10,18 +11,20 @@ export default function Search() {
   const [results] = useSearchParams();
 
   const [requestedData, setRequestedData] = useState(null);
-  const [page, setPage] = useState(1);
+  const [movies, setMovies] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
 
   useEffect(() => {
     const query = results.get("query") || "";
     axios
       .get(
-        `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=fr&query=${query}&page=${page}&include_adult=false`
+        `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=fr&query=${query}&page=${pageNumber}&include_adult=false`
       )
       .then(({ data }) => {
         setRequestedData(data);
+        setMovies(data.results);
       });
-  }, [results, page]);
+  }, [results, pageNumber]);
 
   if (!requestedData) return null;
   return (
@@ -29,8 +32,13 @@ export default function Search() {
       <h5 className="results-number">
         Résultats trouvés : {requestedData.total_results}
       </h5>
-      {requestedData && (
-        <ResultsCard data={requestedData} page={page} setPage={setPage} />
+      {movies && (
+        <ResultsCard
+          movies={movies}
+          setMovies={setMovies}
+          pageNumber={pageNumber}
+          setPageNumber={setPageNumber}
+        />
       )}
     </>
   );
