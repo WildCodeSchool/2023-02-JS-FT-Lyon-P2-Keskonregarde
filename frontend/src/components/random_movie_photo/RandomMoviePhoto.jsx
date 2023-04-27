@@ -35,7 +35,7 @@ export default function RandomMoviePhoto() {
         setMovie(data.data);
       })
       .catch((err) =>
-        err.response.status === 404 ? navigate("/notfound") : null
+        err.response.status === 404 ? navigate("/not-found") : null
       );
   }, []);
   if (!movie) return null;
