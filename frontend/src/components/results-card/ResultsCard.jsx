@@ -31,7 +31,7 @@ export default function ResultsCard({
         } else setHasMore(false);
       })
       .catch((err) =>
-        err.response.status === 404 ? navigate("/notfound") : null
+        err.response.status === 404 ? navigate("/not-found") : null
       );
   };
 

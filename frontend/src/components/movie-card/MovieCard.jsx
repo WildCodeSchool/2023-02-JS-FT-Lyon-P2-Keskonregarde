@@ -20,7 +20,7 @@ export default function MovieCard() {
       )
       .then((response) => setMovie(response.data))
       .catch((err) =>
-        err.response.status === 404 ? navigate("/notfound") : null
+        err.response.status === 404 ? navigate("/not-found") : null
       );
   }, []);
 
@@ -120,10 +120,10 @@ export default function MovieCard() {
                 </button>
               ) : null}
             </div>
-            <div className={styles.containerSynopsis}>
-              <h2 className={styles.titleSynopsis}>Synopsis</h2>
-              <p className={styles.movieSynopsis}>{movie.overview}</p>
-            </div>
+          </div>
+          <div className={styles.containerSynopsis}>
+            <h2 className={styles.titleSynopsis}>Synopsis</h2>
+            <p className={styles.movieSynopsis}>{movie.overview}</p>
           </div>
         </div>
       </section>
