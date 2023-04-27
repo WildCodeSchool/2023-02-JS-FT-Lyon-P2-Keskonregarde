@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styles from "./RandomMoviePhoto.module.css";
@@ -7,6 +7,8 @@ const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 export default function RandomMoviePhoto() {
   const [movie, setMovie] = useState("");
+
+  const navigate = useNavigate();
 
   const url = "https://image.tmdb.org/t/p/original";
   const randomMoviesNumber = [
@@ -25,7 +27,6 @@ export default function RandomMoviePhoto() {
   ];
   useEffect(() => {
     const randomPhoto = Math.floor(Math.random() * 12);
-
     axios
       .get(
         `https://api.themoviedb.org/3/movie/${randomMoviesNumber[randomPhoto]}?api_key=${API_KEY}&language=fr&include_adult=false`

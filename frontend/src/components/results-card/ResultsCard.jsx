@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import PropTypes from "prop-types";
 import styles from "./ResultsCard.module.css";
@@ -15,6 +15,8 @@ export default function ResultsCard({
 }) {
   const [results] = useSearchParams();
   const [hasMore, setHasMore] = useState(true);
+
+  const navigate = useNavigate();
 
   const fetchMoreData = () => {
     setPageNumber(pageNumber + 1);

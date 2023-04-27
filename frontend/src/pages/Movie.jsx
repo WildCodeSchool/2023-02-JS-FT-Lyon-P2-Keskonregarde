@@ -1,6 +1,7 @@
 import axios from "axios";
 import "../App.css";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import MovieCard from "../components/movie-card/MovieCard";
 import SearchBar from "../components/search-bar/SearchBar";
 
@@ -9,6 +10,8 @@ const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 export default function Home() {
   const [movies, setMovies] = useState(null);
   const [query, setQuery] = useState("");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
