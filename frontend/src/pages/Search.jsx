@@ -1,8 +1,7 @@
 import axios from "axios";
-
 import "../App.css";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import ResultsCard from "../components/results-card/ResultsCard";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
@@ -14,6 +13,8 @@ export default function Search() {
   const [movies, setMovies] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const query = results.get("query") || "";
     axios
@@ -21,9 +22,14 @@ export default function Search() {
         `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=fr&query=${query}&page=${pageNumber}&include_adult=false`
       )
       .then(({ data }) => {
-        setRequestedData(data);
-        setMovies(data.results);
-      });
+        if (data.total_results > 0) {
+          setRequestedData(data);
+          setMovies(data.results);
+        } else navigate("/search/no-results");
+      })
+      .catch((err) =>
+        err.response.status === 404 ? navigate("/not-found") : null
+      );
   }, [results, pageNumber]);
 
   if (!requestedData) return null;

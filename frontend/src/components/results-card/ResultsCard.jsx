@@ -27,7 +27,10 @@ export default function ResultsCard({
         if (data.page !== data.total_pages) {
           setMovies(movies.concat(data.results));
         } else setHasMore(false);
-      });
+      })
+      .catch((err) =>
+        err.response.status === 404 ? navigate("/notfound") : null
+      );
   };
 
   const posterUrl = "https://image.tmdb.org/t/p/w200";

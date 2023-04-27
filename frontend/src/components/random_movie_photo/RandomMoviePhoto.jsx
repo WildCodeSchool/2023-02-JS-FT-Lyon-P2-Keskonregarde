@@ -10,18 +10,18 @@ export default function RandomMoviePhoto() {
 
   const url = "https://image.tmdb.org/t/p/original";
   const randomMoviesNumber = [
-    "640146",
+    "299536",
     "438631",
     "157336",
     "19995",
     "862",
-    "680",
+    "120467",
     "129",
     "8587",
-    "700391",
+    "101",
     "458156",
     "278",
-    "274",
+    "1667",
   ];
   useEffect(() => {
     const randomPhoto = Math.floor(Math.random() * 12);
@@ -32,7 +32,10 @@ export default function RandomMoviePhoto() {
       )
       .then((data) => {
         setMovie(data.data);
-      });
+      })
+      .catch((err) =>
+        err.response.status === 404 ? navigate("/notfound") : null
+      );
   }, []);
   if (!movie) return null;
   return (

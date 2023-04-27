@@ -17,7 +17,10 @@ export default function Home() {
       )
       .then(({ data }) => {
         setMovies(data.results);
-      });
+      })
+      .catch((err) =>
+        err.response.status === 404 ? navigate("/not-found") : null
+      );
   }, [query]);
 
   if (!movies) return null;
