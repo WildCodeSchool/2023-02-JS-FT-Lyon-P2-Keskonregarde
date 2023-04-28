@@ -16,6 +16,8 @@ function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/movie" element={<MovieCard />} />
         <Route path="/movie/:id" element={<MovieCard />} />
+        {/* <Route path="/tv" element={<TvCard />} />
+        <Route path="/tv/:id" element={<TvCard />} /> */}
         <Route path="/not-found" element={<NotFound />} />
         <Route path="/search/no-results" element={<NoResults />} />
       </Routes>

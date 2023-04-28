@@ -1,13 +1,13 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import PropTypes from "prop-types";
-import styles from "./ResultsCard.module.css";
+import styles from "./ResultsCardTv.module.css";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
-export default function ResultsCard({
+export default function ResultsCardTv({
   movies,
   setMovies,
   pageNumber,
@@ -19,15 +19,14 @@ export default function ResultsCard({
   const navigate = useNavigate();
 
   const fetchMoreData = () => {
-    setPageNumber(pageNumber + 1);
     const query = results.get("query") || "";
     axios
       .get(
-        `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=fr&query=${query}&page=${pageNumber}&include_adult=false`
+        `https://api.themoviedb.org/3/search/tv?api_key=${API_KEY}&language=fr&query=${query}&page=${pageNumber}&include_adult=false`
       )
       .then(({ data }) => {
         if (data.page !== data.total_pages) {
-          setMovies(movies.concat(data.results));
+          setMovies([...movies, ...data.results]);
         } else setHasMore(false);
       })
       .catch((err) =>
@@ -35,13 +34,17 @@ export default function ResultsCard({
       );
   };
 
+  useEffect(() => {
+    fetchMoreData();
+  }, [pageNumber]);
+
   const posterUrl = "https://image.tmdb.org/t/p/w200";
 
   return (
     <div className={styles.infiniteScrollBox} id="scroll-box">
       <InfiniteScroll
         dataLength={movies.length}
-        next={fetchMoreData}
+        next={() => setPageNumber(pageNumber + 1)}
         hasMore={hasMore}
         loader={<p className="results-number">Chargement...</p>}
         endMessage={
@@ -52,7 +55,7 @@ export default function ResultsCard({
         <div className={styles.searchResults}>
           <div className={styles.searchCard}>
             {movies.map((movie) => (
-              <Link key={movie.id} to={`/movie/${movie.id}`}>
+              <Link key={movie.id} to={`/tv/${movie.id}`}>
                 <div className={styles.cardContainer}>
                   <div className={styles.posterContainer}>
                     <img
@@ -61,15 +64,15 @@ export default function ResultsCard({
                           ? `${posterUrl}${movie.poster_path}`
                           : null
                       }
-                      alt={movie.orginal_title}
+                      alt={movie.orginal_name}
                       className={styles.poster}
                     />
                   </div>
                   <div className={styles.infoContainer}>
                     <div>
-                      <h4 className={styles.movieTitle}>{movie.title}</h4>
+                      <h4 className={styles.movieTitle}>{movie.name}</h4>
                       <h6 className={styles.movieDate}>
-                        {movie.release_date.slice(0, 4)}
+                        {movie.first_air_date}
                       </h6>
                     </div>
                     <p className={styles.movieSynopsis}>
@@ -86,7 +89,7 @@ export default function ResultsCard({
   );
 }
 
-ResultsCard.propTypes = {
+ResultsCardTv.propTypes = {
   movies: PropTypes.shape().isRequired,
   setMovies: PropTypes.func.isRequired,
   pageNumber: PropTypes.number.isRequired,
