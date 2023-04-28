@@ -14,7 +14,6 @@ export default function Search() {
   const [requestedData, setRequestedData] = useState(null);
   const [movies, setMovies] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
-  console.log(requestType);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -28,7 +27,6 @@ export default function Search() {
         )
         .then(({ data }) => {
           if (data.total_results > 0) {
-            console.log("then");
             setRequestedData(data);
             setMovies(data.results);
           } else navigate("/search/no-results");

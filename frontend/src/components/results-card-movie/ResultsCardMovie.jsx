@@ -18,10 +18,6 @@ export default function ResultsCardMovie({
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchMoreData();
-  }, [pageNumber]);
-
   const fetchMoreData = () => {
     const query = results.get("query") || "";
     axios
@@ -37,6 +33,10 @@ export default function ResultsCardMovie({
         err.response.status === 404 ? navigate("/not-found") : null
       );
   };
+
+  useEffect(() => {
+    fetchMoreData();
+  }, [pageNumber]);
 
   const posterUrl = "https://image.tmdb.org/t/p/w200";
 
