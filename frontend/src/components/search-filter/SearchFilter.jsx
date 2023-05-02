@@ -1,44 +1,34 @@
 // import React, { useContext, useEffect } from "react";
 import Dropdown from "react-dropdown";
-// import GenreFilterContext, { GenreFilter } from "../../contexts/GenreFilter";
+//import Dropdown from "rc-dropdown";
+import { useNavigate } from "react-router-dom";
+
 import styles from "./SearchFilter.module.css";
 import "react-dropdown/style.css";
 
 export default function SearchFilter() {
-  /* const { genres, fetchGenres } = useContext(GenreFilterContext);
+  const navigate = useNavigate();
+  const url = "/search";
 
-  useEffect(() => {
-    fetchGenres();
-  }, []);
-*/
-
-  const optionsYears = [
-    "Récent",
-    "2010-2020",
-    "2000-2010",
-    "1990-2000",
-    "1980-1990",
-    "1960-1980",
-    "Avant 1960",
+  const options = [
+    {
+      value: "Mieux notés",
+      label: "Mieux notés",
+    },
+    { value: "Nouveautés", label: "Nouveautés" },
+    { value: "Populaires", label: "Populaires" },
   ];
-  // if (!genre) return null;
   return (
     <div className={styles.searchFilterBar}>
-      {/* <GenreFilter.Provider> */}
       <Dropdown
-        className={styles.buttonSearchFilter}
-        controlClassName={styles.controlMenu}
-        placeholderClassName={styles.placeholderMenu}
-        arrowClassName={styles.arrowMenu}
-        menuClassName={styles.buttonMenu}
-        options={optionsYears}
-        placeholder="Années"
+        placeholder="Films"
+        options={options}
+        onChange={() => navigate(url)}
       />{" "}
-      {/*   {genres.map((genre) => (
-          <Dropdown placeholder="Genre" options={genre} value={fetchGenres} />
-        ))}
-      </GenreFilter.Provider>{" "}
-        */}
+      <Dropdown
+        placeholder="Séries TV"
+        options={["Mieux notés", "Nouveautés", "Populaires"]}
+      />
     </div>
   );
 }

@@ -1,7 +1,6 @@
-/*
 import axios from "axios";
 import PropTypes from "prop-types";
-import { createContext, useMemo, useState } from "react";
+import { createContext, useEffect, useMemo, useState } from "react";
 
 const GenreFilterContext = createContext();
 
@@ -11,20 +10,27 @@ export default GenreFilterContext;
 
 export function GenreFilter({ children }) {
   const [genres, setGenres] = useState([]);
-  const fetchGenres = useMemo(() => {
+
+  const getGenres = () => {
     axios
       .get(
         ` https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=fr&include_adult=false`
       )
       .then(({ data }) => {
-        console.log(data);
-
         setGenres(data.genres.id);
       })
       .catch((err) => console.error(err));
-  }, []);
+  };
+  const genresObj = useMemo(() => {
+    return {
+      genres,
+      getGenres,
+    };
+  }, [genres]);
+  useEffect(getGenres, []);
+
   return (
-    <GenreFilterContext.Provider value={{ genres, fetchGenres }}>
+    <GenreFilterContext.Provider value={genresObj}>
       {children}
     </GenreFilterContext.Provider>
   );
@@ -32,4 +38,3 @@ export function GenreFilter({ children }) {
 GenreFilter.propTypes = {
   children: PropTypes.shape().isRequired,
 };
-*/
