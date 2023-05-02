@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import PropTypes from "prop-types";
@@ -12,6 +12,7 @@ export default function ResultsCardTv({
   setMovies,
   pageNumber,
   setPageNumber,
+  filter,
 }) {
   const [results] = useSearchParams();
   const [hasMore, setHasMore] = useState(true);
@@ -37,6 +38,21 @@ export default function ResultsCardTv({
   useEffect(() => {
     fetchMoreData();
   }, [pageNumber]);
+
+  function getFilter(movies, filter) {
+    if (filter === "all") return movies;
+    if (filter === "action")
+      return movies.filter((movie) => movie.genre_ids.includes(10759));
+    if (filter === "animation")
+      return movies.filter((movie) => movie.genre_ids.includes(16));
+    if (filter === "score")
+      return movies.filter((movie) => movie.vote_average >= 7);
+  }
+
+  const filteredMovies = useMemo(
+    () => getFilter(movies, filter),
+    [movies, filter]
+  );
 
   function getScoreColor(movie) {
     if (movie.vote_average <= 3.99) return "#FF0D0D";
@@ -72,7 +88,7 @@ export default function ResultsCardTv({
       >
         <div className={styles.searchResults}>
           <div className={styles.searchCard}>
-            {movies.map((movie) => (
+            {filteredMovies.map((movie) => (
               <Link key={movie.id} to={`/tv/${movie.id}`}>
                 <div className={styles.cardContainer}>
                   <div className={styles.posterContainer}>

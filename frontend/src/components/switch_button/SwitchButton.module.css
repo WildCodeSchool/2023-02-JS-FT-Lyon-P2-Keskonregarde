@@ -1,7 +1,9 @@
 .switchTypeContainer {
   display: flex;
   justify-content: center;
+  margin: 0.5rem auto 1rem;
 }
+
 .buttonSelectType {
   padding: 0.3rem 0.6rem;
   margin: 0 0.25rem;
@@ -34,10 +36,10 @@
 
 @media screen and (min-width: 1024px) {
   .buttonSelectType {
-    padding: 0.3rem 0.8rem;
+    padding: 0.5rem 0.8rem;
     margin: 0 0.25rem;
     width: 6rem;
-    font-size: 0.7rem;
+    font-size: 0.69rem;
     cursor: pointer;
   }
 
@@ -49,7 +51,7 @@
     padding: 0.5rem 1rem;
     margin: 0 0.25rem;
     width: 6rem;
-    font-size: 0.7rem;
+    font-size: 0.69rem;
     cursor: pointer;
   }
 }

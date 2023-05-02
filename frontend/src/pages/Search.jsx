@@ -5,6 +5,7 @@ import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import ResultsCardMovie from "../components/results-card-movie/ResultsCardMovie";
 import ResultsCardTv from "../components/results-card-tv/ResultsCardTv";
 import SwitchButton from "../components/switch_button/SwitchButton";
+import FilterBar from "@components/filter_bar/FilterBar";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -15,6 +16,7 @@ export default function Search() {
   const [requestedData, setRequestedData] = useState(null);
   const [movies, setMovies] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
+  const [filter, setFilter] = useState("all");
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -45,12 +47,14 @@ export default function Search() {
       <h5 className="results-number">
         Résultats trouvés : {requestedData.total_results}
       </h5>
+      <FilterBar filter={filter} setFilter={setFilter} />
       {requestType === "movie" && movies && (
         <ResultsCardMovie
           movies={movies}
           setMovies={setMovies}
           pageNumber={pageNumber}
           setPageNumber={setPageNumber}
+          filter={filter}
         />
       )}
       {requestType === "tv" && movies && (
@@ -59,6 +63,7 @@ export default function Search() {
           setMovies={setMovies}
           pageNumber={pageNumber}
           setPageNumber={setPageNumber}
+          filter={filter}
         />
       )}
     </>
