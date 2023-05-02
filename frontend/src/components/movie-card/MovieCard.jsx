@@ -120,10 +120,10 @@ export default function MovieCard() {
                 </button>
               ) : null}
             </div>
-          </div>
-          <div className={styles.containerSynopsis}>
-            <h2 className={styles.titleSynopsis}>Synopsis</h2>
-            <p className={styles.movieSynopsis}>{movie.overview}</p>
+            <div className={styles.containerSynopsis}>
+              <h2 className={styles.titleSynopsis}>Synopsis</h2>
+              <p className={styles.movieSynopsis}>{movie.overview}</p>
+            </div>
           </div>
         </div>
       </section>
