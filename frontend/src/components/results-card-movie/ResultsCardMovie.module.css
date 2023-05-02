@@ -47,6 +47,7 @@ a {
   flex-direction: column;
   justify-content: space-between;
   margin: 1.5rem 1rem;
+  width: 100%;
 }
 
 .posterContainer {
@@ -60,6 +61,12 @@ a {
   width: 100%;
 }
 
+.movieHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
 .movieTitle {
   color: var(--darkRed);
   font-size: small;
@@ -70,6 +77,15 @@ a {
   margin-top: 0.2rem;
   color: var(--darkGrey);
   font-style: italic;
+}
+
+.movieScore {
+  text-decoration: none;
+  font-size: 0.7rem;
+  font-weight: bold;
+  border: 1.5px solid;
+  border-radius: 50%;
+  padding: 0.4rem;
 }
 
 .movieSynopsis {
@@ -111,6 +127,7 @@ a {
 
   .infoContainer {
     margin: 2rem 1.5rem;
+    width: 100%;
   }
 
   .posterContainer {
@@ -126,6 +143,10 @@ a {
   .movieDate {
     font-style: italic;
     font-size: small;
+  }
+
+  .movieScore {
+    font-size: 0.8rem;
   }
 
   .movieSynopsis {
