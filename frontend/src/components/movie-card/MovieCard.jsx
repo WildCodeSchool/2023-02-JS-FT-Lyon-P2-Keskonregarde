@@ -95,9 +95,9 @@ export default function MovieCard() {
                 movie["watch/providers"].results?.FR?.buy ? (
                   <img
                     src={
-                      movie["watch/providers"].results.FR.flatrate
-                        ? `${url}${movie["watch/providers"].results.FR.flatrate[1]?.logo_path}`
-                        : `${url}${movie["watch/providers"].results.FR.buy[1].logo_path}`
+                      movie["watch/providers"].results.FR.buy
+                        ? `${url}${movie["watch/providers"].results.FR.buy[1].logo_path}`
+                        : `${url}${movie["watch/providers"].results.FR.flatrate[0]?.logo_path}`
                     }
                     alt={movie.provider_name}
                     className={styles.logoPlatform}
@@ -185,9 +185,9 @@ export default function MovieCard() {
                 movie["watch/providers"].results?.FR?.buy ? (
                   <img
                     src={
-                      movie["watch/providers"].results.FR.flatrate
-                        ? `${url}${movie["watch/providers"].results.FR.flatrate[1]?.logo_path}`
-                        : `${url}${movie["watch/providers"].results.FR.buy[1].logo_path}`
+                      movie["watch/providers"].results.FR.buy
+                        ? `${url}${movie["watch/providers"].results.FR.buy[1].logo_path}`
+                        : `${url}${movie["watch/providers"].results.FR.flatrate[0]?.logo_path}`
                     }
                     alt={movie.provider_name}
                     className={styles.logoPlatform}
