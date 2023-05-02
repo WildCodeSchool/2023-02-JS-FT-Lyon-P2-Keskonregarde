@@ -9,7 +9,7 @@ import NotFound from "./pages/NotFound";
 import NoResults from "./pages/NoResults";
 import TopRated from "./pages/TopRated";
 
-function App() {
+export default function App() {
   return (
     <>
       <Header />
@@ -25,5 +25,3 @@ function App() {
     </>
   );
 }
-
-export default App;
