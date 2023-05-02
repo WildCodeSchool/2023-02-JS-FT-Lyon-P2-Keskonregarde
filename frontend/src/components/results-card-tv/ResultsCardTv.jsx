@@ -38,6 +38,23 @@ export default function ResultsCardTv({
     fetchMoreData();
   }, [pageNumber]);
 
+  function getScoreColor(movie) {
+    if (movie.vote_average <= 3.99) return "#FF0D0D";
+    if (movie.vote_average >= 4 && movie.vote_average <= 6.99) return "#FAB733";
+    if (movie.vote_average >= 7 && movie.vote_average <= 8.49) return "#92E000";
+    if (movie.vote_average >= 8.4 && movie.vote_average <= 10) return "#2AA10F";
+  }
+
+  function setLocaleDate(movie) {
+    const releaseDate = new Date(movie.first_air_date);
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    return releaseDate.toLocaleDateString("fr-FR", options);
+  }
+
   const posterUrl = "https://image.tmdb.org/t/p/w200";
 
   return (
@@ -69,11 +86,19 @@ export default function ResultsCardTv({
                     />
                   </div>
                   <div className={styles.infoContainer}>
-                    <div>
-                      <h4 className={styles.movieTitle}>{movie.name}</h4>
-                      <h6 className={styles.movieDate}>
-                        {movie.first_air_date}
-                      </h6>
+                    <div className={styles.movieHeader}>
+                      <div>
+                        <h4 className={styles.movieTitle}>{movie.name}</h4>
+                        <h6 className={styles.movieDate}>
+                          {setLocaleDate(movie)}
+                        </h6>
+                      </div>
+                      <p
+                        className={styles.movieScore}
+                        style={{ color: getScoreColor(movie) }}
+                      >
+                        {movie.vote_average.toFixed(1)}
+                      </p>
                     </div>
                     <p className={styles.movieSynopsis}>
                       {`${movie.overview.slice(0, 75)}...`}
