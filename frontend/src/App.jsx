@@ -17,7 +17,6 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<Search />} />
         <Route path="/top-rated" element={<TopRated />} />
-        <Route path="/movie" element={<MovieCard />} />
         <Route path="/movie/:id" element={<MovieCard />} />
         <Route path="/tv/:id" element={<TvCard />} />
         <Route path="/not-found" element={<NotFound />} />
