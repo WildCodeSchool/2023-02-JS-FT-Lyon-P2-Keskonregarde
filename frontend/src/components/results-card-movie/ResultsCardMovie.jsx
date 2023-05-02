@@ -39,7 +39,7 @@ export default function ResultsCardMovie({
     fetchMoreData();
   }, [pageNumber]);
 
-  function getFilter(movies, filter) {
+  function getFilter() {
     if (filter === "all") return movies;
     if (filter === "action")
       return movies.filter((movie) => movie.genre_ids.includes(28));
@@ -47,6 +47,7 @@ export default function ResultsCardMovie({
       return movies.filter((movie) => movie.genre_ids.includes(16));
     if (filter === "score")
       return movies.filter((movie) => movie.vote_average >= 7);
+    return null;
   }
 
   const filteredMovies = useMemo(
@@ -135,4 +136,5 @@ ResultsCardMovie.propTypes = {
   setMovies: PropTypes.func.isRequired,
   pageNumber: PropTypes.number.isRequired,
   setPageNumber: PropTypes.func.isRequired,
+  filter: PropTypes.string.isRequired,
 };

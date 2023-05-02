@@ -5,7 +5,7 @@ import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import ResultsCardMovie from "../components/results-card-movie/ResultsCardMovie";
 import ResultsCardTv from "../components/results-card-tv/ResultsCardTv";
 import SwitchButton from "../components/switch_button/SwitchButton";
-import FilterBar from "@components/filter_bar/FilterBar";
+import FilterBar from "../components/filter_bar/FilterBar";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
