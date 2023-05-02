@@ -6,7 +6,7 @@ import Header from "./components/Header";
 import MovieCard from "./components/movie-card/MovieCard";
 import NotFound from "./pages/NotFound";
 import NoResults from "./pages/NoResults";
-import TopRated from "@pages/TopRated";
+import TopRated from "./pages/TopRated";
 
 function App() {
   return (

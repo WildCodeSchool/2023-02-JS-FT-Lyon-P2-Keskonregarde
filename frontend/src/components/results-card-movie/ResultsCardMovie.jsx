@@ -43,6 +43,7 @@ export default function ResultsCardMovie({
     if (movie.vote_average >= 4 && movie.vote_average <= 6.99) return "#FAB733";
     if (movie.vote_average >= 7 && movie.vote_average <= 8.49) return "#92E000";
     if (movie.vote_average >= 8.4 && movie.vote_average <= 10) return "#2AA10F";
+    return null;
   }
 
   function setLocaleDate(movie) {
@@ -114,7 +115,7 @@ export default function ResultsCardMovie({
 }
 
 ResultsCardMovie.propTypes = {
-  movies: PropTypes.object.isRequired,
+  movies: PropTypes.shape().isRequired,
   setMovies: PropTypes.func.isRequired,
   pageNumber: PropTypes.number.isRequired,
   setPageNumber: PropTypes.func.isRequired,
