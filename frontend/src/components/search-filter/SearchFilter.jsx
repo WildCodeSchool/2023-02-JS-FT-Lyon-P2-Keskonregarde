@@ -1,6 +1,5 @@
-// import React, { useContext, useEffect } from "react";
+import React from "react";
 import Dropdown from "react-dropdown";
-//import Dropdown from "rc-dropdown";
 import { useNavigate } from "react-router-dom";
 
 import styles from "./SearchFilter.module.css";
