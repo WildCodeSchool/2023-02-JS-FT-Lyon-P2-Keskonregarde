@@ -10,6 +10,9 @@ export default function MovieCard() {
   const [movie, setMovie] = useState(null);
 
   const navigate = useNavigate();
+  const handleBack = () => {
+    navigate(-1);
+  };
 
   const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -95,9 +98,9 @@ export default function MovieCard() {
                 movie["watch/providers"].results?.FR?.buy ? (
                   <img
                     src={
-                      movie["watch/providers"].results.FR.flatrate
-                        ? `${url}${movie["watch/providers"].results.FR.flatrate[1]?.logo_path}`
-                        : `${url}${movie["watch/providers"].results.FR.buy[1].logo_path}`
+                      movie["watch/providers"].results.FR.buy
+                        ? `${url}${movie["watch/providers"].results.FR.buy[1]?.logo_path}`
+                        : `${url}${movie["watch/providers"].results.FR.flatrate[0].logo_path}`
                     }
                     alt={movie.provider_name}
                     className={styles.logoPlatform}
@@ -126,6 +129,9 @@ export default function MovieCard() {
             </div>
           </div>
         </div>
+        <button type="button" onClick={handleBack}>
+          Précedent
+        </button>
       </section>
       <section className={styles.desktopMovieCard}>
         <img
@@ -185,9 +191,9 @@ export default function MovieCard() {
                 movie["watch/providers"].results?.FR?.buy ? (
                   <img
                     src={
-                      movie["watch/providers"].results.FR.flatrate
-                        ? `${url}${movie["watch/providers"].results.FR.flatrate[1]?.logo_path}`
-                        : `${url}${movie["watch/providers"].results.FR.buy[1].logo_path}`
+                      movie["watch/providers"].results.FR.buy
+                        ? `${url}${movie["watch/providers"].results.FR.buy[1]?.logo_path}`
+                        : `${url}${movie["watch/providers"].results.FR.flatrate[0].logo_path}`
                     }
                     alt={movie.provider_name}
                     className={styles.logoPlatform}
