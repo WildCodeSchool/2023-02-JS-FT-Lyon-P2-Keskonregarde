@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import ResultsCardMovie from "../components/results-card-movie/ResultsCardMovie";
 import ResultsCardTv from "../components/results-card-tv/ResultsCardTv";
+import SwitchButton from "../components/switch_button/SwitchButton";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -40,34 +41,7 @@ export default function Search() {
   if (!requestedData || !requestType) return null;
   return (
     <>
-      <div className="switch-type-container">
-        <button
-          type="button"
-          className={
-            requestType === "movie"
-              ? "button-select-type-enabled"
-              : "button-select-type"
-          }
-          onClick={() => {
-            setRequestType("movie");
-          }}
-        >
-          Films
-        </button>
-        <button
-          type="button"
-          className={
-            requestType === "tv"
-              ? "button-select-type-enabled"
-              : "button-select-type"
-          }
-          onClick={() => {
-            setRequestType("tv");
-          }}
-        >
-          Séries TV
-        </button>
-      </div>
+      <SwitchButton requestType={requestType} setRequestType={setRequestType} />
       <h5 className="results-number">
         Résultats trouvés : {requestedData.total_results}
       </h5>
