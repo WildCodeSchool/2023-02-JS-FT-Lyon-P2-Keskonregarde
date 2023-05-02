@@ -10,9 +10,6 @@ export default function MovieCard() {
   const [movie, setMovie] = useState(null);
 
   const navigate = useNavigate();
-  const handleBack = () => {
-    navigate(-1);
-  };
 
   const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -129,9 +126,6 @@ export default function MovieCard() {
             </div>
           </div>
         </div>
-        <button type="button" onClick={handleBack}>
-          Précedent
-        </button>
       </section>
       <section className={styles.desktopMovieCard}>
         <img
