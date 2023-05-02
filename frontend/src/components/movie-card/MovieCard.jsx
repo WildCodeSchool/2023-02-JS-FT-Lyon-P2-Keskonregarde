@@ -23,7 +23,7 @@ export default function MovieCard() {
       )
       .then((response) => setMovie(response.data))
       .catch((err) =>
-        err.response.status === 404 ? navigate("/notfound") : null
+        err.response.status === 404 ? navigate("/not-found") : null
       );
   }, []);
 
@@ -99,8 +99,8 @@ export default function MovieCard() {
                   <img
                     src={
                       movie["watch/providers"].results.FR.buy
-                        ? `${url}${movie["watch/providers"].results.FR.buy[1]?.logo_path}`
-                        : `${url}${movie["watch/providers"].results.FR.flatrate[0].logo_path}`
+                        ? `${url}${movie["watch/providers"].results.FR.buy[1].logo_path}`
+                        : `${url}${movie["watch/providers"].results.FR.flatrate[0]?.logo_path}`
                     }
                     alt={movie.provider_name}
                     className={styles.logoPlatform}
@@ -192,8 +192,8 @@ export default function MovieCard() {
                   <img
                     src={
                       movie["watch/providers"].results.FR.buy
-                        ? `${url}${movie["watch/providers"].results.FR.buy[1]?.logo_path}`
-                        : `${url}${movie["watch/providers"].results.FR.flatrate[0].logo_path}`
+                        ? `${url}${movie["watch/providers"].results.FR.buy[1].logo_path}`
+                        : `${url}${movie["watch/providers"].results.FR.flatrate[0]?.logo_path}`
                     }
                     alt={movie.provider_name}
                     className={styles.logoPlatform}

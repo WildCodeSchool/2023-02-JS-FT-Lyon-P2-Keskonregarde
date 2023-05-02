@@ -7,6 +7,7 @@ import MovieCard from "./components/movie-card/MovieCard";
 import TvCard from "./components/tv-card/TvCard";
 import NotFound from "./pages/NotFound";
 import NoResults from "./pages/NoResults";
+import TopRated from "./pages/TopRated";
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/top-rated" element={<TopRated />} />
+        <Route path="/movie" element={<MovieCard />} />
         <Route path="/movie/:id" element={<MovieCard />} />
         <Route path="/tv/:id" element={<TvCard />} />
         <Route path="/not-found" element={<NotFound />} />
