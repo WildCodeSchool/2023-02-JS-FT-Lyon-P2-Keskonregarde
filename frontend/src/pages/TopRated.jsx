@@ -1,31 +1,27 @@
 import axios from "axios";
 import "../App.css";
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ResultsCardMovie from "../components/results-card/ResultsCard";
 import SwitchButton from "../components/switch_button/SwitchButton";
 import FilterBar from "../components/filter_bar/FilterBar";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
-export default function Search() {
-  const [results] = useSearchParams();
-
+export default function TopRated() {
   const [requestType, setRequestType] = useState("movie");
   const [requestedData, setRequestedData] = useState(null);
   const [movies, setMovies] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [filter, setFilter] = useState("all");
 
-  const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const query = results.get("query") || "";
     if (pageNumber === 1)
       axios
         .get(
-          `https://api.themoviedb.org/3/search/${requestType}?api_key=${API_KEY}&language=fr&query=${query}&page=${pageNumber}&include_adult=false`
+          `https://api.themoviedb.org/3/${requestType}/top_rated?api_key=${API_KEY}&language=fr&page=${pageNumber}`
         )
         .then(({ data }) => {
           if (data.total_results > 0) {
@@ -37,7 +33,7 @@ export default function Search() {
           err.response.status === 404 ? navigate("/not-found") : null
         );
     return () => {};
-  }, [results, movies, pageNumber, location, location.search, location.state]);
+  }, [movies, pageNumber]);
 
   if (!requestedData || !requestType) return null;
   return (
