@@ -28,7 +28,6 @@ export function MovieGenres({ children }) {
   }, [genres]);
   useEffect(getGenres, []);
 
-  console.log(genresObj);
   return (
     <MovieGenresContext.Provider value={genresObj}>
       {children}

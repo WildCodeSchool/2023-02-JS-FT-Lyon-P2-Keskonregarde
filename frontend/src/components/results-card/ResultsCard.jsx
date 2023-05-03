@@ -72,7 +72,8 @@ export default function ResultsCardMovie({
         month: "numeric",
       };
       return releaseDate.toLocaleDateString("fr-FR", options);
-    } else if (requestType === "tv") {
+    }
+    if (requestType === "tv") {
       const releaseDate = new Date(movie.first_air_date);
       const options = {
         year: "numeric",
