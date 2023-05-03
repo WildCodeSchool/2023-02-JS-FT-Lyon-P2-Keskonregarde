@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { setLocaleDate } from "../../services/utils";
 import styles from "./TvCard.module.css";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
@@ -42,7 +43,7 @@ export default function TvCard() {
         <div className={styles.containerTvCard}>
           <div>
             <h2 className={styles.tvTitle}>
-              {tv.name}, {tv.first_air_date}{" "}
+              {tv.name}, {tv.first_air_date.slice(0, 4)}{" "}
             </h2>
             <h5 className={styles.tvGenres}>
               {" "}
@@ -127,14 +128,15 @@ export default function TvCard() {
         />
         <div className={styles.containerTvCard}>
           <div>
-            <h2 className={styles.tvTitle}>
-              {tv.name}, {tv.first_air_date}
-            </h2>
+            <h2 className={styles.tvTitle}>{tv.name}</h2>
             <h5 className={styles.tvGenres}>
               {tv.genres[0] === undefined ? null : `${tv.genres[0].name}`}
               {tv.genres[1] === undefined ? null : `/${tv.genres[1].name}`}
               {tv.genres[2] === undefined ? null : `/${tv.genres[2].name}`}
             </h5>
+            <p className={styles.tvDates}>
+              {`Première diffusion : ${setLocaleDate(tv.first_air_date)}`}
+            </p>
             <div className={styles.tvCredits}>
               <h3>
                 Réalisateur :{" "}

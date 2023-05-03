@@ -1,7 +1,7 @@
 .switchTypeContainer {
   display: flex;
   justify-content: center;
-  margin: 0.5rem auto 1rem;
+  margin: 0 auto 1rem;
 }
 
 .buttonSelectType {

@@ -8,20 +8,26 @@ import TvCard from "./components/tv-card/TvCard";
 import NotFound from "./pages/NotFound";
 import NoResults from "./pages/NoResults";
 import TopRated from "./pages/TopRated";
+import { MovieGenres } from "./contexts/MovieGenresContext";
+import { TvGenres } from "./contexts/TvGenresContext";
 
 export default function App() {
   return (
     <>
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/top-rated" element={<TopRated />} />
-        <Route path="/movie/:id" element={<MovieCard />} />
-        <Route path="/tv/:id" element={<TvCard />} />
-        <Route path="/not-found" element={<NotFound />} />
-        <Route path="/search/no-results" element={<NoResults />} />
-      </Routes>
+      <MovieGenres>
+        <TvGenres>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/top-rated" element={<TopRated />} />
+            <Route path="/movie/:id" element={<MovieCard />} />
+            <Route path="/tv/:id" element={<TvCard />} />
+            <Route path="/not-found" element={<NotFound />} />
+            <Route path="/search/no-results" element={<NoResults />} />
+          </Routes>
+        </TvGenres>
+      </MovieGenres>
     </>
   );
 }

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { setLocaleDate } from "../../services/utils";
 import styles from "./MovieCard.module.css";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
@@ -134,9 +135,7 @@ export default function MovieCard() {
         />
         <div className={styles.containerMovieCard}>
           <div>
-            <h2 className={styles.movieTitle}>
-              {movie.title}, {movie.release_date.slice(0, 4)}
-            </h2>
+            <h2 className={styles.movieTitle}>{movie.title}</h2>
             <h5 className={styles.movieGenres}>
               {movie.genres[0] === undefined ? null : `${movie.genres[0].name}`}
               {movie.genres[1] === undefined
@@ -146,6 +145,9 @@ export default function MovieCard() {
                 ? null
                 : `/${movie.genres[2].name}`}
             </h5>
+            <p className={styles.movieDates}>
+              {`Sortie : ${setLocaleDate(movie.release_date)}`}
+            </p>
             <div className={styles.movieCredits}>
               <h3>
                 Réalisateur :{" "}

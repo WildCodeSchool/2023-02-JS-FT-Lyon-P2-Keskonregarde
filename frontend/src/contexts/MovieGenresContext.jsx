@@ -13,23 +13,22 @@ export function MovieGenres({ children }) {
   const getGenres = () => {
     axios
       .get(
-        `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=fr`
+        `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=fr-FR`
       )
       .then(({ data }) => {
-        setGenres(data);
+        setGenres(data.genres);
       })
       .catch((err) => console.error(err));
   };
-  const genresObj = useMemo(() => {
+  const movieGenresObj = useMemo(() => {
     return {
       genres,
-      getGenres,
     };
   }, [genres]);
   useEffect(getGenres, []);
 
   return (
-    <MovieGenresContext.Provider value={genresObj}>
+    <MovieGenresContext.Provider value={movieGenresObj}>
       {children}
     </MovieGenresContext.Provider>
   );
