@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { NavLink } from "react-router-dom";
 import styles from "./SwitchButton.module.css";
 
 export default function SwitchButton({ requestType, setRequestType }) {
@@ -19,15 +18,6 @@ export default function SwitchButton({ requestType, setRequestType }) {
       >
         Films
       </button>
-      <NavLink
-        to="/top-rated"
-        className={({ isActive }) =>
-          isActive ? styles.buttonSelectTypeEnabled : styles.buttonSelectType
-        }
-      >
-        Mieux notés
-      </NavLink>
-
       <button
         type="button"
         className={`${

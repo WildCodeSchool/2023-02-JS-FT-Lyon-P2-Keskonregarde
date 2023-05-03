@@ -25,18 +25,56 @@ body {
 }
 
 /* Header */
+.header-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 .logo-pic {
-  display: block;
   height: 2rem;
-  margin: 2rem auto 1.5rem;
+  margin: 2rem auto 0.5rem;
 }
 
 /* Search Page */
 .results-number {
   text-align: center;
-  margin: 1rem;
+  margin: 0.5rem;
   color: var(--darkGrey);
   font-style: italic;
+}
+
+/* Top Rated button */
+.button-top-rated {
+  padding: 0.3rem 0.6rem;
+  margin: 0.5rem;
+  background-color: var(--white);
+  color: var(--darkRed);
+  width: 5rem;
+  border: 1px solid var(--mediumGrey);
+  font-size: 0.6rem;
+  font-weight: 790;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.button-top-rated:active {
+  border: 1px solid var(--darkRed);
+}
+
+.button-top-rated-enabled {
+  padding: 0.3rem 0.6rem;
+  margin: 0.5rem;
+  background-color: var(--darkRed);
+  color: var(--white);
+  width: 5rem;
+  border: 1px solid var(--mediumGrey);
+  font-size: 0.6rem;
+  font-weight: 790;
+  border-radius: 0.5rem;
+  cursor: pointer;
 }
 
 /* Not found / No results Page */
@@ -66,11 +104,29 @@ body {
 @media screen and (min-width: 1024px) {
   .logo-pic {
     height: 3rem;
-    margin: 3.5rem auto 2rem auto;
+    margin: 3.5rem auto 2rem;
   }
 
   .results-number {
-    margin: 1.8rem 1.5rem;
+    margin: 1rem auto 1rem;
+  }
+
+  .button-top-rated {
+    padding: 0.5rem 0.8rem;
+    width: 6.5rem;
+    font-size: 0.69rem;
+    cursor: pointer;
+  }
+
+  .button-top-rated:hover {
+    border: 1px solid var(--darkRed);
+  }
+
+  .button-top-rated-enabled {
+    padding: 0.5rem 1rem;
+    width: 6.5rem;
+    font-size: 0.69rem;
+    cursor: pointer;
   }
 
   .not-found-container > h3,

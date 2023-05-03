@@ -1,5 +1,4 @@
 .movieCardPage {
-  margin-top: 2rem;
   height: fit-content;
 }
 
@@ -103,7 +102,7 @@
 
   .desktopMovieCard {
     height: 65vh;
-    margin: 4rem 6rem 2rem;
+    margin: 0.5rem 6rem 2rem;
     background-color: rgba(246, 246, 246, 0.85);
     border-radius: 0.8rem;
     box-sizing: border-box;

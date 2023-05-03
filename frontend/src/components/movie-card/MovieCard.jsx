@@ -3,15 +3,12 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "./MovieCard.module.css";
 
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+
 export default function MovieCard() {
-  const url = "https://image.tmdb.org/t/p/original";
-  const urlYt = "https://www.youtube.com/embed/";
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
-
   const navigate = useNavigate();
-
-  const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
   useEffect(() => {
     axios
@@ -24,8 +21,10 @@ export default function MovieCard() {
       );
   }, []);
 
-  if (!movie) return null;
+  const url = "https://image.tmdb.org/t/p/original";
+  const urlYt = "https://www.youtube.com/embed/";
 
+  if (!movie) return null;
   return (
     <div className={styles.movieCardPage}>
       <section
