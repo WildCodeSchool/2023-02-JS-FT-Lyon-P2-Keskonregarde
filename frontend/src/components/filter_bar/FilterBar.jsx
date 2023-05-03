@@ -5,8 +5,8 @@ import MovieGenresContext from "../../contexts/MovieGenresContext";
 import TvGenresContext from "../../contexts/TvGenresContext";
 
 export default function FilterBar({ filter, setFilter, requestType }) {
-  const movieGenresObj = useContext(MovieGenresContext);
-  const tvGenresObj = useContext(TvGenresContext);
+  const { movieGenres } = useContext(MovieGenresContext);
+  const { tvGenres } = useContext(TvGenresContext);
 
   return (
     <div className={styles.switchTypeContainer}>
@@ -22,7 +22,7 @@ export default function FilterBar({ filter, setFilter, requestType }) {
         All
       </button>
       {requestType === "movie" &&
-        movieGenresObj.genres.map((genre) => (
+        movieGenres.map((genre) => (
           <button
             key={genre.id}
             type="button"
@@ -37,7 +37,7 @@ export default function FilterBar({ filter, setFilter, requestType }) {
           </button>
         ))}
       {requestType === "tv" &&
-        tvGenresObj.genres.map((genre) => (
+        tvGenres.map((genre) => (
           <button
             type="button"
             className={`${
@@ -68,4 +68,5 @@ export default function FilterBar({ filter, setFilter, requestType }) {
 FilterBar.propTypes = {
   filter: PropTypes.string.isRequired,
   setFilter: PropTypes.func.isRequired,
+  requestType: PropTypes.string.isRequired,
 };

@@ -19,9 +19,8 @@ export function setLocaleDate(date) {
 }
 
 /* Generate genre name based on genre id */
-export function getGenreName(ids, genresObj) {
-  const genreArray = genresObj.genres;
-  for (let i = 0; i < genreArray.length; i++) {
-    if (ids.includes(genreArray[i].id)) return genreArray[i].name;
+export function getGenreName(ids, genres) {
+  for (let i = 0; i < genres.length; i++) {
+    if (ids.includes(genres[i].id)) return genres[i].name;
   }
 }

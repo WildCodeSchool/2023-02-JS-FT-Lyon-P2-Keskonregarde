@@ -9,22 +9,22 @@ const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 export default MovieGenresContext;
 
 export function MovieGenres({ children }) {
-  const [genres, setGenres] = useState([]);
+  const [movieGenres, setMovieGenres] = useState([]);
   const getGenres = () => {
     axios
       .get(
         `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=fr-FR`
       )
       .then(({ data }) => {
-        setGenres(data.genres);
+        setMovieGenres(data.genres);
       })
       .catch((err) => console.error(err));
   };
   const movieGenresObj = useMemo(() => {
     return {
-      genres,
+      movieGenres,
     };
-  }, [genres]);
+  }, [movieGenres]);
   useEffect(getGenres, []);
 
   return (

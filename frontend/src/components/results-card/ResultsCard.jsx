@@ -24,8 +24,8 @@ export default function ResultsCardMovie({
 }) {
   const [results] = useSearchParams();
   const [hasMore, setHasMore] = useState(true);
-  const movieGenresObj = useContext(MovieGenresContext);
-  const tvGenresObj = useContext(TvGenresContext);
+  const { movieGenres } = useContext(MovieGenresContext);
+  const { tvGenres } = useContext(TvGenresContext);
 
   const navigate = useNavigate();
 
@@ -53,18 +53,16 @@ export default function ResultsCardMovie({
   /* Generate Filter States using Movie/TV Context */
   function getFilter() {
     if (filter === "all") return movies;
-    const movieGenresArray = movieGenresObj.genres;
-    for (let i = 0; i < movieGenresArray.length; i++) {
-      if (filter === movieGenresArray[i].name)
+    for (let i = 0; i < movieGenres.length; i += 1) {
+      if (filter === movieGenres[i].name)
         return movies.filter((movie) =>
-          movie.genre_ids.includes(movieGenresArray[i].id)
+          movie.genre_ids.includes(movieGenres[i].id)
         );
     }
-    const tvGenresArray = tvGenresObj.genres;
-    for (let i = 0; i < tvGenresArray.length; i++) {
-      if (filter === tvGenresArray[i].name)
+    for (let i = 0; i < tvGenres.length; i += 1) {
+      if (filter === tvGenres[i].name)
         return movies.filter((movie) =>
-          movie.genre_ids.includes(tvGenresArray[i].id)
+          movie.genre_ids.includes(tvGenres[i].id)
         );
     }
     if (filter === "score")
@@ -124,10 +122,10 @@ export default function ResultsCardMovie({
                         </h4>
                         <h5 className={styles.movieGenre}>
                           {requestType === "movie"
-                            ? getGenreName(movie.genre_ids, movieGenresObj)
+                            ? getGenreName(movie.genre_ids, movieGenres)
                             : null}
                           {requestType === "tv"
-                            ? getGenreName(movie.genre_ids, tvGenresObj)
+                            ? getGenreName(movie.genre_ids, tvGenres)
                             : null}
                         </h5>
                         <p className={styles.movieDate}>
