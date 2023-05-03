@@ -60,8 +60,12 @@ export default function MovieCard() {
               <h3>
                 Réalisateur :{" "}
                 {movie.credits?.crew[0]?.name
-                  ? `${movie.credits.crew[1].name}`
+                  ? `${movie.credits.crew[0].name}`
                   : null}
+                {movie.credits?.crew[1]?.name
+                  ? `, ${movie.credits.crew[1].name}`
+                  : null}
+                ...
               </h3>
               <h3>
                 Acteurs :{" "}
@@ -69,9 +73,8 @@ export default function MovieCard() {
                   ? `${movie.credits.cast[0].name}`
                   : null}
                 {movie.credits?.cast[1]?.name
-                  ? `, ${movie.credits.cast[1].name}`
+                  ? `, ${movie.credits.cast[1].name}...`
                   : null}
-                ...
               </h3>
             </div>
           </div>
@@ -150,8 +153,12 @@ export default function MovieCard() {
               <h3>
                 Réalisateur :{" "}
                 {movie.credits?.crew[0]?.name
-                  ? `${movie.credits.crew[1].name}`
+                  ? `${movie.credits.crew[0].name}`
                   : null}
+                {movie.credits?.crew[1]?.name
+                  ? `, ${movie.credits.crew[1].name}`
+                  : null}
+                ...
               </h3>
               <h3>
                 Acteurs :{" "}
