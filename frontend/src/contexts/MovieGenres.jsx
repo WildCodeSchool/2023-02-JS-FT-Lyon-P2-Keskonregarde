@@ -23,7 +23,6 @@ export function MovieGenres({ children }) {
   const genresObj = useMemo(() => {
     return {
       genres,
-      getGenres,
     };
   }, [genres]);
   useEffect(getGenres, []);
