@@ -2,8 +2,7 @@ import axios from "axios";
 import "../App.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ResultsCardMovie from "../components/results-card-movie/ResultsCardMovie";
-import ResultsCardTv from "../components/results-card-tv/ResultsCardTv";
+import ResultsCardMovie from "../components/results-card/ResultsCard";
 import SwitchButton from "../components/switch_button/SwitchButton";
 import FilterBar from "../components/filter_bar/FilterBar";
 
@@ -44,17 +43,9 @@ export default function TopRated() {
         Résultats trouvés : {requestedData.total_results}
       </h5>
       <FilterBar filter={filter} setFilter={setFilter} />
-      {requestType === "movie" && movies && (
+      {requestType && movies && (
         <ResultsCardMovie
-          movies={movies}
-          setMovies={setMovies}
-          pageNumber={pageNumber}
-          setPageNumber={setPageNumber}
-          filter={filter}
-        />
-      )}
-      {requestType === "tv" && movies && (
-        <ResultsCardTv
+          requestType={requestType}
           movies={movies}
           setMovies={setMovies}
           pageNumber={pageNumber}
