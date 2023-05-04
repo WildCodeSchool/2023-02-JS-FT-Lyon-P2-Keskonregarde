@@ -82,7 +82,6 @@ export default function TvCard() {
               <h3>
                 Réalisateur :{" "}
                 {tv.created_by[0]?.name ? `${tv.created_by[0].name}` : null}
-                {tv.created_by[1]?.name ? `, ${tv.created_by[1].name}` : null}
               </h3>
               <h3>
                 Acteurs :{" "}
@@ -188,7 +187,6 @@ export default function TvCard() {
               <h3>
                 Réalisateur :{" "}
                 {tv.created_by[0]?.name ? `${tv.created_by[0].name}` : null}
-                {tv.created_by[1]?.name ? `, ${tv.created_by[1].name}` : null}
               </h3>
               <h3>
                 Acteurs :{" "}
