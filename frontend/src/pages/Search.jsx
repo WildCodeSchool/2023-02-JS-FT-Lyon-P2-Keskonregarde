@@ -37,7 +37,15 @@ export default function Search() {
           err.response.status === 404 ? navigate("/not-found") : null
         );
     return () => {};
-  }, [results, movies, pageNumber, location, location.search, location.state]);
+  }, [
+    results,
+    requestType,
+    movies,
+    pageNumber,
+    location,
+    location.search,
+    location.state,
+  ]);
 
   if (!requestedData || !requestType) return null;
   return (
@@ -46,7 +54,11 @@ export default function Search() {
       <h5 className="results-number">
         Résultats trouvés : {requestedData.total_results}
       </h5>
-      <FilterBar filter={filter} setFilter={setFilter} />
+      <FilterBar
+        filter={filter}
+        setFilter={setFilter}
+        requestType={requestType}
+      />
       {requestType && movies && (
         <ResultsCardMovie
           requestType={requestType}

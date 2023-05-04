@@ -1,184 +1,192 @@
 .tvCardPage {
-    margin-top: 2rem;
-    height: fit-content;
-  }
-  
+  height: fit-content;
+  margin-top: 0.5rem;
+}
+
+.mobileTvCard {
+  height: 77vh;
+  padding: 1.8rem 1.5rem;
+}
+
+.desktopTvCard {
+  display: none;
+}
+
+.containerTvCard {
+  padding: 1.5rem 1.2rem;
+  background-color: rgba(246, 246, 246, 0.85);
+  border-radius: 0.8rem;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 5px var(--darkGrey);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 27rem;
+}
+
+.tvTitle {
+  color: var(--darkRed);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.tvGenres {
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 0.25rem;
+  color: var(--darkGrey);
+}
+
+.tvCredits {
+  font-size: 0.8rem;
+  margin: 0.25rem 0;
+  color: var(--darkGrey);
+}
+
+.tvCredits > h3:first-of-type {
+  margin-bottom: 0.25rem;
+}
+
+.tvFeatures {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logoPlatform {
+  height: 45px;
+  width: 45px;
+  border: 1px solid var(--mediumGrey);
+  border-radius: 0.5rem;
+  margin: 0.2rem 0.5rem 0.2rem 0;
+}
+
+.buttonTrailer {
+  background-color: var(--white);
+  border: 1px solid var(--mediumGrey);
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.buttonTrailer > a {
+  color: var(--darkRed);
+}
+
+.containerSynopsis {
+  overflow: scroll;
+  scrollbar-width: none;
+}
+
+.titleSynopsis {
+  color: var(--darkRed);
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+}
+
+.tvSynopsis {
+  color: var(--darkGrey);
+  text-justify: inter-word;
+  font-size: 1rem;
+  max-height: 11.7rem;
+  overflow: scroll;
+  scrollbar-width: none;
+}
+
+@media screen and (min-width: 1024px) {
   .mobileTvCard {
-    height: 77vh;
-    padding: 1.8rem 1.5rem;
-  }
-  
-  .desktopTvCard {
     display: none;
   }
-  
-  .containerTvCard {
-    padding: 1.5rem 1.2rem;
+
+  .desktopTvCard {
+    height: 65vh;
+    margin: 0 6rem 2rem;
     background-color: rgba(246, 246, 246, 0.85);
     border-radius: 0.8rem;
     box-sizing: border-box;
     box-shadow: 0px 0px 5px var(--darkGrey);
     display: flex;
+    overflow: hidden;
+  }
+
+  .tvPoster {
+    height: 100%;
+    box-shadow: 0px 0px 5px var(--darkGrey);
+    z-index: 1;
+  }
+
+  .containerTvCard {
+    padding: 4rem 3rem;
+    border-radius: none;
+    box-shadow: none;
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 28.75rem;
+    height: 100%;
   }
-  
+
   .tvTitle {
-    color: var(--darkRed);
-    font-size: 1.2rem;
+    font-size: 2rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.1rem;
   }
-  
+
   .tvGenres {
+    font-size: 1.1rem;
+  }
+
+  .tvDates {
+    font-size: 1.1rem;
     font-weight: 400;
-    font-style: italic;
-    margin-bottom: 0.25rem;
+    margin-bottom: 1rem;
     color: var(--darkGrey);
   }
-  
+
   .tvCredits {
-    font-size: 0.8rem;
-    margin: 0.25rem 0;
-    color: var(--darkGrey);
+    font-size: 1rem;
+    margin-bottom: 1rem;
   }
-  
+
   .tvCredits > h3:first-of-type {
     margin-bottom: 0.25rem;
   }
-  
+
+  .reverseCard {
+    display: flex;
+    flex-direction: column-reverse;
+    height: 100%;
+  }
+
   .tvFeatures {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
   }
-  
+
   .logoPlatform {
-    height: 45px;
-    width: 45px;
-    border: 1px solid var(--mediumGrey);
-    border-radius: 0.5rem;
-    margin: 0.2rem 0.5rem 0.2rem 0;
+    height: 55px;
+    width: 55px;
+    margin: 0.2rem 0.75rem 0 0;
   }
-  
+
   .buttonTrailer {
-    background-color: var(--white);
-    border: 1px solid var(--mediumGrey);
-    border-radius: 0.5rem;
-    padding: 0.4rem 0.8rem;
-    font-size: 0.7rem;
-    font-weight: 600;
+    font-size: 0.8rem;
   }
-  
-  .buttonTrailer > a {
-    color: var(--darkRed);
-  }
-  
-  .containerSynopsis {
-    overflow: scroll;
-    scrollbar-width: none;
-  }
-  
+
   .titleSynopsis {
-    color: var(--darkRed);
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     margin: 0.5rem 0;
   }
-  
+
   .tvSynopsis {
-    color: var(--darkGrey);
-    text-justify: inter-word;
-    font-size: 1rem;
-    max-height: 205px;
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
+    max-height: 8rem;
     overflow: scroll;
     scrollbar-width: none;
   }
-  
-  @media screen and (min-width: 1024px) {
-    .mobileTvCard {
-      display: none;
-    }
-  
-    .desktopTvCard {
-      height: 65vh;
-      margin: 4rem 6rem 2rem;
-      background-color: rgba(246, 246, 246, 0.85);
-      border-radius: 0.8rem;
-      box-sizing: border-box;
-      box-shadow: 0px 0px 5px var(--darkGrey);
-      display: flex;
-      overflow: hidden;
-    }
-  
-    .tvPoster {
-      height: 100%;
-      box-shadow: 0px 0px 5px var(--darkGrey);
-      z-index: 1;
-    }
-  
-    .containerTvCard {
-      padding: 4rem 3rem;
-      border-radius: none;
-      box-shadow: none;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 100%;
-    }
-  
-    .tvTitle {
-      font-size: 2rem;
-      font-weight: 600;
-      margin-bottom: 0.1rem;
-    }
-  
-    .tvGenres {
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
-    }
-  
-    .tvCredits {
-      font-size: 1rem;
-      margin-bottom: 1rem;
-    }
-  
-    .tvCredits > h3:first-of-type {
-      margin-bottom: 0.25rem;
-    }
-  
-    .reverseCard {
-      display: flex;
-      flex-direction: column-reverse;
-      height: 100%;
-    }
-  
-    .tvFeatures {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-    }
-  
-    .logoPlatform {
-      height: 55px;
-      width: 55px;
-      margin: 0.2rem 0.75rem 0 0;
-    }
-  
-    .buttonTrailer {
-      font-size: 0.8rem;
-    }
-  
-    .titleSynopsis {
-      font-size: 1.4rem;
-      margin: 0.5rem 0;
-    }
-  
-    .tvSynopsis {
-      line-height: 1.3;
-      margin-bottom: 3rem;
-    }
-  }
-  
+}

@@ -4,30 +4,10 @@ import SearchBar from "./search-bar/SearchBar";
 
 export default function Header() {
   return (
-    <body>
-      <header className="header-container">
-        <Link to="/">
-          <img
-            src="../src/assets/Keskonregarde.gif"
-            alt="logo"
-            className="logo-pic"
-          />
-        </Link>
-        <NavLink
-          to="/top-rated"
-          className={({ isActive }) =>
-            isActive ? "button-top-rated-enabled" : "button-top-rated"
-          }
-        >
-          Mieux notés
-        </NavLink>
-        <SearchBar />
-      </header>
-
-      <label>
+    <header className="header-container">
+      {/* <label>
         <input type="checkbox" />
         <div className="menu-burger">
-          {" "}
           <span className="burger-icon" />
         </div>
         <ul>
@@ -38,7 +18,23 @@ export default function Header() {
             <a href="/top-rated">Mieux notés</a>
           </li>
         </ul>
-      </label>
-    </body>
+      </label> */}
+      <Link to="/">
+        <img
+          src="../src/assets/Keskonregarde.gif"
+          alt="logo"
+          className="logo-pic"
+        />
+      </Link>
+      <NavLink
+        to="/top-rated"
+        className={({ isActive }) =>
+          isActive ? "button-top-rated-enabled" : "button-top-rated"
+        }
+      >
+        Mieux notés
+      </NavLink>
+      <SearchBar />
+    </header>
   );
 }
