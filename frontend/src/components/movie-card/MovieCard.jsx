@@ -90,10 +90,6 @@ export default function MovieCard() {
                 {movie.credits?.crew[0]?.name
                   ? `${movie.credits.crew[0].name}`
                   : null}
-                {movie.credits?.crew[1]?.name
-                  ? `, ${movie.credits.crew[1].name}`
-                  : null}
-                ...
               </h3>
               <h3>
                 Acteurs :{" "}
@@ -204,10 +200,6 @@ export default function MovieCard() {
                 {movie.credits?.crew[0]?.name
                   ? `${movie.credits.crew[0].name}`
                   : null}
-                {movie.credits?.crew[1]?.name
-                  ? `, ${movie.credits.crew[1].name}`
-                  : null}
-                ...
               </h3>
               <h3>
                 Acteurs :{" "}
