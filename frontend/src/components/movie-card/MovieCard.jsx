@@ -140,10 +140,10 @@ export default function MovieCard() {
               {movie.genres[0] === undefined ? null : `${movie.genres[0].name}`}
               {movie.genres[1] === undefined
                 ? null
-                : `/${movie.genres[1].name}`}
+                : ` / ${movie.genres[1].name}`}
               {movie.genres[2] === undefined
                 ? null
-                : `/${movie.genres[2].name}`}
+                : ` / ${movie.genres[2].name}`}
             </h5>
             <p className={styles.movieDates}>
               {`Sortie : ${setLocaleDate(movie.release_date)}`}

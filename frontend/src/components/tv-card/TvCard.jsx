@@ -131,8 +131,8 @@ export default function TvCard() {
             <h2 className={styles.tvTitle}>{tv.name}</h2>
             <h5 className={styles.tvGenres}>
               {tv.genres[0] === undefined ? null : `${tv.genres[0].name}`}
-              {tv.genres[1] === undefined ? null : `/${tv.genres[1].name}`}
-              {tv.genres[2] === undefined ? null : `/${tv.genres[2].name}`}
+              {tv.genres[1] === undefined ? null : ` / ${tv.genres[1].name}`}
+              {tv.genres[2] === undefined ? null : ` / ${tv.genres[2].name}`}
             </h5>
             <p className={styles.tvDates}>
               {`Première diffusion : ${setLocaleDate(tv.first_air_date)}`}
