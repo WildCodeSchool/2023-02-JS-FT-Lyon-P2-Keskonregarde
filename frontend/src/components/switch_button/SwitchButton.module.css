@@ -14,7 +14,6 @@
   font-size: 0.6rem;
   font-weight: 790;
   border-radius: 0.5rem;
-  cursor: pointer;
 }
 
 .buttonSelectType:active {
@@ -31,7 +30,6 @@
   font-size: 0.6rem;
   font-weight: 790;
   border-radius: 0.5rem;
-  cursor: pointer;
 }
 
 @media screen and (min-width: 1024px) {
@@ -40,11 +38,11 @@
     margin: 0 0.25rem;
     width: 6rem;
     font-size: 0.69rem;
-    cursor: pointer;
   }
 
   .buttonSelectType:hover {
     border: 1px solid var(--darkRed);
+    cursor: pointer;
   }
 
   .buttonSelectTypeEnabled {
@@ -52,6 +50,5 @@
     margin: 0 0.25rem;
     width: 6rem;
     font-size: 0.69rem;
-    cursor: pointer;
   }
 }
