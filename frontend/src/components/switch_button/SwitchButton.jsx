@@ -36,5 +36,5 @@ export default function SwitchButton({ requestType, setRequestType }) {
 }
 SwitchButton.propTypes = {
   requestType: PropTypes.string.isRequired,
-  setRequestType: PropTypes.string.isRequired,
+  setRequestType: PropTypes.func.isRequired,
 };

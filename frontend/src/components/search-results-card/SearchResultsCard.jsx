@@ -1,25 +1,35 @@
 import axios from "axios";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, useContext } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import PropTypes from "prop-types";
-import styles from "./ResultsCard.module.css";
+import MovieGenresContext from "../../contexts/MovieGenresContext";
+import TvGenresContext from "../../contexts/TvGenresContext";
+import styles from "./SearchResultsCard.module.css";
+import {
+  setScoreColor,
+  setLocaleDate,
+  getGenreName,
+} from "../../services/utils";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
-export default function ResultsCardMovie({
+export default function SearchResultsCard({
   requestType,
   movies,
   setMovies,
   pageNumber,
   setPageNumber,
-  filter,
+  scoreFilter,
 }) {
+  const { movieGenres } = useContext(MovieGenresContext);
+  const { tvGenres } = useContext(TvGenresContext);
   const [results] = useSearchParams();
   const [hasMore, setHasMore] = useState(true);
 
   const navigate = useNavigate();
 
+  /* Re-fetch data each page for Infinite Scroll */
   const fetchMoreData = () => {
     const query = results.get("query") || "";
     axios
@@ -40,50 +50,22 @@ export default function ResultsCardMovie({
     fetchMoreData();
   }, [pageNumber]);
 
+  /* Generate Filter States using Movie/TV Context */
   function getFilter() {
-    if (filter === "all") return movies;
-    if (filter === "action")
-      return movies.filter((movie) => movie.genre_ids.includes(28));
-    if (filter === "animation")
-      return movies.filter((movie) => movie.genre_ids.includes(16));
-    if (filter === "score")
-      return movies.filter((movie) => movie.vote_average >= 7);
+    if (scoreFilter === "all") return movies;
+    if (scoreFilter === "2")
+      return movies.filter((movie) => movie.vote_average >= 2);
+    if (scoreFilter === "4")
+      return movies.filter((movie) => movie.vote_average >= 4);
+    if (scoreFilter === "6")
+      return movies.filter((movie) => movie.vote_average >= 6);
+    if (scoreFilter === "8")
+      return movies.filter((movie) => movie.vote_average >= 8);
     return null;
   }
 
-  const filteredMovies = useMemo(
-    () => getFilter(movies, filter),
-    [movies, filter]
-  );
-
-  function getScoreColor(movie) {
-    if (movie.vote_average <= 3.99) return "#FF0D0D";
-    if (movie.vote_average >= 4 && movie.vote_average <= 6.99) return "#FAB733";
-    if (movie.vote_average >= 7 && movie.vote_average <= 8.49) return "#92E000";
-    if (movie.vote_average >= 8.4 && movie.vote_average <= 10) return "#2AA10F";
-    return null;
-  }
-
-  function setLocaleDate(movie) {
-    if (requestType === "movie") {
-      const releaseDate = new Date(movie.release_date);
-      const options = {
-        year: "numeric",
-        month: "numeric",
-      };
-      return releaseDate.toLocaleDateString("fr-FR", options);
-    }
-    if (requestType === "tv") {
-      const releaseDate = new Date(movie.first_air_date);
-      const options = {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      };
-      return releaseDate.toLocaleDateString("fr-FR", options);
-    }
-    return null;
-  }
+  /* Call genre data with UseMemo & set in filteredMovies */
+  const filteredMovies = useMemo(() => getFilter(), [movies, scoreFilter]);
 
   const posterUrl = "https://image.tmdb.org/t/p/w200";
 
@@ -132,15 +114,26 @@ export default function ResultsCardMovie({
                         <h4 className={styles.movieTitle}>
                           {requestType === "movie" ? movie.title : movie.name}
                         </h4>
-                        <h6 className={styles.movieDate}>
-                          {movie.release_date || movie.first_air_date
-                            ? setLocaleDate(movie)
+                        <h5 className={styles.movieGenre}>
+                          {requestType === "movie"
+                            ? getGenreName(movie.genre_ids, movieGenres)
                             : null}
-                        </h6>
+                          {requestType === "tv"
+                            ? getGenreName(movie.genre_ids, tvGenres)
+                            : null}
+                        </h5>
+                        <p className={styles.movieDate}>
+                          {movie.release_date
+                            ? setLocaleDate(movie.release_date)
+                            : null}
+                          {movie.first_air_date
+                            ? setLocaleDate(movie.first_air_date)
+                            : null}
+                        </p>
                       </div>
                       <p
                         className={styles.movieScore}
-                        style={{ color: getScoreColor(movie) }}
+                        style={{ color: setScoreColor(movie.vote_average) }}
                       >
                         {movie.vote_average.toFixed(1)}
                       </p>
@@ -159,11 +152,11 @@ export default function ResultsCardMovie({
   );
 }
 
-ResultsCardMovie.propTypes = {
+SearchResultsCard.propTypes = {
   requestType: PropTypes.string.isRequired,
   movies: PropTypes.shape().isRequired,
   setMovies: PropTypes.func.isRequired,
   pageNumber: PropTypes.number.isRequired,
   setPageNumber: PropTypes.func.isRequired,
-  filter: PropTypes.string.isRequired,
+  scoreFilter: PropTypes.string.isRequired,
 };
