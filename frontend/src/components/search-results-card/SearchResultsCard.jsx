@@ -5,7 +5,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import PropTypes from "prop-types";
 import MovieGenresContext from "../../contexts/MovieGenresContext";
 import TvGenresContext from "../../contexts/TvGenresContext";
-import styles from "./ResultsCard.module.css";
+import styles from "./SearchResultsCard.module.css";
 import {
   setScoreColor,
   setLocaleDate,
@@ -14,18 +14,18 @@ import {
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
-export default function ResultsCardMovie({
+export default function SearchResultsCard({
   requestType,
   movies,
   setMovies,
   pageNumber,
   setPageNumber,
-  filter,
+  scoreFilter,
 }) {
-  const [results] = useSearchParams();
-  const [hasMore, setHasMore] = useState(true);
   const { movieGenres } = useContext(MovieGenresContext);
   const { tvGenres } = useContext(TvGenresContext);
+  const [results] = useSearchParams();
+  const [hasMore, setHasMore] = useState(true);
 
   const navigate = useNavigate();
 
@@ -52,26 +52,20 @@ export default function ResultsCardMovie({
 
   /* Generate Filter States using Movie/TV Context */
   function getFilter() {
-    if (filter === "all") return movies;
-    for (let i = 0; i < movieGenres.length; i += 1) {
-      if (filter === movieGenres[i].name)
-        return movies.filter((movie) =>
-          movie.genre_ids.includes(movieGenres[i].id)
-        );
-    }
-    for (let i = 0; i < tvGenres.length; i += 1) {
-      if (filter === tvGenres[i].name)
-        return movies.filter((movie) =>
-          movie.genre_ids.includes(tvGenres[i].id)
-        );
-    }
-    if (filter === "score")
-      return movies.filter((movie) => movie.vote_average >= 7);
+    if (scoreFilter === "all") return movies;
+    if (scoreFilter === "2")
+      return movies.filter((movie) => movie.vote_average >= 2);
+    if (scoreFilter === "4")
+      return movies.filter((movie) => movie.vote_average >= 4);
+    if (scoreFilter === "6")
+      return movies.filter((movie) => movie.vote_average >= 6);
+    if (scoreFilter === "8")
+      return movies.filter((movie) => movie.vote_average >= 8);
     return null;
   }
 
   /* Call genre data with UseMemo & set in filteredMovies */
-  const filteredMovies = useMemo(() => getFilter(), [movies, filter]);
+  const filteredMovies = useMemo(() => getFilter(), [movies, scoreFilter]);
 
   const posterUrl = "https://image.tmdb.org/t/p/w200";
 
@@ -158,11 +152,11 @@ export default function ResultsCardMovie({
   );
 }
 
-ResultsCardMovie.propTypes = {
+SearchResultsCard.propTypes = {
   requestType: PropTypes.string.isRequired,
   movies: PropTypes.shape().isRequired,
   setMovies: PropTypes.func.isRequired,
   pageNumber: PropTypes.number.isRequired,
   setPageNumber: PropTypes.func.isRequired,
-  filter: PropTypes.string.isRequired,
+  scoreFilter: PropTypes.string.isRequired,
 };
