@@ -132,6 +132,14 @@ export default function TopFilterBar({
             >
               Français
             </button>
+
+            <button
+              type="button"
+              className={styles.buttonSearchFilter}
+              onClick={() => setIsActive(!isActive)}
+            >
+              RECHERCHER
+            </button>
           </div>
         </div>
       </section>
