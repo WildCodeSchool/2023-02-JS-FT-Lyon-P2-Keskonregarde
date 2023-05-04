@@ -77,34 +77,40 @@
 .navListIsActive {
   z-index: 10;
   position: absolute;
-  display: initial;
-  top: 0;
-  left: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  top: 0;
+  left: 0;
   transition: 0.4s;
-  background-color: rgba(240, 240, 240, 0.9);
+  background-color: rgba(240, 240, 240, 0.95);
+  height: 100dvh;
+  width: 100dvw;
+  padding: 2rem;
+  color: var(--darkRed);
+}
+.navListTitle {
+  margin-bottom: 2rem;
 }
 
-.navListIsActive ul {
-  list-style-type: none;
+.navListSubTitle {
+  margin-bottom: 0.5rem;
 }
 
 /* Filter buttons */
 .switchTypeContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100dvh;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
 }
 
 .buttonSelectType {
+  justify-self: center;
   padding: 0.3rem 0.6rem;
-  margin: 0 0.25rem;
   background-color: var(--white);
   color: var(--darkRed);
-  width: 5rem;
+  width: 100%;
+  height: 100%;
   border: 1px solid var(--mediumGrey);
   font-size: 0.6rem;
   font-weight: 790;
@@ -118,22 +124,33 @@
 
 .buttonSelectTypeEnabled {
   padding: 0.3rem 0.6rem;
-  margin: 0 0.25rem;
   background-color: var(--darkRed);
   color: var(--white);
-  width: 5rem;
+  width: 100%;
+  height: 100%;
   border: 1px solid var(--mediumGrey);
   font-size: 0.6rem;
   font-weight: 790;
   border-radius: 0.5rem;
   cursor: pointer;
 }
-
+.buttonSearchFilter {
+  padding: 0.3rem 0.6rem;
+  background-color: var(--mediumGrey);
+  color: var(--white);
+  border: 1px solid var(--mediumGrey);
+  width: 100%;
+  height: 100%;
+  font-size: 0.6rem;
+  font-weight: 790;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  grid-column: 3 /2;
+  margin-top: 1rem;
+}
 @media screen and (min-width: 1024px) {
   .buttonSelectType {
     padding: 0.5rem 0.8rem;
-    margin: 0 0.25rem;
-    width: 6rem;
     font-size: 0.69rem;
     cursor: pointer;
   }
@@ -144,9 +161,16 @@
 
   .buttonSelectTypeEnabled {
     padding: 0.5rem 1rem;
-    margin: 0 0.25rem;
-    width: 6rem;
     font-size: 0.69rem;
     cursor: pointer;
+  }
+  .buttonSearchFilter:hover {
+    color: var(--darkRed);
+    cursor: pointer;
+  }
+  .navListIsActive {
+    width: 25%;
+    left: 75%;
+    background-color: rgba(240, 240, 240, 0.85);
   }
 }
