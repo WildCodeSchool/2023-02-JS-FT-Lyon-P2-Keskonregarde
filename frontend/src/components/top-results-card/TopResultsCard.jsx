@@ -1,11 +1,11 @@
 import axios from "axios";
-import React, { useEffect, useMemo, useState, useContext } from "react";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import PropTypes from "prop-types";
 import MovieGenresContext from "../../contexts/MovieGenresContext";
 import TvGenresContext from "../../contexts/TvGenresContext";
-import styles from "./ResultsCard.module.css";
+import styles from "./TopResultsCard.module.css";
 import {
   setScoreColor,
   setLocaleDate,
@@ -14,15 +14,15 @@ import {
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
-export default function ResultsCardMovie({
+export default function TopResultsCard({
   requestType,
   movies,
   setMovies,
   pageNumber,
   setPageNumber,
-  filter,
+  genreFilter,
+  languageFilter,
 }) {
-  const [results] = useSearchParams();
   const [hasMore, setHasMore] = useState(true);
   const { movieGenres } = useContext(MovieGenresContext);
   const { tvGenres } = useContext(TvGenresContext);
@@ -31,10 +31,9 @@ export default function ResultsCardMovie({
 
   /* Re-fetch data each page for Infinite Scroll */
   const fetchMoreData = () => {
-    const query = results.get("query") || "";
     axios
       .get(
-        `https://api.themoviedb.org/3/search/${requestType}?api_key=${API_KEY}&language=fr&query=${query}&page=${pageNumber}&include_adult=false`
+        `https://api.themoviedb.org/3/${requestType}/top_rated?api_key=${API_KEY}&language=fr&page=${pageNumber}&with_genres=${genreFilter}&with_original_language=${languageFilter}`
       )
       .then(({ data }) => {
         if (data.page !== data.total_pages) {
@@ -49,29 +48,6 @@ export default function ResultsCardMovie({
   useEffect(() => {
     fetchMoreData();
   }, [pageNumber]);
-
-  /* Generate Filter States using Movie/TV Context */
-  function getFilter() {
-    if (filter === "all") return movies;
-    for (let i = 0; i < movieGenres.length; i += 1) {
-      if (filter === movieGenres[i].name)
-        return movies.filter((movie) =>
-          movie.genre_ids.includes(movieGenres[i].id)
-        );
-    }
-    for (let i = 0; i < tvGenres.length; i += 1) {
-      if (filter === tvGenres[i].name)
-        return movies.filter((movie) =>
-          movie.genre_ids.includes(tvGenres[i].id)
-        );
-    }
-    if (filter === "score")
-      return movies.filter((movie) => movie.vote_average >= 7);
-    return null;
-  }
-
-  /* Call genre data with UseMemo & set in filteredMovies */
-  const filteredMovies = useMemo(() => getFilter(), [movies, filter]);
 
   const posterUrl = "https://image.tmdb.org/t/p/w200";
 
@@ -89,7 +65,7 @@ export default function ResultsCardMovie({
       >
         <div className={styles.searchResults}>
           <div className={styles.searchCard}>
-            {filteredMovies.map((movie) => (
+            {movies.map((movie) => (
               <Link
                 key={movie.id}
                 to={
@@ -158,11 +134,12 @@ export default function ResultsCardMovie({
   );
 }
 
-ResultsCardMovie.propTypes = {
+TopResultsCard.propTypes = {
   requestType: PropTypes.string.isRequired,
   movies: PropTypes.shape().isRequired,
   setMovies: PropTypes.func.isRequired,
   pageNumber: PropTypes.number.isRequired,
   setPageNumber: PropTypes.func.isRequired,
-  filter: PropTypes.string.isRequired,
+  genreFilter: PropTypes.string.isRequired,
+  languageFilter: PropTypes.string.isRequired,
 };

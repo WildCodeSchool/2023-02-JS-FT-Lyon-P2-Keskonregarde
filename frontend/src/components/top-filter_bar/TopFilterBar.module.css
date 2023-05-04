@@ -68,31 +68,39 @@
   display: initial;
   top: 0;
   left: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   transition: 0.4s;
   background-color: rgba(240, 240, 240, 0.9);
+  height: 100dvh;
+  width: 100dvw;
+  padding: 2rem;
 }
 
-.navListIsActive ul {
-  list-style-type: none;
+.navListTitle {
+  margin-bottom: 1rem;
+}
+
+.navListSubTitle {
+  margin-bottom: 0.5rem;
+}
+
+.navListSubTitle:last-of-type {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 /* Filter buttons */
-.switchTypeContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100dvh;
+.filterContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
 }
 
 .buttonSelectType {
+  justify-self: center;
   padding: 0.3rem 0.6rem;
-  margin: 0 0.25rem;
   background-color: var(--white);
   color: var(--darkRed);
-  width: 5rem;
+  width: 100%;
   border: 1px solid var(--mediumGrey);
   font-size: 0.6rem;
   font-weight: 790;
@@ -105,11 +113,11 @@
 }
 
 .buttonSelectTypeEnabled {
+  justify-self: center;
   padding: 0.3rem 0.6rem;
-  margin: 0 0.25rem;
   background-color: var(--darkRed);
   color: var(--white);
-  width: 5rem;
+  width: 100%;
   border: 1px solid var(--mediumGrey);
   font-size: 0.6rem;
   font-weight: 790;
