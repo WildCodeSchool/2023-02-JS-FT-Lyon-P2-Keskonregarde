@@ -14,12 +14,13 @@ export default function FilterBar({ filter, setFilter, requestType }) {
     <nav className={styles.nav}>
       <div className={styles.navIcon}>
         <button
+          type="button"
           className={
             isActive ? styles.hamburgerIconIsActive : styles.hamburgerIcon
           }
           onClick={() => setIsActive(!isActive)}
         >
-          <div className={isActive ? styles.barIsActive : styles.bar}></div>
+          <div className={isActive ? styles.barIsActive : styles.bar} />
         </button>
       </div>
       <div className={isActive ? styles.navListIsActive : styles.navList}>
@@ -93,16 +94,3 @@ FilterBar.propTypes = {
   setFilter: PropTypes.func.isRequired,
   requestType: PropTypes.string.isRequired,
 };
-
-{
-  /* <div className={styles.switchTypeContainer}>
-
-</div> */
-}
-
-{
-  /* <input type="checkbox" />
-<div className={styles.menuBurger}>
-  <span className={styles.burgerIcon} />
-</div> */
-}
