@@ -33,7 +33,7 @@ export default function TopRated() {
           err.response.status === 404 ? navigate("/not-found") : null
         );
     return () => {};
-  }, [movies, pageNumber]);
+  }, [requestType, movies, pageNumber]);
 
   if (!requestedData || !requestType) return null;
   return (
@@ -42,7 +42,11 @@ export default function TopRated() {
       <h5 className="results-number">
         Résultats trouvés : {requestedData.total_results}
       </h5>
-      <FilterBar filter={filter} setFilter={setFilter} />
+      <FilterBar
+        filter={filter}
+        setFilter={setFilter}
+        requestType={requestType}
+      />
       {requestType && movies && (
         <ResultsCardMovie
           requestType={requestType}

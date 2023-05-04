@@ -1,6 +1,6 @@
 .moviePhoto {
-  margin-top: 1.5rem;
-  height: 78.2dvh;
+  margin-top: 0.5rem;
+  height: 80dvh;
   box-shadow: 0px 0px 5px var(--darkGrey);
 }
 
@@ -31,7 +31,6 @@
 }
 @media screen and (min-width: 1024px) {
   .moviePhoto {
-    margin-top: 2.5rem;
     height: 73.5vh;
   }
 
