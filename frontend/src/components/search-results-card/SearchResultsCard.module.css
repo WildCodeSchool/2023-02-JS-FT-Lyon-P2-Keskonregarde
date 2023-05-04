@@ -54,7 +54,7 @@ a {
 .posterContainer {
   min-width: 5.8rem;
   width: 5.8rem;
-  height: 8.8rem;
+  min-height: 8.8rem;
 }
 
 .poster {
@@ -140,7 +140,7 @@ a {
   .posterContainer {
     min-width: 7.1rem;
     width: 7.1rem;
-    height: 10rem;
+    min-height: 10rem;
   }
 
   .movieTitle {
