@@ -28,7 +28,7 @@
   height: 4px;
   background-color: var(--darkRed);
   margin: 6px 0px;
-  transition: 0.4s;
+  transition: 0.5s;
 }
 
 .hamburgerIconIsActive {
@@ -45,17 +45,29 @@
 }
 
 .hamburgerIconIsActive:before {
+  content: "";
+  display: block;
+  height: 4px;
   background-color: var(--darkRed);
-  transform: rotate(-45deg) translate(-9px, 6px);
+  margin: 11px 0px;
+  transform-origin: 0% 0%;
+  transition: transform 0.4s ease-in-out;
+  transform: rotate(45deg);
 }
 
-.barIsActve {
+.barIsActive {
   opacity: 0;
 }
 
 .hamburgerIconIsActive:after {
+  content: "";
+  display: block;
+  height: 4px;
   background-color: var(--darkRed);
-  transform: rotate(45deg) translate(-9px, -6px);
+  margin: 11px 0px;
+  transform-origin: 0% 100%;
+  transition: transform 0.4s ease-in-out;
+  transform: rotate(-45deg);
 }
 
 .navList {
@@ -117,103 +129,6 @@
   cursor: pointer;
 }
 
-/* Menu Burger */
-.menuBurger {
-  position: absolute;
-  right: -100px;
-  top: -100px;
-  z-index: 100;
-  width: 200px;
-  height: 200px;
-  background-color: var(--lowGrey);
-  -webkit-transition: 1s ease-in-out;
-  transition: 1s ease-in-out;
-  cursor: pointer;
-}
-
-.burgerIcon {
-  position: absolute;
-  top: 125px;
-  left: 60px;
-  width: 23px;
-  height: 2.5px;
-  border-radius: 1px;
-  background-color: var(--darkRed);
-  display: block;
-  -webkit-transform-origin: center;
-  transform-origin: center;
-  -webkit-transition: 1s ease-in-out;
-  transition: 1s ease-in-out;
-}
-
-.burgerIcon:after,
-label .burgerIcon:before {
-  -webkit-transition: 0.5s ease-in-out;
-  transition: 0.5s ease-in-out;
-  content: "";
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 100%;
-  border-radius: 1px;
-  background-color: var(--darkRed);
-}
-
-.burgerIcon:before {
-  top: -10px;
-}
-
-.burgerIcon:after {
-  bottom: -10px;
-}
-
-label input {
-  display: none;
-}
-
-label input:checked + .menuBurger {
-  box-shadow: 0 0 0 100vh rgb(240, 240, 240);
-}
-
-label input:checked + .menuBurger .burgerIcon {
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
-label input:checked + .menuBurger .burgerIcon:after {
-  -webkit-transform: rotate(90deg);
-  transform: rotate(90deg);
-  bottom: 0;
-}
-
-label input:checked + .menuBurger .burgerIcon:before {
-  -webkit-transform: rotate(90deg);
-  transform: rotate(90deg);
-  top: 0;
-}
-
-label input:checked + .menuBurger + ul {
-  opacity: 1;
-}
-
-label ul {
-  z-index: 200;
-  position: absolute;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  -webkit-transition: 0.25s 0s ease-in-out;
-  transition: 0.25s 0s ease-in-out;
-  list-style-type: none;
-}
-
-label a {
-  margin-bottom: 1em;
-  display: block;
-  color: var(--darkRed);
-  text-decoration: none;
-}
 @media screen and (min-width: 1024px) {
   .buttonSelectType {
     padding: 0.5rem 0.8rem;
