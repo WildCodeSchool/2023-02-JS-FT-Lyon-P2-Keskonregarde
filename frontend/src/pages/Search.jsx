@@ -3,7 +3,7 @@ import "../App.css";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import SwitchButton from "../components/switch_button/SwitchButton";
-import SearchFilterBar from "@components/search-filter-bar/SearchFilterBar";
+import SearchFilterBar from "../components/search-filter-bar/SearchFilterBar";
 import SearchResultsCard from "../components/search-results-card/SearchResultsCard";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
@@ -66,7 +66,6 @@ export default function Search() {
           pageNumber={pageNumber}
           setPageNumber={setPageNumber}
           scoreFilter={scoreFilter}
-          setScoreFilter={setScoreFilter}
         />
       )}
     </>

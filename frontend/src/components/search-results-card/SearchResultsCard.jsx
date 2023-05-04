@@ -14,14 +14,13 @@ import {
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
-export default function ResultsCardMovie({
+export default function SearchResultsCard({
   requestType,
   movies,
   setMovies,
   pageNumber,
   setPageNumber,
   scoreFilter,
-  setScoreFilter,
 }) {
   const { movieGenres } = useContext(MovieGenresContext);
   const { tvGenres } = useContext(TvGenresContext);
@@ -153,11 +152,11 @@ export default function ResultsCardMovie({
   );
 }
 
-ResultsCardMovie.propTypes = {
+SearchResultsCard.propTypes = {
   requestType: PropTypes.string.isRequired,
   movies: PropTypes.shape().isRequired,
   setMovies: PropTypes.func.isRequired,
   pageNumber: PropTypes.number.isRequired,
   setPageNumber: PropTypes.func.isRequired,
-  filter: PropTypes.string.isRequired,
+  scoreFilter: PropTypes.string.isRequired,
 };
