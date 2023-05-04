@@ -38,14 +38,6 @@ body {
   margin: 2rem auto 0.5rem;
 }
 
-/* Search Page */
-.results-number {
-  text-align: center;
-  margin: 0.5rem;
-  color: var(--darkGrey);
-  font-style: italic;
-}
-
 /* Top Rated button */
 .button-top-rated {
   padding: 0.3rem 0.6rem;
@@ -75,6 +67,14 @@ body {
   border-radius: 0.5rem;
 }
 
+/* Search Page */
+.results-number {
+  text-align: center;
+  margin: 0.5rem;
+  color: var(--darkGrey);
+  font-style: italic;
+}
+
 /* Not found / No results Page */
 .not-found-container,
 .no-results-container {
@@ -102,11 +102,7 @@ body {
 @media screen and (min-width: 1024px) {
   .logo-pic {
     height: 3rem;
-    margin: 3.5rem auto 2rem;
-  }
-
-  .results-number {
-    margin: 1rem auto 1rem;
+    margin: 2.75rem auto 1rem;
   }
 
   .button-top-rated {
@@ -124,6 +120,10 @@ body {
     padding: 0.5rem 1rem;
     width: 6.5rem;
     font-size: 0.69rem;
+  }
+
+  .results-number {
+    margin: 1rem auto 1rem;
   }
 
   .not-found-container > h3,
