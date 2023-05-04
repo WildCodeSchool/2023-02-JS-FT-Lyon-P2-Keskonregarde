@@ -45,16 +45,26 @@
 }
 
 .hamburgerIconIsActive:before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 4px;
   background-color: var(--darkRed);
+  margin: 6px 0px;
   transform: rotate(-45deg) translate(-9px, 6px);
 }
 
-.barIsActve {
+.barIsActive {
   opacity: 0;
 }
 
 .hamburgerIconIsActive:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 4px;
   background-color: var(--darkRed);
+  margin: 6px 0px;
   transform: rotate(45deg) translate(-9px, -6px);
 }
 
