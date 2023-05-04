@@ -54,7 +54,7 @@ a {
 .posterContainer {
   min-width: 5.8rem;
   width: 5.8rem;
-  height: 8.8rem;
+  min-height: 8.8rem;
 }
 
 .poster {
