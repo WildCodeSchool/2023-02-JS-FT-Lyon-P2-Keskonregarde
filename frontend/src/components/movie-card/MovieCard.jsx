@@ -25,35 +25,29 @@ export default function MovieCard() {
   const url = "https://image.tmdb.org/t/p/original";
   const urlYt = "https://www.youtube.com/embed/";
 
-  function getPlatformLink() {
-    const provider = [
-      { name: "Apple TV", links: "https://tv.apple.com/" },
-      {
-        name: "Google Play Movies",
-        links: "https://play.google.com/store/movies?hl=fr&gl=US",
-      },
-      { name: "Netflix", links: "https://www.netflix.com/fr/" },
-      {
-        name: "Amazon Prime Video",
-        links:
-          "https://www.primevideo.com/offers/nonprimehomepage/ref=atv_nb_sf_hm",
-      },
-      { name: "Disney Plus", links: "https://www.disneyplus.com/fr-fr" },
-      { name: "Canal+", links: "https://boutique.canalplus.com/" },
-      { name: "Paramount Plus", links: "https://www.paramountplus.com/fr/" },
-      {
-        name: "Pass Warner Amazon Channel",
-        links:
-          "https://www.primevideo.com/offers/nonprimehomepage/ref=atv_nb_sf_hm",
-      },
-    ];
+  const provider = [
+    { name: "Apple TV", link: "https://tv.apple.com/" },
+    {
+      name: "Google Play Movies",
+      link: "https://play.google.com/store/movies?hl=fr&gl=US",
+    },
+    { name: "Netflix", link: "https://www.netflix.com/fr/" },
+    {
+      name: "Amazon Prime Video",
+      link: "https://www.primevideo.com/offers/nonprimehomepage/ref=atv_nb_sf_hm",
+    },
+    { name: "Disney Plus", link: "https://www.disneyplus.com/fr-fr" },
+    { name: "Canal+", link: "https://boutique.canalplus.com/" },
+    { name: "Paramount Plus", link: "https://www.paramountplus.com/fr/" },
+    {
+      name: "Pass Warner Amazon Channel",
+      link: "https://www.primevideo.com/offers/nonprimehomepage/ref=atv_nb_sf_hm",
+    },
+  ];
 
+  function getPlatformLink(platformName) {
     for (let i = 0; i < provider.length; i += 1) {
-      if (
-        movie["watch/providers"].results?.FR?.flatrate[i]?.provider_name ===
-        provider[i].name
-      )
-        return provider[i].links;
+      if (platformName === provider[i].name) return provider[i].link;
     }
     return null;
   }
@@ -115,9 +109,17 @@ export default function MovieCard() {
           <div>
             <div className={styles.movieFeatures}>
               <div>
-                <a href={getPlatformLink()}>
-                  {movie["watch/providers"].results?.FR?.flatrate ||
-                  movie["watch/providers"].results?.FR?.buy ? (
+                {movie["watch/providers"].results?.FR?.flatrate ||
+                movie["watch/providers"].results?.FR?.buy ? (
+                  <a
+                    href={getPlatformLink(
+                      movie["watch/providers"].results?.FR?.flatrate
+                        ? movie["watch/providers"].results?.FR?.flatrate[0]
+                            ?.provider_name
+                        : movie["watch/providers"].results?.FR?.buy[0]
+                            .provider_name
+                    )}
+                  >
                     <img
                       src={
                         movie["watch/providers"].results.FR.flatrate
@@ -127,11 +129,19 @@ export default function MovieCard() {
                       alt={movie.provider_name}
                       className={styles.logoPlatform}
                     />
-                  ) : null}
-                </a>
-                <a href={getPlatformLink()}>
-                  {movie["watch/providers"].results?.FR?.flatrate ||
-                  movie["watch/providers"].results?.FR?.buy ? (
+                  </a>
+                ) : null}
+                {movie["watch/providers"].results?.FR?.flatrate ||
+                movie["watch/providers"].results?.FR?.buy ? (
+                  <a
+                    href={getPlatformLink(
+                      movie["watch/providers"].results?.FR?.buy
+                        ? movie["watch/providers"].results?.FR?.buy[1]
+                            ?.provider_name
+                        : movie["watch/providers"].results?.FR?.flatrate[0]
+                            .provider_name
+                    )}
+                  >
                     <img
                       src={
                         movie["watch/providers"].results.FR.buy
@@ -141,8 +151,8 @@ export default function MovieCard() {
                       alt={movie.provider_name}
                       className={styles.logoPlatform}
                     />
-                  ) : null}
-                </a>
+                  </a>
+                ) : null}
               </div>
               {movie.videos?.results[0]?.key ? (
                 <button type="button" className={styles.buttonTrailer}>
@@ -214,9 +224,17 @@ export default function MovieCard() {
           <div className={styles.reverseCard}>
             <div className={styles.movieFeatures}>
               <div>
-                <a href={getPlatformLink()}>
-                  {movie["watch/providers"].results?.FR?.flatrate ||
-                  movie["watch/providers"].results?.FR?.buy ? (
+                {movie["watch/providers"].results?.FR?.flatrate ||
+                movie["watch/providers"].results?.FR?.buy ? (
+                  <a
+                    href={getPlatformLink(
+                      movie["watch/providers"].results?.FR?.flatrate
+                        ? movie["watch/providers"].results?.FR?.flatrate[0]
+                            ?.provider_name
+                        : movie["watch/providers"].results?.FR?.buy[0]
+                            .provider_name
+                    )}
+                  >
                     <img
                       src={
                         movie["watch/providers"].results.FR.flatrate
@@ -226,11 +244,19 @@ export default function MovieCard() {
                       alt={movie.provider_name}
                       className={styles.logoPlatform}
                     />
-                  ) : null}
-                </a>
-                <a href={getPlatformLink()}>
-                  {movie["watch/providers"].results?.FR?.flatrate ||
-                  movie["watch/providers"].results?.FR?.buy ? (
+                  </a>
+                ) : null}
+                {movie["watch/providers"].results?.FR?.flatrate ||
+                movie["watch/providers"].results?.FR?.buy ? (
+                  <a
+                    href={getPlatformLink(
+                      movie["watch/providers"].results?.FR?.buy
+                        ? movie["watch/providers"].results?.FR?.buy[1]
+                            ?.provider_name
+                        : movie["watch/providers"].results?.FR?.flatrate[0]
+                            .provider_name
+                    )}
+                  >
                     <img
                       src={
                         movie["watch/providers"].results.FR.buy
@@ -240,8 +266,8 @@ export default function MovieCard() {
                       alt={movie.provider_name}
                       className={styles.logoPlatform}
                     />
-                  ) : null}
-                </a>
+                  </a>
+                ) : null}
               </div>
               {movie.videos?.results[0]?.key ? (
                 <button type="button" className={styles.buttonTrailer}>
