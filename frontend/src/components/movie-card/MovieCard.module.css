@@ -82,7 +82,9 @@
   overflow: scroll;
   scrollbar-width: none;
 }
-
+.containerSynopsis::-webkit-scrollbar {
+  display: none;
+}
 .titleSynopsis {
   color: var(--darkRed);
   font-size: 1.1rem;
@@ -97,7 +99,9 @@
   overflow: scroll;
   scrollbar-width: none;
 }
-
+.movieSynopsis::-webkit-scrollbar {
+  display: none;
+}
 @media screen and (min-width: 1024px) {
   .mobileMovieCard {
     display: none;
@@ -189,6 +193,5 @@
     margin-bottom: 1.5rem;
     max-height: 8rem;
     overflow: scroll;
-    scrollbar-width: none;
   }
 }

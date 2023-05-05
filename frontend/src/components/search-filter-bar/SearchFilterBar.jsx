@@ -7,7 +7,7 @@ export default function SearchFilterBar({ scoreFilter, setScoreFilter }) {
 
   return (
     <nav className={styles.nav}>
-      <div className={styles.navIcon}>
+      <section className={styles.navIcon}>
         <button
           type="button"
           className={
@@ -17,11 +17,12 @@ export default function SearchFilterBar({ scoreFilter, setScoreFilter }) {
         >
           <div className={isActive ? styles.barIsActive : styles.bar} />
         </button>
-      </div>
-      <div className={isActive ? styles.navListIsActive : styles.navList}>
-        <ul className={styles.switchTypeContainer}>
-          <h5>Trier par score</h5>
-          <li>
+      </section>
+      <section>
+        <div className={isActive ? styles.navListIsActive : styles.navList}>
+          <h3 className={styles.navListTitle}>Trier par</h3>
+          <h5 className={styles.navListSubTitle}>Scores</h5>
+          <div className={styles.switchTypeContainer}>
             <button
               type="button"
               className={`${
@@ -33,8 +34,6 @@ export default function SearchFilterBar({ scoreFilter, setScoreFilter }) {
             >
               Tout
             </button>
-          </li>
-          <li>
             <button
               type="button"
               className={`${
@@ -46,8 +45,6 @@ export default function SearchFilterBar({ scoreFilter, setScoreFilter }) {
             >
               Noté +2
             </button>
-          </li>
-          <li>
             <button
               type="button"
               className={`${
@@ -59,8 +56,6 @@ export default function SearchFilterBar({ scoreFilter, setScoreFilter }) {
             >
               Noté +4
             </button>
-          </li>
-          <li>
             <button
               type="button"
               className={`${
@@ -72,8 +67,6 @@ export default function SearchFilterBar({ scoreFilter, setScoreFilter }) {
             >
               Noté +6
             </button>
-          </li>
-          <li>
             <button
               type="button"
               className={`${
@@ -85,9 +78,16 @@ export default function SearchFilterBar({ scoreFilter, setScoreFilter }) {
             >
               Noté +8
             </button>
-          </li>
-        </ul>
-      </div>
+            <button
+              type="button"
+              className={styles.buttonSearchFilter}
+              onClick={() => setIsActive(!isActive)}
+            >
+              RECHERCHER
+            </button>
+          </div>
+        </div>
+      </section>
     </nav>
   );
 }
