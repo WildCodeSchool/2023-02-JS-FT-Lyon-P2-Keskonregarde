@@ -3,7 +3,7 @@ import React from "react";
 export default function NotResults() {
   return (
     <div className="no-results-container">
-      <h3>202 : No results.</h3>
+      <h3>202 : Pas de résultat.</h3>
       <img
         src="https://media.giphy.com/media/7VHV66bRjGRSo/giphy.gif"
         alt="error 202"
