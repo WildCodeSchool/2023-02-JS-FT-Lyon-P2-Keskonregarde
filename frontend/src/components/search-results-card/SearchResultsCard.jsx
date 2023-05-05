@@ -47,7 +47,7 @@ export default function SearchResultsCard({
   };
 
   useEffect(() => {
-    fetchMoreData();
+    if (pageNumber !== 1) fetchMoreData();
   }, [pageNumber]);
 
   /* Generate Filter States using Movie/TV Context */

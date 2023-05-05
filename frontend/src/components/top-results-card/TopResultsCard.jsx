@@ -46,7 +46,7 @@ export default function TopResultsCard({
   };
 
   useEffect(() => {
-    fetchMoreData();
+    if (pageNumber !== 1) fetchMoreData();
   }, [pageNumber]);
 
   const posterUrl = "https://image.tmdb.org/t/p/w200";

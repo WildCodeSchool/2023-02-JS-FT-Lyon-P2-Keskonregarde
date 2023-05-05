@@ -14,6 +14,9 @@ export default function TopFilterBar({
   const { movieGenres } = useContext(MovieGenresContext);
   const { tvGenres } = useContext(TvGenresContext);
 
+  // state genre & state lang
+  //
+
   const [isActive, setIsActive] = useState(false);
 
   return (

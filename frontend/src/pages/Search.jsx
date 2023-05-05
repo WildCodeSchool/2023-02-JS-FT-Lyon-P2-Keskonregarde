@@ -40,13 +40,13 @@ export default function Search() {
   }, [
     results,
     requestType,
-    movies,
     pageNumber,
     location,
     location.search,
     location.state,
   ]);
 
+  console.log(movies);
   if (!requestedData || !requestType) return null;
   return (
     <>

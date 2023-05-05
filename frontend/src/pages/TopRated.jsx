@@ -34,7 +34,7 @@ export default function TopRated() {
           err.response.status === 404 ? navigate("/not-found") : null
         );
     return () => {};
-  }, [requestType, movies, pageNumber, genreFilter, languageFilter]);
+  }, [requestType, pageNumber, genreFilter, languageFilter]);
 
   if (!requestedData || !requestType) return null;
   return (
