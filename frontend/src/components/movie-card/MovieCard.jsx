@@ -43,6 +43,18 @@ export default function MovieCard() {
       name: "Pass Warner Amazon Channel",
       link: "https://www.primevideo.com/offers/nonprimehomepage/ref=atv_nb_sf_hm",
     },
+    {
+      name: "YouTube",
+      link: "https://www.youtube.com/feed/storefront?bp=ogUCKAI%3D",
+    },
+    {
+      name: "Orange VOD",
+      link: "https://video-a-la-demande.orange.fr/",
+    },
+    {
+      name: "Crunchyroll",
+      link: "https://www.crunchyroll.com/fr",
+    },
   ];
 
   function getPlatformLink(platformName) {
@@ -108,6 +120,7 @@ export default function MovieCard() {
                 {movie["watch/providers"].results?.FR?.flatrate ||
                 movie["watch/providers"].results?.FR?.buy ? (
                   <a
+                    target="__blank"
                     href={getPlatformLink(
                       movie["watch/providers"].results?.FR?.flatrate
                         ? movie["watch/providers"].results?.FR?.flatrate[0]
@@ -130,6 +143,7 @@ export default function MovieCard() {
                 {movie["watch/providers"].results?.FR?.flatrate ||
                 movie["watch/providers"].results?.FR?.buy ? (
                   <a
+                    target="__blank"
                     href={getPlatformLink(
                       movie["watch/providers"].results?.FR?.buy
                         ? movie["watch/providers"].results?.FR?.buy[1]
@@ -219,6 +233,7 @@ export default function MovieCard() {
                 {movie["watch/providers"].results?.FR?.flatrate ||
                 movie["watch/providers"].results?.FR?.buy ? (
                   <a
+                    target="__blank"
                     href={getPlatformLink(
                       movie["watch/providers"].results?.FR?.flatrate
                         ? movie["watch/providers"].results?.FR?.flatrate[0]
@@ -241,6 +256,7 @@ export default function MovieCard() {
                 {movie["watch/providers"].results?.FR?.flatrate ||
                 movie["watch/providers"].results?.FR?.buy ? (
                   <a
+                    target="__blank"
                     href={getPlatformLink(
                       movie["watch/providers"].results?.FR?.buy
                         ? movie["watch/providers"].results?.FR?.buy[1]
