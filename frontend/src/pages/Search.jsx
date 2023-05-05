@@ -46,7 +46,6 @@ export default function Search() {
     location.state,
   ]);
 
-  console.log(movies);
   if (!requestedData || !requestType) return null;
   return (
     <>
