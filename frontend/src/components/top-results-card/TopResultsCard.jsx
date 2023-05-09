@@ -65,68 +65,74 @@ export default function TopResultsCard({
       >
         <div className={styles.searchResults}>
           <div className={styles.searchCard}>
-            {movies.map((movie) => (
-              <Link
-                key={movie.id}
-                to={
-                  requestType === "movie"
-                    ? `/movie/${movie.id}`
-                    : `/tv/${movie.id}`
-                }
-              >
-                <div className={styles.cardContainer}>
-                  <div className={styles.posterContainer}>
-                    <img
-                      src={
-                        movie.poster_path
-                          ? `${posterUrl}${movie.poster_path}`
-                          : null
-                      }
-                      alt={
-                        requestType === "movie"
-                          ? movie.orginal_title
-                          : movie.orginal_name
-                      }
-                      className={styles.poster}
-                    />
-                  </div>
-                  <div className={styles.infoContainer}>
-                    <div className={styles.movieHeader}>
-                      <div>
-                        <h4 className={styles.movieTitle}>
-                          {requestType === "movie" ? movie.title : movie.name}
-                        </h4>
-                        <h5 className={styles.movieGenre}>
-                          {requestType === "movie"
-                            ? getGenreName(movie.genre_ids, movieGenres)
-                            : null}
-                          {requestType === "tv"
-                            ? getGenreName(movie.genre_ids, tvGenres)
-                            : null}
-                        </h5>
-                        <p className={styles.movieDate}>
-                          {movie.release_date
-                            ? setLocaleDate(movie.release_date)
-                            : null}
-                          {movie.first_air_date
-                            ? setLocaleDate(movie.first_air_date)
-                            : null}
+            {movies
+              .filter((movie) =>
+                requestType === "movie" && languageFilter === ""
+                  ? movie.vote_count > 5000
+                  : movie
+              )
+              .map((movie) => (
+                <Link
+                  key={movie.id}
+                  to={
+                    requestType === "movie"
+                      ? `/movie/${movie.id}`
+                      : `/tv/${movie.id}`
+                  }
+                >
+                  <div className={styles.cardContainer}>
+                    <div className={styles.posterContainer}>
+                      <img
+                        src={
+                          movie.poster_path
+                            ? `${posterUrl}${movie.poster_path}`
+                            : null
+                        }
+                        alt={
+                          requestType === "movie"
+                            ? movie.orginal_title
+                            : movie.orginal_name
+                        }
+                        className={styles.poster}
+                      />
+                    </div>
+                    <div className={styles.infoContainer}>
+                      <div className={styles.movieHeader}>
+                        <div>
+                          <h4 className={styles.movieTitle}>
+                            {requestType === "movie" ? movie.title : movie.name}
+                          </h4>
+                          <h5 className={styles.movieGenre}>
+                            {requestType === "movie"
+                              ? getGenreName(movie.genre_ids, movieGenres)
+                              : null}
+                            {requestType === "tv"
+                              ? getGenreName(movie.genre_ids, tvGenres)
+                              : null}
+                          </h5>
+                          <p className={styles.movieDate}>
+                            {movie.release_date
+                              ? setLocaleDate(movie.release_date)
+                              : null}
+                            {movie.first_air_date
+                              ? setLocaleDate(movie.first_air_date)
+                              : null}
+                          </p>
+                        </div>
+                        <p
+                          className={styles.movieScore}
+                          style={{ color: setScoreColor(movie.vote_average) }}
+                        >
+                          {movie.vote_average.toFixed(1)}
                         </p>
                       </div>
-                      <p
-                        className={styles.movieScore}
-                        style={{ color: setScoreColor(movie.vote_average) }}
-                      >
-                        {movie.vote_average.toFixed(1)}
+                      <p className={styles.movieSynopsis}>
+                        {`${movie.overview.slice(0, 75)}...`}
                       </p>
                     </div>
-                    <p className={styles.movieSynopsis}>
-                      {`${movie.overview.slice(0, 75)}...`}
-                    </p>
                   </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))}
           </div>
         </div>
       </InfiniteScroll>
@@ -136,7 +142,7 @@ export default function TopResultsCard({
 
 TopResultsCard.propTypes = {
   requestType: PropTypes.string.isRequired,
-  movies: PropTypes.shape().isRequired,
+  movies: PropTypes.object.isRequired,
   setMovies: PropTypes.func.isRequired,
   pageNumber: PropTypes.number.isRequired,
   setPageNumber: PropTypes.func.isRequired,

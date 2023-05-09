@@ -13,8 +13,11 @@ export default function TopRated() {
   const [requestedData, setRequestedData] = useState(null);
   const [movies, setMovies] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
-  const [genreFilter, setGenreFilter] = useState("all");
-  const [languageFilter, setLanguageFilter] = useState("");
+
+  const [genreSelected, setGenreSelected] = useState("all");
+  const [languageSelected, setLanguageSelected] = useState("");
+  const [genreFilter, setGenreFilter] = useState(genreSelected);
+  const [languageFilter, setLanguageFilter] = useState(languageSelected);
 
   const navigate = useNavigate();
 
@@ -28,7 +31,7 @@ export default function TopRated() {
           if (data.total_results > 0) {
             setRequestedData(data);
             setMovies(data.results);
-          } else navigate("/search/no-results");
+          } else navigate("/no-results");
         })
         .catch((err) =>
           err.response.status === 404 ? navigate("/not-found") : null
@@ -44,9 +47,11 @@ export default function TopRated() {
         Résultats trouvés : {requestedData.total_results}
       </h5>
       <TopFilterBar
-        genreFilter={genreFilter}
+        genreSelected={genreSelected}
+        setGenreSelected={setGenreSelected}
+        languageSelected={languageSelected}
+        setLanguageSelected={setLanguageSelected}
         setGenreFilter={setGenreFilter}
-        languageFilter={languageFilter}
         setLanguageFilter={setLanguageFilter}
         requestType={requestType}
       />

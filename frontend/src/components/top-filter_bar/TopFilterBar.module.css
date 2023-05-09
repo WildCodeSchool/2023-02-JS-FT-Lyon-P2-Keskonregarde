@@ -115,7 +115,7 @@
   background-color: var(--white);
   color: var(--darkRed);
   width: 100%;
-  height: 100%;
+  height: 2.2rem;
   border: 1px solid var(--mediumGrey);
   font-size: 0.6rem;
   font-weight: 790;
@@ -139,6 +139,7 @@
   border-radius: 0.5rem;
   cursor: pointer;
 }
+
 .buttonSearchFilter {
   padding: 0.3rem 0.6rem;
   background-color: var(--mediumGrey);
@@ -154,10 +155,12 @@
   grid-column: 3 /2;
   margin-top: 1rem;
 }
+
 @media screen and (min-width: 1024px) {
   .buttonSelectType {
     padding: 0.5rem 0.8rem;
     font-size: 0.66rem;
+    height: 3rem;
     cursor: pointer;
   }
 
@@ -175,8 +178,8 @@
     cursor: pointer;
   }
   .navListIsActive {
-    width: 25%;
-    left: 75%;
-    background-color: rgba(240, 240, 240, 0.85);
+    width: 28%;
+    left: 72%;
+    background-color: rgba(240, 240, 240, 0.98);
   }
 }

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { setLocaleDate } from "../../services/utils";
 import styles from "./MovieCard.module.css";
+import { getDirectorName } from "../../services/utils";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -100,7 +101,7 @@ export default function MovieCard() {
               <h3>
                 Réalisateur :{" "}
                 {movie.credits?.crew[0]?.name
-                  ? `${movie.credits.crew[0].name}`
+                  ? getDirectorName(movie.credits.crew)
                   : null}
               </h3>
               <h3>
@@ -212,7 +213,7 @@ export default function MovieCard() {
               <h3>
                 Réalisateur :{" "}
                 {movie.credits?.crew[0]?.name
-                  ? `${movie.credits.crew[0].name}`
+                  ? getDirectorName(movie.credits.crew)
                   : null}
               </h3>
               <h3>

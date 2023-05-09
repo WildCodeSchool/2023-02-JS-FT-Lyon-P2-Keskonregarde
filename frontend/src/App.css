@@ -126,6 +126,11 @@ body {
     margin: 1rem auto 1rem;
   }
 
+  .not-found-container,
+  .no-results-container {
+    margin-top: 2rem;
+  }
+
   .not-found-container > h3,
   .no-results-container > h3 {
     font-size: x-large;

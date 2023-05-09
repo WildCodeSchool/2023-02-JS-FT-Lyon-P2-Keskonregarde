@@ -20,7 +20,16 @@ export function setLocaleDate(date) {
 
 /* Generate genre name based on genre id */
 export function getGenreName(ids, genres) {
+  const results = [];
   for (let i = 0; i < genres.length; i++) {
-    if (ids.includes(genres[i].id)) return genres[i].name;
+    if (ids.includes(genres[i].id)) results.push(genres[i].name);
+  }
+  return results.join(" / ");
+}
+
+/* Get director name based on index */
+export function getDirectorName(crew) {
+  for(let i = 0; i < crew.length; i++) {
+    if (crew[i].job === "Director") return crew[i].name
   }
 }

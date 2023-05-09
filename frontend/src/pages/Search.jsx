@@ -15,7 +15,8 @@ export default function Search() {
   const [requestedData, setRequestedData] = useState(null);
   const [movies, setMovies] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
-  const [scoreFilter, setScoreFilter] = useState("all");
+  const [scoreSelected, setScoreSelected] = useState("all");
+  const [scoreFilter, setScoreFilter] = useState(scoreSelected);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ export default function Search() {
           if (data.total_results > 0) {
             setRequestedData(data);
             setMovies(data.results);
-          } else navigate("/search/no-results");
+          } else navigate("/no-results");
         })
         .catch((err) =>
           err.response.status === 404 ? navigate("/not-found") : null
@@ -44,6 +45,7 @@ export default function Search() {
     location,
     location.search,
     location.state,
+    scoreFilter,
   ]);
 
   if (!requestedData || !requestType) return null;
@@ -54,7 +56,8 @@ export default function Search() {
         Résultats trouvés : {requestedData.total_results}
       </h5>
       <SearchFilterBar
-        scoreFilter={scoreFilter}
+        scoreSelected={scoreSelected}
+        setScoreSelected={setScoreSelected}
         setScoreFilter={setScoreFilter}
       />
       {requestType && movies && (

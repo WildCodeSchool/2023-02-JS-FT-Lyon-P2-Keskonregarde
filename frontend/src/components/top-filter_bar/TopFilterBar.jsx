@@ -5,19 +5,24 @@ import MovieGenresContext from "../../contexts/MovieGenresContext";
 import TvGenresContext from "../../contexts/TvGenresContext";
 
 export default function TopFilterBar({
-  genreFilter,
+  genreSelected,
+  setGenreSelected,
+  languageSelected,
+  setLanguageSelected,
   setGenreFilter,
-  languageFilter,
   setLanguageFilter,
   requestType,
 }) {
   const { movieGenres } = useContext(MovieGenresContext);
   const { tvGenres } = useContext(TvGenresContext);
 
-  // state genre & state lang
-  //
-
   const [isActive, setIsActive] = useState(false);
+
+  function handleFilterSearch() {
+    setIsActive(false);
+    setGenreFilter(genreSelected);
+    setLanguageFilter(languageSelected);
+  }
 
   return (
     <nav className={styles.nav}>
@@ -40,11 +45,11 @@ export default function TopFilterBar({
             <button
               type="button"
               className={`${
-                genreFilter === "all"
+                genreSelected === "all"
                   ? styles.buttonSelectTypeEnabled
                   : styles.buttonSelectType
               }`}
-              onClick={() => setGenreFilter("all")}
+              onClick={() => setGenreSelected("all")}
             >
               Tout
             </button>
@@ -54,11 +59,11 @@ export default function TopFilterBar({
                   key={genre.id}
                   type="button"
                   className={`${
-                    genreFilter === `${genre.id}`
+                    genreSelected === `${genre.id}`
                       ? styles.buttonSelectTypeEnabled
                       : styles.buttonSelectType
                   }`}
-                  onClick={() => setGenreFilter(`${genre.id}`)}
+                  onClick={() => setGenreSelected(`${genre.id}`)}
                 >
                   {genre.name}
                 </button>
@@ -66,13 +71,14 @@ export default function TopFilterBar({
             {requestType === "tv" &&
               tvGenres.map((genre) => (
                 <button
+                  key={genre.id}
                   type="button"
                   className={`${
-                    genreFilter === `${genre.id}`
+                    genreSelected === `${genre.id}`
                       ? styles.buttonSelectTypeEnabled
                       : styles.buttonSelectType
                   }`}
-                  onClick={() => setGenreFilter(`${genre.id}`)}
+                  onClick={() => setGenreSelected(`${genre.id}`)}
                 >
                   {genre.name}
                 </button>
@@ -83,55 +89,55 @@ export default function TopFilterBar({
             <button
               type="button"
               className={`${
-                languageFilter === ""
+                languageSelected === ""
                   ? styles.buttonSelectTypeEnabled
                   : styles.buttonSelectType
               }`}
-              onClick={() => setLanguageFilter("")}
+              onClick={() => setLanguageSelected("")}
             >
               Tout
             </button>
             <button
               type="button"
               className={`${
-                languageFilter === "en"
+                languageSelected === "en"
                   ? styles.buttonSelectTypeEnabled
                   : styles.buttonSelectType
               }`}
-              onClick={() => setLanguageFilter("en")}
+              onClick={() => setLanguageSelected("en")}
             >
               Anglais
             </button>
             <button
               type="button"
               className={`${
-                languageFilter === "ko"
+                languageSelected === "ko"
                   ? styles.buttonSelectTypeEnabled
                   : styles.buttonSelectType
               }`}
-              onClick={() => setLanguageFilter("ko")}
+              onClick={() => setLanguageSelected("ko")}
             >
               Corée
             </button>
             <button
               type="button"
               className={`${
-                languageFilter === "ja"
+                languageSelected === "ja"
                   ? styles.buttonSelectTypeEnabled
                   : styles.buttonSelectType
               }`}
-              onClick={() => setLanguageFilter("ja")}
+              onClick={() => setLanguageSelected("ja")}
             >
               Japon
             </button>
             <button
               type="button"
               className={`${
-                languageFilter === "fr"
+                languageSelected === "fr"
                   ? styles.buttonSelectTypeEnabled
                   : styles.buttonSelectType
               }`}
-              onClick={() => setLanguageFilter("fr")}
+              onClick={() => setLanguageSelected("fr")}
             >
               Français
             </button>
@@ -139,7 +145,7 @@ export default function TopFilterBar({
             <button
               type="button"
               className={styles.buttonSearchFilter}
-              onClick={() => setIsActive(!isActive)}
+              onClick={() => handleFilterSearch()}
             >
               RECHERCHER
             </button>
@@ -151,9 +157,11 @@ export default function TopFilterBar({
 }
 
 TopFilterBar.propTypes = {
-  genreFilter: PropTypes.string.isRequired,
+  genreSelected: PropTypes.string.isRequired,
+  setGenreSelected: PropTypes.func.isRequired,
+  languageSelected: PropTypes.string.isRequired,
+  setLanguageSelected: PropTypes.func.isRequired,
   setGenreFilter: PropTypes.func.isRequired,
-  languageFilter: PropTypes.string.isRequired,
   setLanguageFilter: PropTypes.func.isRequired,
   requestType: PropTypes.string.isRequired,
 };
