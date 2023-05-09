@@ -1,0 +1,176 @@
+/* Menu burger */
+.navIcon {
+  z-index: 20;
+  position: absolute;
+  top: 0.1rem;
+  right: 0.1rem;
+}
+
+.hamburgerIcon {
+  display: block;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  appearance: none;
+  background: none;
+  outline: none;
+  border: none;
+}
+
+.bar,
+.hamburgerIcon:after,
+.hamburgerIcon:before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 4px;
+  background-color: var(--darkRed);
+  margin: 6px 0px;
+  transition: 0.5s;
+}
+
+.hamburgerIconIsActive {
+  display: block;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  appearance: none;
+  background: none;
+  outline: none;
+  border: none;
+}
+
+.hamburgerIconIsActive:before {
+  content: "";
+  display: block;
+  height: 4px;
+  background-color: var(--darkRed);
+  margin: 11px 0px;
+  transform-origin: 0% 0%;
+  transition: transform 0.4s ease-in-out;
+  transform: rotate(45deg);
+}
+
+.barIsActive {
+  opacity: 0;
+}
+
+.hamburgerIconIsActive:after {
+  content: "";
+  display: block;
+  height: 4px;
+  background-color: var(--darkRed);
+  margin: 11px 0px;
+  transform-origin: 0% 100%;
+  transition: transform 0.4s ease-in-out;
+  transform: rotate(-45deg);
+}
+
+.navList {
+  display: none;
+}
+
+.navListIsActive {
+  z-index: 10;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  transition: 0.4s;
+  background-color: rgba(240, 240, 240, 0.95);
+  height: 100dvh;
+  width: 100dvw;
+  padding: 2rem;
+  color: var(--darkRed);
+}
+.navListTitle {
+  margin-bottom: 2rem;
+}
+
+.navListSubTitle {
+  margin-bottom: 0.5rem;
+}
+
+/* Filter buttons */
+.switchTypeContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.buttonSelectType {
+  justify-self: center;
+  padding: 0.3rem 0.6rem;
+  background-color: var(--white);
+  color: var(--darkRed);
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--mediumGrey);
+  font-size: 0.6rem;
+  font-weight: 790;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.buttonSelectType:active {
+  border: 1px solid var(--darkRed);
+}
+
+.buttonSelectTypeEnabled {
+  padding: 0.3rem 0.6rem;
+  background-color: var(--darkRed);
+  color: var(--white);
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--mediumGrey);
+  font-size: 0.6rem;
+  font-weight: 790;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+.buttonSearchFilter {
+  padding: 0.3rem 0.6rem;
+  background-color: var(--mediumGrey);
+  color: var(--white);
+  border: 1px solid var(--mediumGrey);
+  width: 100%;
+  height: 100%;
+  font-size: 0.6rem;
+  font-weight: 790;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  grid-column: 3 /2;
+  margin-top: 1rem;
+}
+@media screen and (min-width: 1024px) {
+  .buttonSelectType {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.69rem;
+    cursor: pointer;
+  }
+
+  .buttonSelectType:hover {
+    border: 1px solid var(--darkRed);
+  }
+
+  .buttonSelectTypeEnabled {
+    padding: 0.5rem 1rem;
+    font-size: 0.69rem;
+    cursor: pointer;
+  }
+  .buttonSearchFilter:hover {
+    color: var(--darkRed);
+    cursor: pointer;
+  }
+  .navListIsActive {
+    width: 25%;
+    left: 75%;
+    background-color: rgba(240, 240, 240, 0.85);
+  }
+}

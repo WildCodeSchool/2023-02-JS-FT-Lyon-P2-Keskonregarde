@@ -11,7 +11,7 @@ export default function SearchBar() {
     <div className={styles.searchBarBox}>
       <input
         type="text"
-        placeholder="On regarde quoi ?"
+        placeholder="Une idée ?"
         value={searchParam}
         onChange={(e) => setSearchParam(e.target.value)}
         className={styles.searchBar}

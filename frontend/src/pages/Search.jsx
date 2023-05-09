@@ -2,9 +2,9 @@ import axios from "axios";
 import "../App.css";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
-import ResultsCardMovie from "../components/results-card/ResultsCard";
 import SwitchButton from "../components/switch_button/SwitchButton";
-import FilterBar from "../components/filter_bar/FilterBar";
+import SearchFilterBar from "../components/search-filter-bar/SearchFilterBar";
+import SearchResultsCard from "../components/search-results-card/SearchResultsCard";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -15,7 +15,8 @@ export default function Search() {
   const [requestedData, setRequestedData] = useState(null);
   const [movies, setMovies] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
-  const [filter, setFilter] = useState("all");
+  const [scoreSelected, setScoreSelected] = useState("all");
+  const [scoreFilter, setScoreFilter] = useState(scoreSelected);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -31,13 +32,21 @@ export default function Search() {
           if (data.total_results > 0) {
             setRequestedData(data);
             setMovies(data.results);
-          } else navigate("/search/no-results");
+          } else navigate("/no-results");
         })
         .catch((err) =>
           err.response.status === 404 ? navigate("/not-found") : null
         );
     return () => {};
-  }, [results, movies, pageNumber, location, location.search, location.state]);
+  }, [
+    results,
+    requestType,
+    pageNumber,
+    location,
+    location.search,
+    location.state,
+    scoreFilter,
+  ]);
 
   if (!requestedData || !requestType) return null;
   return (
@@ -46,15 +55,19 @@ export default function Search() {
       <h5 className="results-number">
         Résultats trouvés : {requestedData.total_results}
       </h5>
-      <FilterBar filter={filter} setFilter={setFilter} />
+      <SearchFilterBar
+        scoreSelected={scoreSelected}
+        setScoreSelected={setScoreSelected}
+        setScoreFilter={setScoreFilter}
+      />
       {requestType && movies && (
-        <ResultsCardMovie
+        <SearchResultsCard
           requestType={requestType}
           movies={movies}
           setMovies={setMovies}
           pageNumber={pageNumber}
           setPageNumber={setPageNumber}
-          filter={filter}
+          scoreFilter={scoreFilter}
         />
       )}
     </>

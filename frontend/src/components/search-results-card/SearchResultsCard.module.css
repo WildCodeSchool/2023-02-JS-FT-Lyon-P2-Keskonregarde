@@ -1,0 +1,162 @@
+.infiniteScrollBox {
+  height: 30rem;
+  overflow: auto;
+  scrollbar-width: none; /* Firefox */
+}
+
+.infiniteScrollBox::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.searchResults {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0.1rem 1.5rem;
+}
+
+.searchCard {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+  width: fit-content;
+}
+
+.cardContainer {
+  background-color: var(--white);
+  border-radius: 1rem;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 5px var(--darkGrey);
+  display: flex;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+.cardContainer:active {
+  cursor: pointer;
+  transform: scale(1.04);
+  border: 1px solid;
+  border-color: var(--darkRed);
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 1.5rem 1rem;
+  width: 100%;
+}
+
+.posterContainer {
+  min-width: 5.8rem;
+  width: 5.8rem;
+  min-height: 8.8rem;
+}
+
+.poster {
+  height: 100%;
+  width: 100%;
+}
+
+.movieHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.movieTitle {
+  color: var(--darkRed);
+  font-size: small;
+}
+
+.movieGenre {
+  color: var(--darkGrey);
+  font-size: 0.7rem;
+  font-weight: medium;
+  font-style: italic;
+}
+
+.movieDate {
+  color: var(--darkGrey);
+  font-size: 0.7rem;
+  font-style: italic;
+}
+
+.movieScore {
+  text-decoration: none;
+  font-size: 0.7rem;
+  font-weight: bold;
+  border: 1.5px solid;
+  border-radius: 50%;
+  padding: 0.4rem;
+}
+
+.movieSynopsis {
+  font-size: small;
+  color: var(--darkGrey);
+  overflow: hidden;
+}
+
+@media screen and (min-width: 1024px) {
+  .infiniteScrollBox {
+    height: 36.25rem;
+    width: 100%;
+  }
+
+  .searchResults {
+    margin: 0.3rem 5rem;
+  }
+
+  .resultsNumber {
+    margin-bottom: 1.5rem;
+  }
+
+  .searchCard {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 2fr;
+    gap: 1.5rem;
+  }
+
+  .cardContainer {
+    height: 10rem;
+  }
+
+  .cardContainer:hover {
+    cursor: pointer;
+    transform: scale(1.03);
+    border: 1px solid;
+    border-color: var(--darkRed);
+  }
+
+  .infoContainer {
+    margin: 2rem 1.5rem;
+    width: 100%;
+  }
+
+  .posterContainer {
+    min-width: 7.1rem;
+    width: 7.1rem;
+    min-height: 10rem;
+  }
+
+  .movieTitle {
+    font-size: medium;
+  }
+
+  .movieDate {
+    font-style: italic;
+    font-size: small;
+  }
+
+  .movieScore {
+    font-size: 0.8rem;
+  }
+
+  .movieSynopsis {
+    font-size: normal;
+  }
+}

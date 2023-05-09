@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { setLocaleDate } from "../../services/utils";
 import styles from "./TvCard.module.css";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
@@ -24,6 +25,45 @@ export default function TvCard() {
   const url = "https://image.tmdb.org/t/p/original";
   const urlYt = "https://www.youtube.com/embed/";
 
+  const provider = [
+    { name: "Apple TV", link: "https://tv.apple.com/" },
+    {
+      name: "Google Play Movies",
+      link: "https://play.google.com/store/movies?hl=fr&gl=US",
+    },
+    { name: "Netflix", link: "https://www.netflix.com/fr/" },
+    {
+      name: "Amazon Prime Video",
+      link: "https://www.primevideo.com/offers/nonprimehomepage/ref=atv_nb_sf_hm",
+    },
+    { name: "Disney Plus", link: "https://www.disneyplus.com/fr-fr" },
+    { name: "Canal+", link: "https://boutique.canalplus.com/" },
+    { name: "Paramount Plus", link: "https://www.paramountplus.com/fr/" },
+    {
+      name: "Pass Warner Amazon Channel",
+      link: "https://www.primevideo.com/offers/nonprimehomepage/ref=atv_nb_sf_hm",
+    },
+    {
+      name: "YouTube",
+      link: "https://www.youtube.com/feed/storefront?bp=ogUCKAI%3D",
+    },
+    {
+      name: "Orange VOD",
+      link: "https://video-a-la-demande.orange.fr/",
+    },
+    {
+      name: "Crunchyroll",
+      link: "https://www.crunchyroll.com/fr",
+    },
+  ];
+
+  function getPlatformLink(platformName) {
+    for (let i = 0; i < provider.length; i += 1) {
+      if (platformName === provider[i].name) return provider[i].link;
+    }
+    return null;
+  }
+
   if (!tv) return null;
   return (
     <div className={styles.tvCardPage}>
@@ -42,7 +82,7 @@ export default function TvCard() {
         <div className={styles.containerTvCard}>
           <div>
             <h2 className={styles.tvTitle}>
-              {tv.name}, {tv.first_air_date}{" "}
+              {tv.name}, {tv.first_air_date.slice(0, 4)}{" "}
             </h2>
             <h5 className={styles.tvGenres}>
               {" "}
@@ -54,7 +94,6 @@ export default function TvCard() {
               <h3>
                 Réalisateur :{" "}
                 {tv.created_by[0]?.name ? `${tv.created_by[0].name}` : null}
-                {tv.created_by[1]?.name ? `, ${tv.created_by[1].name}` : null}
               </h3>
               <h3>
                 Acteurs :{" "}
@@ -73,27 +112,49 @@ export default function TvCard() {
               <div>
                 {tv["watch/providers"].results?.FR?.flatrate ||
                 tv["watch/providers"].results?.FR?.buy ? (
-                  <img
-                    src={
-                      tv["watch/providers"].results.FR.flatrate
-                        ? `${url}${tv["watch/providers"].results.FR.flatrate[0].logo_path}`
-                        : `${url}${tv["watch/providers"].results.FR.buy[0].logo_path}`
-                    }
-                    alt={tv.provider_name}
-                    className={styles.logoPlatform}
-                  />
+                  <a
+                    target="__blank"
+                    href={getPlatformLink(
+                      tv["watch/providers"].results?.FR?.flatrate
+                        ? tv["watch/providers"].results?.FR?.flatrate[0]
+                            ?.provider_name
+                        : tv["watch/providers"].results?.FR?.buy[0]
+                            .provider_name
+                    )}
+                  >
+                    <img
+                      src={
+                        tv["watch/providers"].results.FR.flatrate
+                          ? `${url}${tv["watch/providers"].results.FR.flatrate[0].logo_path}`
+                          : `${url}${tv["watch/providers"].results.FR.buy[0].logo_path}`
+                      }
+                      alt={tv.provider_name}
+                      className={styles.logoPlatform}
+                    />
+                  </a>
                 ) : null}
                 {tv["watch/providers"].results?.FR?.flatrate ||
                 tv["watch/providers"].results?.FR?.buy ? (
-                  <img
-                    src={
-                      tv["watch/providers"].results.FR.buy
-                        ? `${url}${tv["watch/providers"].results.FR.buy[1]?.logo_path}`
-                        : `${url}${tv["watch/providers"].results.FR.flatrate[0].logo_path}`
-                    }
-                    alt={tv.provider_name}
-                    className={styles.logoPlatform}
-                  />
+                  <a
+                    target="__blank"
+                    href={getPlatformLink(
+                      tv["watch/providers"].results?.FR?.buy
+                        ? tv["watch/providers"].results?.FR?.flatrate[1]
+                            ?.provider_name
+                        : tv["watch/providers"].results?.FR?.flatrate[0]
+                            .provider_name
+                    )}
+                  >
+                    <img
+                      src={
+                        tv["watch/providers"].results.FR.buy
+                          ? `${url}${tv["watch/providers"].results.FR.buy[1]?.logo_path}`
+                          : `${url}${tv["watch/providers"].results.FR.flatrate[0].logo_path}`
+                      }
+                      alt={tv.provider_name}
+                      className={styles.logoPlatform}
+                    />
+                  </a>
                 ) : null}
               </div>
               {tv.videos?.results[0]?.key ? (
@@ -127,19 +188,19 @@ export default function TvCard() {
         />
         <div className={styles.containerTvCard}>
           <div>
-            <h2 className={styles.tvTitle}>
-              {tv.name}, {tv.first_air_date}
-            </h2>
+            <h2 className={styles.tvTitle}>{tv.name}</h2>
             <h5 className={styles.tvGenres}>
               {tv.genres[0] === undefined ? null : `${tv.genres[0].name}`}
-              {tv.genres[1] === undefined ? null : `/${tv.genres[1].name}`}
-              {tv.genres[2] === undefined ? null : `/${tv.genres[2].name}`}
+              {tv.genres[1] === undefined ? null : ` / ${tv.genres[1].name}`}
+              {tv.genres[2] === undefined ? null : ` / ${tv.genres[2].name}`}
             </h5>
+            <p className={styles.tvDates}>
+              {`Première diffusion : ${setLocaleDate(tv.first_air_date)}`}
+            </p>
             <div className={styles.tvCredits}>
               <h3>
                 Réalisateur :{" "}
                 {tv.created_by[0]?.name ? `${tv.created_by[0].name}` : null}
-                {tv.created_by[1]?.name ? `, ${tv.created_by[1].name}` : null}
               </h3>
               <h3>
                 Acteurs :{" "}
@@ -158,27 +219,49 @@ export default function TvCard() {
               <div>
                 {tv["watch/providers"].results?.FR?.flatrate ||
                 tv["watch/providers"].results?.FR?.buy ? (
-                  <img
-                    src={
-                      tv["watch/providers"].results.FR.flatrate
-                        ? `${url}${tv["watch/providers"].results.FR.flatrate[0].logo_path}`
-                        : `${url}${tv["watch/providers"].results.FR.buy[0].logo_path}`
-                    }
-                    alt={tv.provider_name}
-                    className={styles.logoPlatform}
-                  />
+                  <a
+                    target="__blank"
+                    href={getPlatformLink(
+                      tv["watch/providers"].results?.FR?.flatrate
+                        ? tv["watch/providers"].results?.FR?.flatrate[0]
+                            ?.provider_name
+                        : tv["watch/providers"].results?.FR?.buy[0]
+                            .provider_name
+                    )}
+                  >
+                    <img
+                      src={
+                        tv["watch/providers"].results.FR.flatrate
+                          ? `${url}${tv["watch/providers"].results.FR.flatrate[0].logo_path}`
+                          : `${url}${tv["watch/providers"].results.FR.buy[0].logo_path}`
+                      }
+                      alt={tv.provider_name}
+                      className={styles.logoPlatform}
+                    />
+                  </a>
                 ) : null}
                 {tv["watch/providers"].results?.FR?.flatrate ||
                 tv["watch/providers"].results?.FR?.buy ? (
-                  <img
-                    src={
-                      tv["watch/providers"].results.FR.buy
-                        ? `${url}${tv["watch/providers"].results.FR.buy[1]?.logo_path}`
-                        : `${url}${tv["watch/providers"].results.FR.flatrate[0].logo_path}`
-                    }
-                    alt={tv.provider_name}
-                    className={styles.logoPlatform}
-                  />
+                  <a
+                    target="__blank"
+                    href={getPlatformLink(
+                      tv["watch/providers"].results?.FR?.buy
+                        ? tv["watch/providers"].results?.FR?.buy[1]
+                            ?.provider_name
+                        : tv["watch/providers"].results?.FR?.flatrate[0]
+                            .provider_name
+                    )}
+                  >
+                    <img
+                      src={
+                        tv["watch/providers"].results.FR.buy
+                          ? `${url}${tv["watch/providers"].results.FR.buy[1]?.logo_path}`
+                          : `${url}${tv["watch/providers"].results.FR.flatrate[0].logo_path}`
+                      }
+                      alt={tv.provider_name}
+                      className={styles.logoPlatform}
+                    />
+                  </a>
                 ) : null}
               </div>
               {tv.videos?.results[0]?.key ? (
