@@ -1,9 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { setLocaleDate } from "../../services/utils";
+import { setLocaleDate, getDirectorName } from "../../services/utils";
 import styles from "./MovieCard.module.css";
-import { getDirectorName } from "../../services/utils";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 

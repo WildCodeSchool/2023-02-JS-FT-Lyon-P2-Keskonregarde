@@ -154,7 +154,7 @@ export default function SearchResultsCard({
 
 SearchResultsCard.propTypes = {
   requestType: PropTypes.string.isRequired,
-  movies: PropTypes.object.isRequired,
+  movies: PropTypes.shape().isRequired,
   setMovies: PropTypes.func.isRequired,
   pageNumber: PropTypes.number.isRequired,
   setPageNumber: PropTypes.func.isRequired,
