@@ -24,7 +24,7 @@ export default function App() {
             <Route path="/movie/:id" element={<MovieCard />} />
             <Route path="/tv/:id" element={<TvCard />} />
             <Route path="/not-found" element={<NotFound />} />
-            <Route path="/search/no-results" element={<NoResults />} />
+            <Route path="/no-results" element={<NoResults />} />
           </Routes>
         </TvGenres>
       </MovieGenres>

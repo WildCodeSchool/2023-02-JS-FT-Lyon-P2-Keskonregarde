@@ -2,8 +2,17 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styles from "./SearchFilterBar.module.css";
 
-export default function SearchFilterBar({ scoreFilter, setScoreFilter }) {
+export default function SearchFilterBar({
+  scoreSelected,
+  setScoreSelected,
+  setScoreFilter,
+}) {
   const [isActive, setIsActive] = useState(false);
+
+  function handleScoreSearch() {
+    setIsActive(false);
+    setScoreFilter(scoreSelected);
+  }
 
   return (
     <nav className={styles.nav}>
@@ -26,62 +35,62 @@ export default function SearchFilterBar({ scoreFilter, setScoreFilter }) {
             <button
               type="button"
               className={`${
-                scoreFilter === "all"
+                scoreSelected === "all"
                   ? styles.buttonSelectTypeEnabled
                   : styles.buttonSelectType
               }`}
-              onClick={() => setScoreFilter("all")}
+              onClick={() => setScoreSelected("all")}
             >
               Tout
             </button>
             <button
               type="button"
               className={`${
-                scoreFilter === "2"
+                scoreSelected === "2"
                   ? styles.buttonSelectTypeEnabled
                   : styles.buttonSelectType
               }`}
-              onClick={() => setScoreFilter("2")}
+              onClick={() => setScoreSelected("2")}
             >
               Noté +2
             </button>
             <button
               type="button"
               className={`${
-                scoreFilter === "4"
+                scoreSelected === "4"
                   ? styles.buttonSelectTypeEnabled
                   : styles.buttonSelectType
               }`}
-              onClick={() => setScoreFilter("4")}
+              onClick={() => setScoreSelected("4")}
             >
               Noté +4
             </button>
             <button
               type="button"
               className={`${
-                scoreFilter === "6"
+                scoreSelected === "6"
                   ? styles.buttonSelectTypeEnabled
                   : styles.buttonSelectType
               }`}
-              onClick={() => setScoreFilter("6")}
+              onClick={() => setScoreSelected("6")}
             >
               Noté +6
             </button>
             <button
               type="button"
               className={`${
-                scoreFilter === "8"
+                scoreSelected === "8"
                   ? styles.buttonSelectTypeEnabled
                   : styles.buttonSelectType
               }`}
-              onClick={() => setScoreFilter("8")}
+              onClick={() => setScoreSelected("8")}
             >
               Noté +8
             </button>
             <button
               type="button"
               className={styles.buttonSearchFilter}
-              onClick={() => setIsActive(!isActive)}
+              onClick={() => handleScoreSearch()}
             >
               RECHERCHER
             </button>
@@ -93,6 +102,7 @@ export default function SearchFilterBar({ scoreFilter, setScoreFilter }) {
 }
 
 SearchFilterBar.propTypes = {
-  scoreFilter: PropTypes.string.isRequired,
+  scoreSelected: PropTypes.string.isRequired,
+  setScoreSelected: PropTypes.func.isRequired,
   setScoreFilter: PropTypes.func.isRequired,
 };
