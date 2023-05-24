@@ -29,7 +29,7 @@
   background-color: #dadada;
   color: #f6f6f6;
   border-style: none;
-  padding: 0 1rem;
+  padding: auto;
   font-size: 0.7rem;
   font-weight: 900;
   height: 100%;
@@ -44,9 +44,11 @@
     height: 3rem;
     width: 60vw;
     border-radius: 0.9rem;
+    margin: 0.5rem auto 2rem;
   }
 
   .searchButton {
+    padding: 0 1rem;
     font-size: 0.9rem;
   }
 
